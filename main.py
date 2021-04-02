@@ -1,5 +1,8 @@
 import sqlite3
 import json
+import functions.getComponents as getComps
+import functions.itemComponent as itemComp
+import functions.objects as objectInfo
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -15,16 +18,18 @@ def create_connection(db_file):
 
     return conn
 
-import functions.getComponents as comp
+def writeFile(objectID):
+    with open('output/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+        json.dump(objectData, f, ensure_ascii=False, indent=4)
 
+#import functions
 file = "cdclient.sqlite"
-objectID = 7570
+objectID = 7415
 db = create_connection(file)
-objectData = comp.select_all_tasks(db, objectID)
-print(objectData)
-
-with open('output/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
-    json.dump(objectData, f, ensure_ascii=False, indent=4)
+objectData = objectInfo.getInfo(db, objectID)
+objectData = getComps.getInfo(db, objectData, objectID)
+objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
+writeFile(objectID)
 
 
 

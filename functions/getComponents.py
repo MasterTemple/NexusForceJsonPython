@@ -1,6 +1,5 @@
-def select_all_tasks(conn, objectID):
-    data = {}
-    data['objectID'] = objectID
+def getInfo(conn, data, objectID):
+
     data['components'] = {}
 
     cur = conn.cursor()
