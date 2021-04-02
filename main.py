@@ -3,6 +3,8 @@ import json
 import functions.getComponents as getComps
 import functions.itemComponent as itemComp
 import functions.objects as objectInfo
+import functions.getObjectSkills as objectSkills
+
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -28,6 +30,8 @@ objectID = 7415
 db = create_connection(file)
 objectData = objectInfo.getInfo(db, objectID)
 objectData = getComps.getInfo(db, objectData, objectID)
+objectData = objectSkills.getInfo(db, objectData, objectID)
+
 objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
 writeFile(objectID)
 
