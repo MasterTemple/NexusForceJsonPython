@@ -1,5 +1,8 @@
 def getInfo(conn, data, objectID):
-
+    from externalFunctions import parseXML as missionInfo
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('work/locale.xml')
+    root = tree.getroot()
     data['earn'] = {}
 
     cur = conn.cursor()
@@ -10,11 +13,15 @@ def getInfo(conn, data, objectID):
 
     for row in rows:
         if row[4] == objectID or row[6] == objectID or row[8] == objectID or row[10] == objectID:
+            if row[12] == 1:
+                missionData = missionInfo.getMissionInfo(row[0], root)
+            if row[12] == 0:
+                missionData = missionInfo.getAchievementInfo(row[0], root)
             data['earn'][row[0]] = {
                 "defined_type": row[1],
                 "defined_subtype": row[2],
-                "missionName": "CURRENTLY NOT IMPLEMENTED",
-                "missionDescription": "CURRENTLY NOT IMPLEMENTED",
+                "missionName": missionData['name'],
+                "missionDescription": missionData['description'],
                 "isMission": row[12]
             }
 

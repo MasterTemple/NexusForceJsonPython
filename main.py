@@ -26,7 +26,7 @@ def writeFile(objectID, objectData):
     with open('output/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
-file = "cdclient.sqlite"
+file = "work/cdclient.sqlite"
 db = create_connection(file)
 
 def run(objectID):
