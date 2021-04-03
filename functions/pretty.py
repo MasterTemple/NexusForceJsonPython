@@ -14,6 +14,7 @@ def makePretty(conn, data):
     if data['itemComponent']['commendationCurrencyType'] is not None:
         data = commendationCurrencyCostName(conn, data)
 
+    data = rarityTableInfoPercents(conn, data)
     return data
 
 def equipLocation(data):
@@ -85,4 +86,37 @@ def commendationCurrencyCostName(curr, data):
     # data['itemComponent']['commendationCurrencyDisplayName'] = namesObj["displayName"]
     data['itemComponent']['commendationCurrencyDisplayName'] = 'Faction Token'
 
+    return data
+
+def rarityTableInfoPercents(curr, data):
+    #print(data)
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        #print('lmi'+str(lmi))
+        arr = []
+        for rtinfo in data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo']:
+            arr.append(rtinfo)
+
+        arr.sort()
+        #data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'].sort()
+        #print(lmi, arr)
+
+        for index in arr:
+            #print(arr[len(arr)-index])
+            #chance = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][str(arr[len(arr)-index])]['randmax'] - data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][str(arr[len(arr)-(index+1)])]['randmax']
+            if index <= len(arr)-1:
+                chance = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['randmax'] - data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index-1]]['randmax']
+                #print(chance)
+                data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['chance'] = chance
+                #data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['chance'] = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['randmax'] - data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index-1]]['randmax']
+            elif len(arr) != 1:
+                chance = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['randmax']
+                #print(chance)
+                #print(arr[len(arr)-index])
+                data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['chance'] = chance
+                #data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['chance'] = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[len(arr)-index]]['randmax']
+            elif len(arr) == 1:
+                chance = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[0]]['randmax']
+                #print(chance)
+                #print(arr[len(arr)-index])
+                data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[0]]['chance'] = chance
     return data

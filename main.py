@@ -12,7 +12,8 @@ import functions.renderComponent as render
 import functions.buyAndDrop as buy
 import functions.earn as earn
 import functions.proxy as proxy
-
+import functions.createLootTableIndexInfo as ltiFile
+import externalFunctions.getAllLootTableIndexes as glti
 
 def create_connection(db_file):
     conn = None
@@ -22,14 +23,18 @@ def create_connection(db_file):
         print("Error")
     return conn
 
-def writeFile(objectID, objectData):
-    with open('output/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+def writeObjectFile(objectID, objectData):
+    with open('output/objects/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+        json.dump(objectData, f, ensure_ascii=False, indent=4)
+
+def writeLTIFile(objectID, objectData):
+    with open('output/lootTableIndexes/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 
-def run(objectID):
+def runObjects(objectID):
     objectData = objectInfo.getInfo(db, objectID)
     objectData = getComps.getInfo(db, objectData, objectID)
     objectData = objectSkills.getInfo(db, objectData, objectID)
@@ -41,11 +46,26 @@ def run(objectID):
     objectData = proxy.getInfo(db, objectData, objectID)
 
     objectData = pretty.makePretty(db, objectData)
-    writeFile(objectID, objectData)
+    writeObjectFile(objectID, objectData)
+
+#12637, 1889
+
+def runLTIs(lootTableIndex):
+    ltiData = ltiFile.getInfo(db, lootTableIndex)
+    writeLTIFile(lootTableIndex, ltiData)
 
 
-objectIDsList = [12637, 1889]
+
+
+lootTableIndexesList = []
+#lootTableIndexesList = glti.length(db)
+
+#lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]
+for lti in lootTableIndexesList:
+    print('Created LootTableIndex: '+str(lti))
+    runLTIs(lti)
+
+
+objectIDsList = [7570]
 for objectID in objectIDsList:
-    run(objectID)
-
-
+    runObjects(objectID)
