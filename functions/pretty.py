@@ -15,7 +15,8 @@ def makePretty(conn, data):
         data = commendationCurrencyCostName(conn, data)
 
     data = rarityTableInfoPercents(conn, data)
-    data = overallChance(data)
+    data = bigCalculate(data)
+    lootTableIndexRange(data)
     return data
 
 def equipLocation(data):
@@ -136,6 +137,55 @@ def overallChance(data):
             #print('yep')
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']['enemyNames']['displayName'])
             chanceVal = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(rarityVal)]['chance']
+            percentVal = data['buyAndDrop']['LootMatrixIndexes'][lmi]['percent']
+            totalItems = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(rarityVal)]
+            percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
+            howManyToKill = round(1.0/percent)
+            data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
+                "percent": percent,
+                "howManyToKill": howManyToKill
+            }
+            #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'])
+        # except:
+        #     continue
+
+    return data
+
+def lootTableIndexRange(data):
+    import json
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        with open('output/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
+            lti = json.load(f)
+        data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndexItems'] = len(lti['items'])
+
+    return data
+
+
+def bigCalculate(data):
+    #import math
+    rarityVal = (data['itemComponent']['rarity'])
+
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        # try:
+        #rarityVal = str(rarityVal)
+        #if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) > 0:
+        if rarityVal in data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'].keys():
+
+            #if rarityVal in data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'] and rarityVal in data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount']:
+            #print('yep')
+            #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']['enemyNames']['displayName'])
+            chanceVal = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(rarityVal)]['chance']
+            chanceArr = []
+            chanceSum = 0
+            #print(rarityVal)
+            for bigChance in data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo']:
+                #print(bigChance)
+                if data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(bigChance)] != 0:
+                    chanceArr.append(data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(bigChance)]['chance'])
+                    chanceSum+=data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(bigChance)]['chance']
+
+            #print(chanceSum)
+            chanceVal = chanceVal * (100.0/chanceSum)
             percentVal = data['buyAndDrop']['LootMatrixIndexes'][lmi]['percent']
             totalItems = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(rarityVal)]
             percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
