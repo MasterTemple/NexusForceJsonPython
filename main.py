@@ -1,39 +1,43 @@
 import sqlite3
 import json
+import math
+
 import functions.getComponents as getComps
 import functions.itemComponent as itemComp
 import functions.objects as objectInfo
 import functions.getObjectSkills as objectSkills
-
+import functions.getBehaviors as behaviors
+import functions.pretty as pretty
+import functions.renderComponent as render
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by the db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
     conn = None
     try:
         conn = sqlite3.connect(db_file)
     except:
         print("Error")
-
     return conn
 
-def writeFile(objectID):
-    with open('output/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+def writeFile(objectID, objectData):
+    with open('output/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
-#import functions
 file = "cdclient.sqlite"
-objectID = 7415
 db = create_connection(file)
-objectData = objectInfo.getInfo(db, objectID)
-objectData = getComps.getInfo(db, objectData, objectID)
-objectData = objectSkills.getInfo(db, objectData, objectID)
 
-objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
-writeFile(objectID)
+def run(objectID):
+    objectData = objectInfo.getInfo(db, objectID)
+    objectData = getComps.getInfo(db, objectData, objectID)
+    objectData = objectSkills.getInfo(db, objectData, objectID)
+    objectData = behaviors.getInfo(db, objectData, objectData['skillIDs'])
+    objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
+    objectData = pretty.makePretty(objectData)
+    objectData = render.getInfo(db, objectData, objectData['components'][2])
+    writeFile(objectID, objectData)
+
+
+objectID = 7415
+run(objectID)
 
 
 
