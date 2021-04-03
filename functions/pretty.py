@@ -1,6 +1,7 @@
 def makePretty(conn, data):
     cur = conn.cursor()
-    if(data['itemComponent']['subItems'] is not None):
+    if data['itemComponent']['subItems'] is not None:
+        #print(data['itemComponent']['subItems'])
         data = subItems(cur, data)
     data = equipLocation(data)
     data = preconditions(cur, data)
@@ -41,8 +42,11 @@ def preconditions(cur, data):
     return data
 
 def subItems(cur, data):
-    data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
-    data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
+
+    # print("try")
+    # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
+    # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].replace(' ', '')
+    # data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
     for item in data['itemComponent']['subItems']:
         cur.execute("SELECT * FROM ComponentsRegistry")
         rows = cur.fetchall()
@@ -56,7 +60,8 @@ def subItems(cur, data):
                     if subItemRow[0] == subitemComp:
                         #print(subItemRow[1])
                         data['itemComponent']['equipLocation'].append(subItemRow[1])
-
     return data
+
+
 
 

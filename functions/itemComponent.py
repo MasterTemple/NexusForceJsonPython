@@ -1,6 +1,7 @@
 def getInfo(conn, data, itemComponentID):
     #data['equipLocation'] = []
     data['itemComponent'] = {}
+    #data['itemComponent']['subItems'] = []
     cur = conn.cursor()
     cur.execute("SELECT * FROM ItemComponent")
     import math
@@ -23,19 +24,29 @@ def getInfo(conn, data, itemComponentID):
             data['itemComponent']['altCurrencyType'] = row[29]
             data['itemComponent']['altCurrencyCost'] = row[30]
             data['itemComponent']['subItems'] = row[31]
+            if row[31] is not None:
+                #print(data['itemComponent']['subItems'])
+                # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
+                # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].replace(' ', '')
+                data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].split(';')]
+                #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(' ', '')]
+                data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
+                # data = addProxy(data, cur)
+
+            #data['itemComponent']['equipLocation'].append(int(row[31]))
+
             data['itemComponent']['commendationCurrencyType'] = row[34]
             data['itemComponent']['commendationCurrencyCost'] = row[35]
 
     # data = modifyData(data, cur)
     return data
 
-# def modifyData(data, cur):
-#     factionTokens = [8318, 8319, 8320, 8321]
-#     if data['itemComponent']['altCurrencyType'] != null:
-#         cur.execute("SELECT * FROM Objects")
-#         row = cur.findOne()
-#
-#     data['itemComponent']['altCurrencyName']
-#
-#
-#     return  data
+# def addProxy(data, cur):
+#     cur.execute("SELECT id, equipLocation FROM ItemComponent")
+#     rows = cur.fetchall()
+#     print(data['itemComponent']['subItems'])
+#     for row in rows:
+#         if row[0] in data['itemComponent']['subItems']:
+#             print(row)
+#             data['itemComponent']['equipLocation'].append(row[1])
+#     return data

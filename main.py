@@ -10,6 +10,9 @@ import functions.getBehaviors as behaviors
 import functions.pretty as pretty
 import functions.renderComponent as render
 import functions.buyAndDrop as buy
+import functions.earn as earn
+import functions.proxy as proxy
+
 
 def create_connection(db_file):
     conn = None
@@ -34,12 +37,14 @@ def run(objectID):
     objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
     objectData = render.getInfo(db, objectData, objectData['components'][2])
     objectData = buy.getInfo(db, objectData, objectID)
+    objectData = earn.getInfo(db, objectData, objectID)
+    objectData = proxy.getInfo(db, objectData, objectID)
 
     objectData = pretty.makePretty(db, objectData)
     writeFile(objectID, objectData)
 
 
-objectIDsList = [7415, 7570]
+objectIDsList = [7415, 1889, 12637]
 for objectID in objectIDsList:
     run(objectID)
 
