@@ -4,7 +4,16 @@ def makePretty(conn, data):
         #print(data['itemComponent']['subItems'])
         data = subItems(cur, data)
     data = equipLocation(data)
-    data = preconditions(cur, data)
+    if data['itemComponent']['preconditions'] is not None:
+        data = preconditions(cur, data)
+    else:
+        data['itemComponent']['levelRequirement'] = 0
+
+    if data['itemComponent']['altCurrencyType'] is not None:
+        data = altCurrencyCostName(conn, data)
+    if data['itemComponent']['commendationCurrencyType'] is not None:
+        data = commendationCurrencyCostName(conn, data)
+
     return data
 
 def equipLocation(data):
@@ -62,6 +71,18 @@ def subItems(cur, data):
                         data['itemComponent']['equipLocation'].append(subItemRow[1])
     return data
 
+def altCurrencyCostName(curr, data):
+    import externalFunctions.nameAndDisplayName as name
+    namesObj = name.info(curr, data['itemComponent']['altCurrencyType'])
+    data['itemComponent']['altCurrencyName'] = namesObj["name"]
+    data['itemComponent']['altCurrencyDisplayName'] = namesObj["displayName"]
+    return data
 
+def commendationCurrencyCostName(curr, data):
+    import externalFunctions.nameAndDisplayName as name
+    namesObj = name.info(curr, data['itemComponent']['commendationCurrencyType'])
+    data['itemComponent']['commendationCurrencyName'] = namesObj["name"]
+    # data['itemComponent']['commendationCurrencyDisplayName'] = namesObj["displayName"]
+    data['itemComponent']['commendationCurrencyDisplayName'] = 'Faction Token'
 
-
+    return data

@@ -44,9 +44,8 @@ def run(objectID):
     writeFile(objectID, objectData)
 
 
-objectIDsList = [7415, 1889, 12637]
+objectIDsList = [12637, 1889]
 for objectID in objectIDsList:
     run(objectID)
-
 
 
