@@ -16,8 +16,10 @@ def makePretty(conn, data):
 
     data = rarityTableInfoPercents(conn, data)
     data = bigCalculate(data)
-    lootTableIndexRange(data)
+    data = lootTableIndexRange(data)
+    data = removeExtra(data)
     return data
+
 
 def equipLocation(data):
     data['itemComponent']['equipLocationNames'] = []
@@ -41,6 +43,7 @@ def equipLocation(data):
 
     return data
 
+
 def preconditions(cur, data):
     data['itemComponent']['preconditions'] = data['itemComponent']['preconditions'].split(';')
     data['itemComponent']['preconditions'] = [int(i) for i in data['itemComponent']['preconditions']]
@@ -52,6 +55,7 @@ def preconditions(cur, data):
         elif row[0] in data['itemComponent']['preconditions']:
             continue
     return data
+
 
 def subItems(cur, data):
 
@@ -74,12 +78,14 @@ def subItems(cur, data):
                         data['itemComponent']['equipLocation'].append(subItemRow[1])
     return data
 
+
 def altCurrencyCostName(curr, data):
     import externalFunctions.nameAndDisplayName as name
     namesObj = name.info(curr, data['itemComponent']['altCurrencyType'])
     data['itemComponent']['altCurrencyName'] = namesObj["name"]
     data['itemComponent']['altCurrencyDisplayName'] = namesObj["displayName"]
     return data
+
 
 def commendationCurrencyCostName(curr, data):
     import externalFunctions.nameAndDisplayName as name
@@ -89,6 +95,7 @@ def commendationCurrencyCostName(curr, data):
     data['itemComponent']['commendationCurrencyDisplayName'] = 'Faction Token'
 
     return data
+
 
 def rarityTableInfoPercents(curr, data):
     #print(data)
@@ -123,6 +130,7 @@ def rarityTableInfoPercents(curr, data):
                 data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][arr[0]]['chance'] = chance
     return data
 
+
 def overallChance(data):
     #import math
     rarityVal = (data['itemComponent']['rarity'])
@@ -150,6 +158,7 @@ def overallChance(data):
         #     continue
 
     return data
+
 
 def lootTableIndexRange(data):
     import json
@@ -198,4 +207,25 @@ def bigCalculate(data):
         # except:
         #     continue
 
+    return data
+
+
+def removeUnusedLootMatrixIndexes(data):
+    lmisToDelete = []
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        #print(len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']))
+        if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0:
+            #delattr(data, ['buyAndDrop']['LootMatrixIndexes'][lmi])
+            lmisToDelete.append(lmi)
+
+    for lmi in lmisToDelete:
+        del data['buyAndDrop']['LootMatrixIndexes'][lmi]
+
+    return data
+
+
+def removeExtra(data):
+    data = removeUnusedLootMatrixIndexes(data)
+    del data['buyAndDrop']['LootMatrixIndexesArray']
+    del data['buyAndDrop']['DestructibleComponents']
     return data
