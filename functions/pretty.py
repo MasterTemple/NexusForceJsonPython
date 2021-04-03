@@ -49,12 +49,12 @@ def subItems(cur, data):
         for row in rows:
             if row[0] == item and row[1] == 11:
                 subitemComp = row[2]
-                print(subitemComp)
+                #print(subitemComp)
                 cur.execute("SELECT id, equipLocation FROM ItemComponent")
                 subItemRows = cur.fetchall()
                 for subItemRow in subItemRows:
                     if subItemRow[0] == subitemComp:
-                        print(subItemRow[1])
+                        #print(subItemRow[1])
                         data['itemComponent']['equipLocation'].append(subItemRow[1])
 
     return data

@@ -9,6 +9,7 @@ import functions.getObjectSkills as objectSkills
 import functions.getBehaviors as behaviors
 import functions.pretty as pretty
 import functions.renderComponent as render
+import functions.buyAndDrop as buy
 
 def create_connection(db_file):
     conn = None
@@ -31,12 +32,14 @@ def run(objectID):
     objectData = objectSkills.getInfo(db, objectData, objectID)
     objectData = behaviors.getInfo(db, objectData, objectData['skillIDs'])
     objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
-    objectData = pretty.makePretty(db, objectData)
     objectData = render.getInfo(db, objectData, objectData['components'][2])
+    objectData = buy.getInfo(db, objectData, objectID)
+
+    objectData = pretty.makePretty(db, objectData)
     writeFile(objectID, objectData)
 
 
-objectIDsList = [7415, 12809]
+objectIDsList = [7415, 7570]
 for objectID in objectIDsList:
     run(objectID)
 
