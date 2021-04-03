@@ -19,6 +19,7 @@ def makePretty(conn, data):
     data = lootTableIndexRange(data)
     data = removeExtra(data)
     addSkillNamesAndDescriptions(data)
+    addProxySkillNamesAndDescriptions(data)
     return data
 
 
@@ -237,4 +238,12 @@ def addSkillNamesAndDescriptions(data):
         if data['objectSkills'][skills]['castOnType'] == 0:
             skillInfo = xml.getSkillInfo(skills)
             data['objectSkills'][skills]['info'] = skillInfo
+    return data
+
+def addProxySkillNamesAndDescriptions(data):
+    import externalFunctions.parseXML as xml
+    for skills in data['proxySkills']:
+        if data['proxySkills'][skills]['castOnType'] == 0:
+            skillInfo = xml.getSkillInfo(skills)
+            data['proxySkills'][skills]['info'] = skillInfo
     return data
