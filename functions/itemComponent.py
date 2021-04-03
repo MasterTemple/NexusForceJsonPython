@@ -18,7 +18,7 @@ def getInfo(conn, data, itemComponentID):
             data['itemComponent']['inVendor'] = row[8]
             data['itemComponent']['stackSize'] = row[16]
             data['itemComponent']['color'] = row[17]
-            data['itemComponent']['preConditions'] = row[21]
+            data['itemComponent']['preconditions'] = row[21]
             data['itemComponent']['isTwoHanded'] = row[26]
             data['itemComponent']['altCurrencyType'] = row[29]
             data['itemComponent']['altCurrencyCost'] = row[30]

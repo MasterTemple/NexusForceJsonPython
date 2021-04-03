@@ -31,13 +31,14 @@ def run(objectID):
     objectData = objectSkills.getInfo(db, objectData, objectID)
     objectData = behaviors.getInfo(db, objectData, objectData['skillIDs'])
     objectData = itemComp.getInfo(db, objectData, objectData['components'][11])
-    objectData = pretty.makePretty(objectData)
+    objectData = pretty.makePretty(db, objectData)
     objectData = render.getInfo(db, objectData, objectData['components'][2])
     writeFile(objectID, objectData)
 
 
-objectID = 7415
-run(objectID)
+objectIDsList = [7415, 12809]
+for objectID in objectIDsList:
+    run(objectID)
 
 
 
