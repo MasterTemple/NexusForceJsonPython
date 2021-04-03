@@ -18,6 +18,7 @@ def makePretty(conn, data):
     data = bigCalculate(data)
     data = lootTableIndexRange(data)
     data = removeExtra(data)
+    addSkillNamesAndDescriptions(data)
     return data
 
 
@@ -228,4 +229,12 @@ def removeExtra(data):
     data = removeUnusedLootMatrixIndexes(data)
     del data['buyAndDrop']['LootMatrixIndexesArray']
     del data['buyAndDrop']['DestructibleComponents']
+    return data
+
+def addSkillNamesAndDescriptions(data):
+    import externalFunctions.parseXML as xml
+    for skills in data['objectSkills']:
+        if data['objectSkills'][skills]['castOnType'] == 0:
+            skillInfo = xml.getSkillInfo(skills)
+            data['objectSkills'][skills]['info'] = skillInfo
     return data

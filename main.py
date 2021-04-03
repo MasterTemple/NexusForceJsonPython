@@ -66,6 +66,6 @@ for lti in lootTableIndexesList:
     runLTIs(lti)
 
 
-objectIDsList = [7570]
+objectIDsList = [7415]
 for objectID in objectIDsList:
     runObjects(objectID)
