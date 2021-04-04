@@ -17,7 +17,8 @@ import functions.mission as missionFile
 import functions.getVendor as vendor
 import functions.npcMissions as npcMissions
 import functions.vendorPretty as vendorPretty
-
+import functions.enemyDrops as enemyDrops
+import functions.enemySkills as enemySkills
 import externalFunctions.getAllLootTableIndexes as glti
 import externalFunctions.getAllMission as getAllMissions
 import externalFunctions.getAllObjects as getAllObjects
@@ -53,6 +54,10 @@ def writeNPCFile(objectID, objectData):
     with open('output/npcs/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
+def writeEnemyFile(objectID, objectData):
+    #print(objectData)
+    with open('output/enemies/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+        json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 
@@ -102,6 +107,13 @@ def runNPC(npcID):
 
     writeNPCFile(npcID, npcData)
 
+def runEnemy(enemyID):
+    enemyData = {"enemyID": enemyID}
+    getComps.getInfo(db, enemyData, enemyID)
+    enemyDrops.getInfo(db, enemyData, enemyID)
+    enemySkills.getInfo(db, enemyData, enemyID)
+    writeEnemyFile(enemyID, enemyData)
+
 
 
 #lootTableIndexesList = []
@@ -117,7 +129,8 @@ npcsList = getAllNPCs.length(db)
 lootTableIndexesList = []
 objectIDsList = [] #items only
 missionIDsList = []
-npcsList = [13569]
+npcsList = []
+enemyList = [4712]
 
 for lti in lootTableIndexesList:
     print('Created LootTableIndex: '+str(lti))
@@ -139,3 +152,7 @@ for missionID in missionIDsList:
 for npcID in npcsList:
     print('Started NPC:', npcID)
     runNPC(npcID)
+
+for enemyID in enemyList:
+    print('Started NPC:', enemyID)
+    runEnemy(enemyID)
