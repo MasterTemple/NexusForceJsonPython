@@ -13,6 +13,7 @@ import functions.buyAndDrop as buy
 import functions.earn as earn
 import functions.proxy as proxy
 import functions.createLootTableIndexInfo as ltiFile
+import functions.mission as missionFile
 import externalFunctions.getAllLootTableIndexes as glti
 
 def create_connection(db_file):
@@ -30,6 +31,11 @@ def writeObjectFile(objectID, objectData):
 def writeLTIFile(objectID, objectData):
     with open('output/lootTableIndexes/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
+
+def writeMissionFile(objectID, objectData):
+    with open('output/missions/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+        json.dump(objectData, f, ensure_ascii=False, indent=4)
+
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
@@ -55,6 +61,9 @@ def runLTIs(lootTableIndex):
     writeLTIFile(lootTableIndex, ltiData)
 
 
+def runMissions(missionID):
+    missionData = missionFile.getMissionInfo(db, missionID)
+    writeMissionFile(missionID, missionData)
 
 
 lootTableIndexesList = []
@@ -66,6 +75,11 @@ for lti in lootTableIndexesList:
     runLTIs(lti)
 
 
-objectIDsList = [12637]
+objectIDsList = []
 for objectID in objectIDsList:
     runObjects(objectID)
+
+missionIDsList = [1718]
+
+for missionID in missionIDsList:
+    runMissions(missionID)
