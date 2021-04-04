@@ -15,6 +15,9 @@ import functions.proxy as proxy
 import functions.createLootTableIndexInfo as ltiFile
 import functions.mission as missionFile
 import externalFunctions.getAllLootTableIndexes as glti
+import externalFunctions.getAllMission as getAllMissions
+import externalFunctions.getAllObjects as getAllObjects
+
 
 def create_connection(db_file):
     conn = None
@@ -33,6 +36,7 @@ def writeLTIFile(objectID, objectData):
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 def writeMissionFile(objectID, objectData):
+    #print(objectData)
     with open('output/missions/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
@@ -66,20 +70,31 @@ def runMissions(missionID):
     writeMissionFile(missionID, missionData)
 
 
-lootTableIndexesList = []
-#lootTableIndexesList = glti.length(db)
-
+#lootTableIndexesList = []
 #lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]
+
+
+lootTableIndexesList = glti.length(db)
+objectIDsList = getAllObjects.length(db)
+missionIDsList = getAllMissions.length(db)
+
+lootTableIndexesList = []
+objectIDsList = []
+missionIDsList = [1718, 689, 792]
+
 for lti in lootTableIndexesList:
     print('Created LootTableIndex: '+str(lti))
     runLTIs(lti)
 
 
-objectIDsList = []
+#objectIDsList = []
+
 for objectID in objectIDsList:
+    print('Started Object:', objectID)
     runObjects(objectID)
 
-missionIDsList = [1718]
+#missionIDsList = [1718, 689, 792]
 
 for missionID in missionIDsList:
+    print('Started Mission:', missionID)
     runMissions(missionID)
