@@ -77,7 +77,7 @@ def iconUrlFromID(cur, iconID, missionData):
 
 
 def getMissionStats(cur, missionID, name, conn):
-    cur.execute("SELECT id, defined_type, defined_subtype, reward_currency, LegoScore, reward_reputation, isChoiceReward, reward_item1, reward_item1_count, reward_item2, reward_item2_count, reward_item3, reward_item3_count, reward_item4, reward_item4_count, isMission FROM Missions")
+    cur.execute("SELECT id, defined_type, defined_subtype, reward_currency, LegoScore, reward_reputation, isChoiceReward, reward_item1, reward_item1_count, reward_item2, reward_item2_count, reward_item3, reward_item3_count, reward_item4, reward_item4_count, isMission, repeatable, reward_maximagination, reward_maxhealth, reward_maxinventory, reward_bankinventory, reward_emote FROM Missions")
     rows = cur.fetchall()
     from externalFunctions import parseXML as missionInfo
 
@@ -108,7 +108,15 @@ def getMissionStats(cur, missionID, name, conn):
                         "reward_item4_count": row[14]
                     },
                 },
-                "isMission": row[15]
+                "isMission": row[15],
+                "repeatable": row[16],
+                "reward_maximagination": row[17],
+                "reward_maxhealth": row[18],
+                "reward_maxinventory": row[19],
+                "reward_bankinventory": row[20],
+                "reward_emote": row[21]
+
+
             }
             if obj['rewards']['item1']["reward_item1"] != -1:
                 obj['rewards']['item1'].update(name.info(conn, row[7]))
