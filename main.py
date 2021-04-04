@@ -79,8 +79,8 @@ objectIDsList = getAllObjects.length(db)
 missionIDsList = getAllMissions.length(db)
 
 lootTableIndexesList = []
-objectIDsList = []
-missionIDsList = [1718, 689, 792]
+objectIDsList = [7415, 4881]
+missionIDsList = []
 
 for lti in lootTableIndexesList:
     print('Created LootTableIndex: '+str(lti))

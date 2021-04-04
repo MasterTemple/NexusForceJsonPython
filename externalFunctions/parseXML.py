@@ -24,6 +24,23 @@ def getAchievementInfo(id, root):
             mission['description'] = child[0].text
     return mission
 
+
+def preconditions(preconditionIDs):
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('./work/locale.xml')
+    root = tree.getroot()
+    ##Preconditions_224_FailureReason
+    preconditions = {}
+
+    for i in preconditionIDs:
+        name = 'Preconditions_'+str(i)+'_FailureReason'
+        for child in root[1]:
+            if child.attrib['id'] == name:
+                #print(child[0].text)
+                preconditions[i] = child[0].text
+    return preconditions
+
+
 def getSkillInfo(skillID):
     #from externalFunctions import parseXML as missionInfo
     import xml.etree.ElementTree as ET

@@ -20,6 +20,9 @@ def makePretty(conn, data):
     data = removeExtra(data)
     addSkillNamesAndDescriptions(data)
     addProxySkillNamesAndDescriptions(data)
+    if data['itemComponent']['preconditions'] is not None:
+        getPreconditions(data)
+
     return data
 
 
@@ -247,3 +250,7 @@ def addProxySkillNamesAndDescriptions(data):
             skillInfo = xml.getSkillInfo(skills)
             data['proxySkills'][skills]['info'] = skillInfo
     return data
+
+def getPreconditions(data):
+    import externalFunctions.parseXML as xml
+    data['itemComponent']['preconditionDescriptions'] = xml.preconditions(data['itemComponent']['preconditions'])
