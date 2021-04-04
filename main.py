@@ -19,6 +19,8 @@ import functions.npcMissions as npcMissions
 import functions.vendorPretty as vendorPretty
 import functions.enemyDrops as enemyDrops
 import functions.enemySkills as enemySkills
+import functions.getAllEnemies as getAllEnemies
+
 import externalFunctions.getAllLootTableIndexes as glti
 import externalFunctions.getAllMission as getAllMissions
 import externalFunctions.getAllObjects as getAllObjects
@@ -125,6 +127,7 @@ lootTableIndexesList = glti.length(db)
 objectIDsList = getAllObjects.length(db)
 missionIDsList = getAllMissions.length(db)
 npcsList = getAllNPCs.length(db)
+enemyList = getAllEnemies.length(db)
 
 lootTableIndexesList = []
 objectIDsList = [] #items only
@@ -154,5 +157,5 @@ for npcID in npcsList:
     runNPC(npcID)
 
 for enemyID in enemyList:
-    print('Started NPC:', enemyID)
+    print('Started Enemy:', enemyID)
     runEnemy(enemyID)
