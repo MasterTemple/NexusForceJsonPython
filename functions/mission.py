@@ -59,6 +59,7 @@ def missionTasksInfo(cur, missionID, name, conn, missionData):
 def iconUrlFromID(cur, iconID, missionData):
     cur.execute("SELECT * FROM Icons")
     rows = cur.fetchall()
+    #icon_path = None
     for row in rows:
         if row[0] == iconID:
             icon_path = row[1]
