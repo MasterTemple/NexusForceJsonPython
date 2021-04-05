@@ -54,9 +54,9 @@ def getProxySkillBehavior(conn, data, skillID):
 def addProxyEquipLocation(data, cur):
     cur.execute("SELECT id, equipLocation FROM ItemComponent")
     rows = cur.fetchall()
-    print(data['itemComponent']['subItems'])
+    #print(data['itemComponent']['subItems'])
     for row in rows:
         if row[0] in data['itemComponent']['subItems']:
-            print(row)
+            #print(row)
             data['itemComponent']['equipLocation'].append(row[1])
     return data

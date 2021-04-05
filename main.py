@@ -20,6 +20,7 @@ import functions.vendorPretty as vendorPretty
 import functions.enemyDrops as enemyDrops
 import functions.enemySkills as enemySkills
 import functions.getAllEnemies as getAllEnemies
+import functions.rarityTableForEnemy as enemyRTI
 
 import externalFunctions.getAllLootTableIndexes as glti
 import externalFunctions.getAllMission as getAllMissions
@@ -32,35 +33,38 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
     except:
-        print("Error")
+        print("\nError")
     return conn
 
+
 def writeObjectFile(objectID, objectData):
-    with open('output/objects/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+    with open('output/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
+              encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeLTIFile(objectID, objectData):
-    with open('output/lootTableIndexes/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+    with open('output/lootTableIndexes/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeMissionFile(objectID, objectData):
-    #print(objectData)
-    with open('output/missions/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+    # print(objectData)
+    with open('output/missions/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeNPCFile(objectID, objectData):
-    #print(objectData)
-    with open('output/npcs/'+str(math.floor(objectID/256))+'/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+    # print(objectData)
+    with open('output/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
+              encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
+
 
 def writeEnemyFile(objectID, objectData):
-    #print(objectData)
-    with open('output/enemies/'+str(objectID)+'.json', 'w', encoding='utf-8') as f:
+    # print(objectData)
+    with open('output/enemies/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
-
 
 
 def runObjects(objectID):
@@ -76,6 +80,7 @@ def runObjects(objectID):
 
     pretty.makePretty(db, objectData)
     writeObjectFile(objectID, objectData)
+    return
 
 def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
@@ -85,6 +90,7 @@ def runLTIs(lootTableIndex):
 def runMissions(missionID):
     missionData = missionFile.getMissionInfo(db, missionID)
     writeMissionFile(missionID, missionData)
+
 
 def runNPC(npcID):
     npcData = {"npcID": npcID}
@@ -100,7 +106,7 @@ def runNPC(npcID):
         npcData['isMissionGiver'] = 1
         npcData['missions'] = {}
         npcMissions.getInfo(db, npcData, npcData['components'][73])
-        #print(npcData['missionsList'])
+        # print(npcData['missionsList'])
         for missionID in npcData['missionsList']:
             npcData['missions'][missionID] = missionFile.getMissionInfo(db, missionID)
     else:
@@ -109,17 +115,18 @@ def runNPC(npcID):
 
     writeNPCFile(npcID, npcData)
 
+
 def runEnemy(enemyID):
     enemyData = {"enemyID": enemyID}
     getComps.getInfo(db, enemyData, enemyID)
     enemyDrops.getInfo(db, enemyData, enemyID)
     enemySkills.getInfo(db, enemyData, enemyID)
+    enemyRTI.getInfo(db, enemyData, enemyID)
     writeEnemyFile(enemyID, enemyData)
 
 
-
-#lootTableIndexesList = []
-#lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]
+# lootTableIndexesList = []
+# lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
@@ -130,32 +137,46 @@ npcsList = getAllNPCs.length(db)
 enemyList = getAllEnemies.length(db)
 
 lootTableIndexesList = []
-objectIDsList = [] #items only
+objectIDsList = []
 missionIDsList = []
 npcsList = []
 enemyList = [4712]
 
+import sys
+
 for lti in lootTableIndexesList:
-    print('Created LootTableIndex: '+str(lti))
+    sys.stdout.write("\rLootTableIndexes: " + str(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList)) + '%')
+    sys.stdout.flush()
     runLTIs(lti)
+print("\rLootTableIndexes: 100%")
+import sys
 
-
-#objectIDsList = []
-
+import inspect
+import os
 for objectID in objectIDsList:
-    print('Started Item:', objectID)
+    #print(objectID)
+    sys.stdout.write("\rObjects: " + str(objectIDsList.index(objectID)*100/len(objectIDsList)) + '%')
+    sys.stdout.flush()
     runObjects(objectID)
+    #print("\n\rCompleted: " + str(objectIDsList.index(objectID) * 100 / len(objectIDsList)) + '%', flush=True)
+    #time.sleep(0.04)
 
-#missionIDsList = [1718, 689, 792]
-
+# missionIDsList = [1718, 689, 792]
+print("\rObjects: 100%")
 for missionID in missionIDsList:
-    print('Started Mission:', missionID)
+    sys.stdout.write("\rMissions: " + str(missionIDsList.index(missionID)*100/len(missionIDsList)) + '%')
+    sys.stdout.flush()
     runMissions(missionID)
+print("\rMissions: 100%")
 
 for npcID in npcsList:
-    print('Started NPC:', npcID)
+    sys.stdout.write("\rNPCs: " + str(npcsList.index(npcID)*100/len(npcsList)) + '%')
+    sys.stdout.flush()
     runNPC(npcID)
+print("\rNPCs: 100%")
 
 for enemyID in enemyList:
-    print('Started Enemy:', enemyID)
+    sys.stdout.write("\rEnemies: " + str(enemyList.index(enemyID)*100/len(enemyList)) + '%')
+    sys.stdout.flush()
     runEnemy(enemyID)
+print("\rEnemies: 100%")

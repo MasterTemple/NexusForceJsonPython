@@ -72,7 +72,7 @@ def getSkillInfo(skillID):
     if '%(Description)' in skill['rawDescription']:
         # print(skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
         skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
-        print(skill['Description'])
+        #print(skill['Description'])
         if skill['Description'] == '':
             skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):])
 
