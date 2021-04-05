@@ -24,13 +24,8 @@ import functions.getAllEnemies as getAllEnemies
 import functions.rarityTableForEnemy as enemyRTI
 import functions.getLevelData as getLevelData
 import functions.getCDGSkillIDs as getCDGSkillIDs
-import externalFunctions.getAllLootTableIndexes as glti
-import externalFunctions.getAllMission as getAllMissions
-import externalFunctions.getAllObjects as getAllObjects
-import externalFunctions.getAllNPCs as getAllNPCs
-import externalFunctions.getLTIName as getLTIName
-import externalFunctions.getAllCooldownGroups as getAllCooldownGroups
-import externalFunctions.getAllLevels as getAllLevels
+
+
 
 
 # use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
@@ -137,6 +132,13 @@ file = "work/cdclient.sqlite"
 db = create_connection(file)
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
+    import externalFunctions.getAllLootTableIndexes as glti
+    import externalFunctions.getAllMission as getAllMissions
+    import externalFunctions.getAllObjects as getAllObjects
+    import externalFunctions.getAllNPCs as getAllNPCs
+    import externalFunctions.getLTIName as getLTIName
+    import externalFunctions.getAllCooldownGroups as getAllCooldownGroups
+    import externalFunctions.getAllLevels as getAllLevels
 
     lootTableIndexesList = glti.length(db)
     objectIDsList = getAllObjects.length(db)
