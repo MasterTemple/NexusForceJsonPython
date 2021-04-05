@@ -42,37 +42,17 @@ def create_connection(db_file):
         print("\nError")
     return conn
 
-def writeObjectFile(objectID, objectData):
-    os.makedirs(os.path.dirname(config['output'] + '/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
+def writeAnyFile(ID, data, hasSubDir, fileName):
+    if hasSubDir:
+        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json'), exist_ok=True)
+        with open(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json', 'w',
+                  encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    else:
+        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json'), exist_ok=True)
+    with open(config['output'] + '/' + fileName + '/' + str(ID) + '.json', 'w',
               encoding='utf-8') as f:
-        json.dump(objectData, f, ensure_ascii=False, indent=4)
-
-
-def writeLTIFile(objectID, objectData):
-    os.makedirs(os.path.dirname(config['output'] + '/lootTableIndexes/' + str(objectID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/lootTableIndexes/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
-        json.dump(objectData, f, ensure_ascii=False, indent=4)
-
-
-def writeMissionFile(objectID, objectData):
-    os.makedirs(os.path.dirname(config['output'] + '/missions/' + str(objectID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/missions/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
-        json.dump(objectData, f, ensure_ascii=False, indent=4)
-
-
-def writeNPCFile(objectID, objectData):
-    os.makedirs(os.path.dirname(config['output'] + '/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
-              encoding='utf-8') as f:
-        json.dump(objectData, f, ensure_ascii=False, indent=4)
-
-
-def writeEnemyFile(objectID, objectData):
-    os.makedirs(os.path.dirname(config['output'] + '/enemies/' + str(objectID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/enemies/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
-        json.dump(objectData, f, ensure_ascii=False, indent=4)
-
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
 def runObjects(objectID):
     objectData = objectInfo.getInfo(db, objectID)
@@ -86,19 +66,17 @@ def runObjects(objectID):
     proxy.getInfo(db, objectData, objectID)
 
     pretty.makePretty(db, objectData)
-    writeObjectFile(objectID, objectData)
-
+    writeAnyFile(objectID, objectData, True, 'objects')
 
 def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
     ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
-
-    writeLTIFile(lootTableIndex, ltiData)
+    writeAnyFile(lootTableIndex, ltiData, False, 'lootTableIndexes')
 
 
 def runMissions(missionID):
     missionData = missionFile.getMissionInfo(db, missionID)
-    writeMissionFile(missionID, missionData)
+    writeAnyFile(missionID, missionData, False, 'missions')
 
 
 def runNPC(npcID):
@@ -120,8 +98,7 @@ def runNPC(npcID):
     else:
         npcData['isMissionGiver'] = 0
     vendorPretty.fixPfp(npcData)
-
-    writeNPCFile(npcID, npcData)
+    writeAnyFile(npcID, npcData, True, 'npcs')
 
 
 def runEnemy(enemyID):
@@ -130,7 +107,7 @@ def runEnemy(enemyID):
     enemyDrops.getInfo(db, enemyData, enemyID)
     enemySkills.getInfo(db, enemyData, enemyID)
     enemyRTI.getInfo(db, enemyData, enemyID)
-    writeEnemyFile(enemyID, enemyData)
+    writeAnyFile(enemyID, enemyData, False, 'enemies')
 
 
 
@@ -168,6 +145,8 @@ else:
     missionIDsList = config['missionIDsList']
     npcsList = config['npcsList']
     enemyList = config['enemyList']
+
+
 
 for lti in lootTableIndexesList:
     sys.stdout.write("\rLootTableIndexes: " + str(round(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList), 3)) + '%')

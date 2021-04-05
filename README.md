@@ -7,7 +7,7 @@ This project uses the `cdclient.sqlite` and `locale.xml` to generate json files.
 
 # Setup
 1. Install Python 3.6 (other versions might work but this program runs off 3.6)
-2. You need in NexusForceJsonPython/work the following files:
+2. You need in `NexusForceJsonPython/work` the following files:
    ```
    cdclient.fdb or cdclient.sqlite
    config.json
@@ -21,5 +21,5 @@ This project uses the `cdclient.sqlite` and `locale.xml` to generate json files.
    Set output to where you would like the files to be generated. The default path is `NexusForceJsonPython/output`. You can do `C:\\Users\\MasterTemple\\Bot\\json` or just `jsonFiles` will create `NexusForceJsonPython/jsonFiles`
 4. Run `main.py` by typing `python main.py` in the command prompt of corresponding directory.
 
-#Contact
+# Contact
 If you have any questions regarding use or any suggestions for features, feel free to contact me on Discord at `MasterTemple#0233` (my ID is `789705048035688458` just in case my name is changed)
