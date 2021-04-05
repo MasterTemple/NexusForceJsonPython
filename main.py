@@ -139,7 +139,7 @@ missionIDsList = getAllMissions.length(db)
 npcsList = getAllNPCs.length(db)
 enemyList = getAllEnemies.length(db)
 
-lootTableIndexesList = [52]
+lootTableIndexesList = []
 objectIDsList = []
 missionIDsList = []
 npcsList = []
