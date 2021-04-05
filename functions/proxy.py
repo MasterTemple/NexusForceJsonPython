@@ -15,6 +15,8 @@ def getProxy(conn, data, objectID):
     if data['itemComponent']['subItems'] is not None:
         #print('YES')
         #print(data['itemComponent']['subItems'])
+        # print(data['itemComponent']['subItems'])
+
         for row in rows:
             if row[0] in data['itemComponent']['subItems']:
                 data['proxySkillIDs'].append(row[1])

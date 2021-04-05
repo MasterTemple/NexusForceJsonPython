@@ -109,7 +109,6 @@ def runNPC(npcID):
         npcData['isMissionGiver'] = 1
         npcData['missions'] = {}
         npcMissions.getInfo(db, npcData, npcData['components'][73])
-        # print(npcData['missionsList'])
         for missionID in npcData['missionsList']:
             npcData['missions'][missionID] = missionFile.getMissionInfo(db, missionID)
     else:
@@ -128,42 +127,46 @@ def runEnemy(enemyID):
     writeEnemyFile(enemyID, enemyData)
 
 
-# lootTableIndexesList = []
-# lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]
+
+with open('work/config.json') as f:
+    config = json.load(f)
+
+if config['starFromFdb'] == True:
+    import lcdr.fdb_to_sqlite as lcdr
+    lcdr.convert('work/cdclient.fdb', 'work/cdclient.sqlite')
+
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
-lootTableIndexesList = glti.length(db)
-objectIDsList = getAllObjects.length(db)
-missionIDsList = getAllMissions.length(db)
-npcsList = getAllNPCs.length(db)
-enemyList = getAllEnemies.length(db)
 
-lootTableIndexesList = []
-objectIDsList = []
-missionIDsList = []
-npcsList = []
-enemyList = [4712]
+if config['startFromSqlite'] == True or config['starFromFdb'] == True:
 
+    lootTableIndexesList = glti.length(db)
+    objectIDsList = getAllObjects.length(db)
+    missionIDsList = getAllMissions.length(db)
+    npcsList = getAllNPCs.length(db)
+    enemyList = getAllEnemies.length(db)
+elif config['justUpdateGivenInfo'] == True:
+
+    lootTableIndexesList = config['lootTableIndexesList']
+    objectIDsList = config['objectIDsList']
+    missionIDsList = config['missionIDsList']
+    npcsList = config['npcsList']
+    enemyList = config['enemyList']
+else:
+    print("Please specify how you would like to create your files in work/config.json")
 
 for lti in lootTableIndexesList:
     sys.stdout.write("\rLootTableIndexes: " + str(round(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList), 3)) + '%')
     sys.stdout.flush()
     runLTIs(lti)
 print("\rLootTableIndexes: 100%")
-import sys
 
-import inspect
-import os
 for objectID in objectIDsList:
-    #print(objectID)
     sys.stdout.write("\rObjects: " + str(round(objectIDsList.index(objectID)*100/len(objectIDsList), 3)) + '%')
     sys.stdout.flush()
     runObjects(objectID)
-    #print("\n\rCompleted: " + str(round(objectIDsList.index(objectID) * 100 / len(objectIDsList), 3)) + '%', flush=True)
-    #time.sleep(0.04)
 
-# missionIDsList = [1718, 689, 792]
 print("\rObjects: 100%")
 for missionID in missionIDsList:
     sys.stdout.write("\rMissions: " + str(round(missionIDsList.index(missionID)*100/len(missionIDsList), 3)) + '%')

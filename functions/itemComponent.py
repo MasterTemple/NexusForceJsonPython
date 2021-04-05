@@ -25,15 +25,30 @@ def getInfo(conn, data, itemComponentID):
             data['itemComponent']['altCurrencyCost'] = row[30]
             data['itemComponent']['subItems'] = row[31]
             if row[31] is not None:
+                #print(row[31])
                 #print(data['itemComponent']['subItems'])
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].replace(' ', '')
                 try:
-                    data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(" ", "")]
+                    data['itemComponent']['subItems'] = row[31].replace(" ", "")
 
-                    data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].split(';')]
+                    #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(" ", "")]
+                    #print(data['itemComponent']['subItems'])
+                    try:
+                        data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems'].split(';')]
+                        #print(data['itemComponent']['subItems'])
+                    except:
+                        pass
+                    #print(row[31])
+                    print(data['itemComponent']['subItems'])
                     #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(' ', '')]
-                    data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
+                    if len(data['itemComponent']['subItems']) > 1:
+                        print(data['itemComponent']['subItems'])
+
+                        data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
+                        print(data['itemComponent']['subItems'])
+
+                     #print(row[31])
                     # data = addProxy(data, cur)
                 except:
                     pass
@@ -45,6 +60,8 @@ def getInfo(conn, data, itemComponentID):
             data['itemComponent']['commendationCurrencyCost'] = row[35]
 
     # data = modifyData(data, cur)
+    print(data['itemComponent']['subItems'])
+
     return data
 
 # def addProxy(data, cur):

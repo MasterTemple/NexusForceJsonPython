@@ -1,8 +1,11 @@
 def makePretty(conn, data):
     cur = conn.cursor()
     if data['itemComponent']['subItems'] is not None:
+        # print(data['itemComponent']['subItems'])
         #print(data['itemComponent']['subItems'])
         data = subItems(cur, data)
+        # print(data['itemComponent']['subItems'])
+
     data = equipLocation(data)
     if data['itemComponent']['preconditions'] is not None:
         #print(data['itemComponent']['preconditions'])
@@ -86,6 +89,7 @@ def subItems(cur, data):
                     if subItemRow[0] == subitemComp:
                         #print(subItemRow[1])
                         data['itemComponent']['equipLocation'].append(subItemRow[1])
+                    #print()
     return data
 
 
