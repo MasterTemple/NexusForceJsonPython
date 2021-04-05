@@ -28,11 +28,17 @@ def getInfo(conn, data, itemComponentID):
                 #print(data['itemComponent']['subItems'])
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].replace(' ', '')
-                data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].split(';')]
-                #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(' ', '')]
-                data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
-                # data = addProxy(data, cur)
+                try:
+                    data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(" ", "")]
 
+                    data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].split(';')]
+                    #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(' ', '')]
+                    data['itemComponent']['subItems'] = [int(i) for i in data['itemComponent']['subItems']]
+                    # data = addProxy(data, cur)
+                except:
+                    pass
+                    #print()
+                    #print(data['itemComponent']['subItems'])
             #data['itemComponent']['equipLocation'].append(int(row[31]))
 
             data['itemComponent']['commendationCurrencyType'] = row[34]

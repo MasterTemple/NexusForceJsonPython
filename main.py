@@ -27,7 +27,7 @@ import externalFunctions.getAllLootTableIndexes as glti
 import externalFunctions.getAllMission as getAllMissions
 import externalFunctions.getAllObjects as getAllObjects
 import externalFunctions.getAllNPCs as getAllNPCs
-
+import externalFunctions.getLTIName as getLTIName
 
 def create_connection(db_file):
     conn = None
@@ -85,6 +85,8 @@ def runObjects(objectID):
 
 def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
+    ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
+
     writeLTIFile(lootTableIndex, ltiData)
 
 
@@ -137,7 +139,7 @@ missionIDsList = getAllMissions.length(db)
 npcsList = getAllNPCs.length(db)
 enemyList = getAllEnemies.length(db)
 
-lootTableIndexesList = []
+lootTableIndexesList = [52]
 objectIDsList = []
 missionIDsList = []
 npcsList = []
@@ -145,7 +147,7 @@ enemyList = [4712]
 
 
 for lti in lootTableIndexesList:
-    sys.stdout.write("\rLootTableIndexes: " + str(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList)) + '%')
+    sys.stdout.write("\rLootTableIndexes: " + str(round(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList), 3)) + '%')
     sys.stdout.flush()
     runLTIs(lti)
 print("\rLootTableIndexes: 100%")
@@ -155,28 +157,28 @@ import inspect
 import os
 for objectID in objectIDsList:
     #print(objectID)
-    sys.stdout.write("\rObjects: " + str(objectIDsList.index(objectID)*100/len(objectIDsList)) + '%')
+    sys.stdout.write("\rObjects: " + str(round(objectIDsList.index(objectID)*100/len(objectIDsList), 3)) + '%')
     sys.stdout.flush()
     runObjects(objectID)
-    #print("\n\rCompleted: " + str(objectIDsList.index(objectID) * 100 / len(objectIDsList)) + '%', flush=True)
+    #print("\n\rCompleted: " + str(round(objectIDsList.index(objectID) * 100 / len(objectIDsList), 3)) + '%', flush=True)
     #time.sleep(0.04)
 
 # missionIDsList = [1718, 689, 792]
 print("\rObjects: 100%")
 for missionID in missionIDsList:
-    sys.stdout.write("\rMissions: " + str(missionIDsList.index(missionID)*100/len(missionIDsList)) + '%')
+    sys.stdout.write("\rMissions: " + str(round(missionIDsList.index(missionID)*100/len(missionIDsList), 3)) + '%')
     sys.stdout.flush()
     runMissions(missionID)
 print("\rMissions: 100%")
 
 for npcID in npcsList:
-    sys.stdout.write("\rNPCs: " + str(npcsList.index(npcID)*100/len(npcsList)) + '%')
+    sys.stdout.write("\rNPCs: " + str(round(npcsList.index(npcID)*100/len(npcsList), 3)) + '%')
     sys.stdout.flush()
     runNPC(npcID)
 print("\rNPCs: 100%")
 
 for enemyID in enemyList:
-    sys.stdout.write("\rEnemies: " + str(enemyList.index(enemyID)*100/len(enemyList)) + '%')
+    sys.stdout.write("\rEnemies: " + str(round(enemyList.index(enemyID)*100/len(enemyList), 3)) + '%')
     sys.stdout.flush()
     runEnemy(enemyID)
 print("\rEnemies: 100%")

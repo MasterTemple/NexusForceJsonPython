@@ -36,7 +36,7 @@ def lootTableIndexRange(data):
 
 def editLootTableIndexes(data):
     import json
-    with open('LootTableIndexNames.json') as f:
+    with open('work/LootTableIndexNames.json') as f:
         names = json.load(f)
     for lti in data['drop']['LootTableIndexes']:
         lti['names'] = names['data'][lti['LootTableIndex']]

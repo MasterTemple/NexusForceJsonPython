@@ -5,6 +5,7 @@ def makePretty(conn, data):
         data = subItems(cur, data)
     data = equipLocation(data)
     if data['itemComponent']['preconditions'] is not None:
+        #print(data['itemComponent']['preconditions'])
         data = preconditions(cur, data)
     else:
         data['itemComponent']['levelRequirement'] = 0
@@ -50,15 +51,19 @@ def equipLocation(data):
 
 
 def preconditions(cur, data):
-    data['itemComponent']['preconditions'] = data['itemComponent']['preconditions'].split(';')
-    data['itemComponent']['preconditions'] = [int(i) for i in data['itemComponent']['preconditions']]
-    cur.execute("SELECT id, type, targetLOT FROM Preconditions")
-    rows = cur.fetchall()
-    for row in rows:
-        if row[0] in data['itemComponent']['preconditions'] and row[1] == 22:
-            data['itemComponent']['levelRequirement'] = row[2]
-        elif row[0] in data['itemComponent']['preconditions']:
-            continue
+    #print(data['itemComponent']['preconditions'])
+    try:
+        data['itemComponent']['preconditions'] = data['itemComponent']['preconditions'].split(';')
+        data['itemComponent']['preconditions'] = [int(i) for i in data['itemComponent']['preconditions']]
+        cur.execute("SELECT id, type, targetLOT FROM Preconditions")
+        rows = cur.fetchall()
+        for row in rows:
+            if row[0] in data['itemComponent']['preconditions'] and row[1] == 22:
+                data['itemComponent']['levelRequirement'] = row[2]
+            elif row[0] in data['itemComponent']['preconditions']:
+                continue
+    except:
+        pass
     return data
 
 
