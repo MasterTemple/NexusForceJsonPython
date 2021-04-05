@@ -49,10 +49,10 @@ def writeAnyFile(ID, data, hasSubDir, fileName):
                   encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
     else:
-        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json'), exist_ok=True)
-    with open(config['output'] + '/' + fileName + '/' + str(ID) + '.json', 'w',
-              encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(ID) + '.json'), exist_ok=True)
+        with open(config['output'] + '/' + fileName + '/' + str(ID) + '.json', 'w',
+                  encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
 def runObjects(objectID):
     objectData = objectInfo.getInfo(db, objectID)
@@ -147,33 +147,14 @@ else:
     enemyList = config['enemyList']
 
 
+functionsInfo = [["LootTableIndexes", runLTIs, lootTableIndexesList], ["Objects", runObjects, objectIDsList],
+                 ["Missions", runMissions, missionIDsList], ["NPCs", runNPC, npcsList], ["Enemies", runEnemy, enemyList]
+                 ]
 
-for lti in lootTableIndexesList:
-    sys.stdout.write("\rLootTableIndexes: " + str(round(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList), 3)) + '%')
-    sys.stdout.flush()
-    runLTIs(lti)
-print("\rLootTableIndexes: 100%")
+for func in functionsInfo:
+    for id in func[2]:
+        sys.stdout.write("\r" + func[0] + ": " + str(round(func[2].index(id)*100/len(func[2]), 3)) + '%')
+        sys.stdout.flush()
+        func[1]
+    print("\r" + func[0] + ": 100%")
 
-for objectID in objectIDsList:
-    sys.stdout.write("\rObjects: " + str(round(objectIDsList.index(objectID)*100/len(objectIDsList), 3)) + '%')
-    sys.stdout.flush()
-    runObjects(objectID)
-
-print("\rObjects: 100%")
-for missionID in missionIDsList:
-    sys.stdout.write("\rMissions: " + str(round(missionIDsList.index(missionID)*100/len(missionIDsList), 3)) + '%')
-    sys.stdout.flush()
-    runMissions(missionID)
-print("\rMissions: 100%")
-
-for npcID in npcsList:
-    sys.stdout.write("\rNPCs: " + str(round(npcsList.index(npcID)*100/len(npcsList), 3)) + '%')
-    sys.stdout.flush()
-    runNPC(npcID)
-print("\rNPCs: 100%")
-
-for enemyID in enemyList:
-    sys.stdout.write("\rEnemies: " + str(round(enemyList.index(enemyID)*100/len(enemyList), 3)) + '%')
-    sys.stdout.flush()
-    runEnemy(enemyID)
-print("\rEnemies: 100%")

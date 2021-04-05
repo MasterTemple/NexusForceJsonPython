@@ -2,10 +2,17 @@
   "startFromFdb": false,
   "startFromSqlite": false,
   "justUpdateGivenInfo": true,
-  "lootTableIndexesList": [3],
+  "lootTableIndexesList": [],
   "objectIDsList":  [12637],
-  "missionIDsList": [1718],
-  "npcsList":  [13569],
-  "enemyList": [4712],
-  "output": "output"
+  "missionIDsList": [],
+  "npcsList":  [],
+  "enemyList": [],
+  "output": "output",
+  "run": [
+    ["LootTableIndexes", runLTIs, lootTableIndexesList],
+    ["Objects", runObjects, objectIDsList],
+    ["Missions", runMissions, missionIDsList],
+    ["NPCs", runNPC, npcsList],
+    ["Enemies", runEnemy, enemyList]
+  ]
 }
