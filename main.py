@@ -2,7 +2,7 @@ import sqlite3
 import json
 import math
 import sys
-
+import os
 import functions.getComponents as getComps
 import functions.itemComponent as itemComp
 import functions.objects as objectInfo
@@ -29,6 +29,8 @@ import externalFunctions.getAllObjects as getAllObjects
 import externalFunctions.getAllNPCs as getAllNPCs
 import externalFunctions.getLTIName as getLTIName
 
+# use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
+
 with open('work/config.json') as f:
     config = json.load(f)
 
@@ -41,31 +43,33 @@ def create_connection(db_file):
     return conn
 
 def writeObjectFile(objectID, objectData):
+    os.makedirs(os.path.dirname(config['output'] + '/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json'), exist_ok=True)
     with open(config['output'] + '/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
               encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeLTIFile(objectID, objectData):
+    os.makedirs(os.path.dirname(config['output'] + '/lootTableIndexes/' + str(objectID) + '.json'), exist_ok=True)
     with open(config['output'] + '/lootTableIndexes/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeMissionFile(objectID, objectData):
-    # print(objectData)
+    os.makedirs(os.path.dirname(config['output'] + '/missions/' + str(objectID) + '.json'), exist_ok=True)
     with open(config['output'] + '/missions/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeNPCFile(objectID, objectData):
-    # print(objectData)
+    os.makedirs(os.path.dirname(config['output'] + '/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json'), exist_ok=True)
     with open(config['output'] + '/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
               encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeEnemyFile(objectID, objectData):
-    # print(objectData)
+    os.makedirs(os.path.dirname(config['output'] + '/enemies/' + str(objectID) + '.json'), exist_ok=True)
     with open(config['output'] + '/enemies/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
@@ -147,6 +151,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     missionIDsList = getAllMissions.length(db)
     npcsList = getAllNPCs.length(db)
     enemyList = getAllEnemies.length(db)
+
 elif config['justUpdateGivenInfo'] == True:
 
     lootTableIndexesList = config['lootTableIndexesList']
@@ -154,8 +159,15 @@ elif config['justUpdateGivenInfo'] == True:
     missionIDsList = config['missionIDsList']
     npcsList = config['npcsList']
     enemyList = config['enemyList']
+
 else:
+
     print("Please specify how you would like to create your files in work/config.json")
+    lootTableIndexesList = config['lootTableIndexesList']
+    objectIDsList = config['objectIDsList']
+    missionIDsList = config['missionIDsList']
+    npcsList = config['npcsList']
+    enemyList = config['enemyList']
 
 for lti in lootTableIndexesList:
     sys.stdout.write("\rLootTableIndexes: " + str(round(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList), 3)) + '%')

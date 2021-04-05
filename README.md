@@ -15,10 +15,10 @@ This project uses the `cdclient.sqlite` and `locale.xml` to generate json files.
    LootTableIndexNames.json
    ```
 3. Specify in NexusForceJsonPython/work/config.json how you would like the files to be generated. There are multiple ways.\
-   Set startFromFdb = true if you want to generate the cdclient.sqlite from the cdclient.fdb\
-   Set startFromSqlite = true if you want to completely regenerate the entire program. This method takes a long time, but will make sure everything is updated. You do not need to set this value = true if startFromFdb is true\
-   Set justUpdateGivenInfo = true if you just want to add new items and not regenerate all the files. If you do this, make sure to add the IDs to their respective list.
-
+   Set `startFromFdb = true` if you want to generate the cdclient.sqlite from the cdclient.fdb\
+   Set `startFromSqlite = true` if you want to completely regenerate the entire program. This method takes a long time, but will make sure everything is updated. You do not need to set this value = true if startFromFdb is true\
+   Set `justUpdateGivenInfo = true` if you just want to add new items and not regenerate all the files. If you do this, make sure to add the IDs to their respective list.
+   Set output to where you would like the files to be generated. The default path is `NexusForceJsonPython/output`. You can do `C:\\Users\\MasterTemple\\Bot\\json` or just `jsonFiles` will create `NexusForceJsonPython/jsonFiles`
 4. Run `main.py` by typing `python main.py` in the command prompt of corresponding directory.
 
 #Contact

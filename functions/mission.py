@@ -4,7 +4,8 @@ def getMissionNPCComponent(cur, missionID):
     cur.execute("SELECT id, missionID, offersMission, acceptsMission FROM MissionNPCComponent")
 
     rows = cur.fetchall()
-
+    NPCOfferComponent = None
+    NPCAcceptComponent = None
     for row in rows:
         if row[1] == missionID:
             if row[2] == 1 and row[3] == 1:
@@ -59,7 +60,7 @@ def missionTasksInfo(cur, missionID, name, conn, missionData):
 def iconUrlFromID(cur, iconID, missionData):
     cur.execute("SELECT * FROM Icons")
     rows = cur.fetchall()
-    #icon_path = None
+    icon_path = None
     for row in rows:
         if row[0] == iconID:
             icon_path = row[1]
@@ -73,7 +74,7 @@ def iconUrlFromID(cur, iconID, missionData):
         icon_path = icon_path.lower()
         iconURL = 'https://xiphoseer.github.io/lu-res/'+icon_path[6:len(icon_path)]
     else:
-        iconURL = 'https://github.com/MasterTemple/lu_bot/blob/master/src/unknown.png?raw=true'
+        iconURL = 'https://static.wikia.nocookie.net/legomessageboards/images/c/ce/LU2.png/revision/latest?cb=20121121213649'
     return iconURL
 
 
@@ -157,9 +158,16 @@ def getMissionInfo(conn, missionID):
     missionData['MissionStats'] = getMissionStats(cur, missionID, name, conn)
     if missionData['MissionStats']['isMission'] == 1:
         missionData['NPCComponent'] = getMissionNPCComponent(cur, missionID)
-        missionData = (missionNPCIDsFromComponent(cur, missionData))
-        missionData['NPCAcceptName'] = name.info(conn, missionData['NPCAcceptID'])
-        missionData['NPCOfferName'] = name.info(conn, missionData['NPCOfferID'])
+        missionData = missionNPCIDsFromComponent(cur, missionData)
+
+        try:
+            missionData['NPCAcceptName'] = name.info(conn, missionData['NPCAcceptID'])
+        except:
+            missionData['NPCAcceptName'] = None
+        try:
+            missionData['NPCOfferName'] = name.info(conn, missionData['NPCOfferID'])
+        except:
+            missionData['NPCOfferName'] = None
 
     missionData['MissionTasks'] = missionTasksInfo(cur, missionID, name, conn, missionData)
     missionData = fixReward(missionData)
