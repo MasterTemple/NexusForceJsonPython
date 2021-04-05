@@ -22,12 +22,16 @@ import functions.enemyDrops as enemyDrops
 import functions.enemySkills as enemySkills
 import functions.getAllEnemies as getAllEnemies
 import functions.rarityTableForEnemy as enemyRTI
-
+import functions.getLevelData as getLevelData
+import functions.getCDGSkillIDs as getCDGSkillIDs
 import externalFunctions.getAllLootTableIndexes as glti
 import externalFunctions.getAllMission as getAllMissions
 import externalFunctions.getAllObjects as getAllObjects
 import externalFunctions.getAllNPCs as getAllNPCs
 import externalFunctions.getLTIName as getLTIName
+import externalFunctions.getAllCooldownGroups as getAllCooldownGroups
+import externalFunctions.getAllLevels as getAllLevels
+
 
 # use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
 
@@ -44,13 +48,13 @@ def create_connection(db_file):
 
 def writeAnyFile(ID, data, hasSubDir, fileName):
     if hasSubDir:
-        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json'), exist_ok=True)
-        with open(config['output'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json', 'w',
+        os.makedirs(os.path.dirname(config['path'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json'), exist_ok=True)
+        with open(config['path'] + '/' + fileName + '/' + str(math.floor(ID / 256)) + '/' + str(ID) + '.json', 'w',
                   encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
     else:
-        os.makedirs(os.path.dirname(config['output'] + '/' + fileName + '/' + str(ID) + '.json'), exist_ok=True)
-        with open(config['output'] + '/' + fileName + '/' + str(ID) + '.json', 'w',
+        os.makedirs(os.path.dirname(config['path'] + '/' + fileName + '/' + str(ID) + '.json'), exist_ok=True)
+        with open(config['path'] + '/' + fileName + '/' + str(ID) + '.json', 'w',
                   encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
@@ -110,6 +114,17 @@ def runEnemy(enemyID):
     writeAnyFile(enemyID, enemyData, False, 'enemies')
 
 
+def runCooldownGroup(cdgID):
+    cdgData = getCDGSkillIDs.getInfo(db, cdgID)
+
+    # ltiData = ltiFile.getInfo(db, lootTableIndex)
+    # ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
+    writeAnyFile(cdgID, cdgData, False, 'cooldowngroup')
+
+
+def runLevels(level):
+    lvlData = getLevelData.getInfo(db, level)
+    writeAnyFile("levels", lvlData, False, 'levelData')
 
 
 
@@ -128,6 +143,8 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     missionIDsList = getAllMissions.length(db)
     npcsList = getAllNPCs.length(db)
     enemyList = getAllEnemies.length(db)
+    cooldownGroupList = getAllCooldownGroups.length(db)
+    levelsList = getAllLevels.length(db)
 
 elif config['justUpdateGivenInfo'] == True:
 
@@ -136,6 +153,8 @@ elif config['justUpdateGivenInfo'] == True:
     missionIDsList = config['missionIDsList']
     npcsList = config['npcsList']
     enemyList = config['enemyList']
+    cooldownGroupList = config['cooldownGroupList']
+    levelsList = config['levelsList']
 
 else:
 
@@ -145,16 +164,20 @@ else:
     missionIDsList = config['missionIDsList']
     npcsList = config['npcsList']
     enemyList = config['enemyList']
+    cooldownGroupList = config['cooldownGroupList']
+    levelsList = config['levelsList']
 
+"""
+config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
+"""
 
-functionsInfo = [["LootTableIndexes", runLTIs, lootTableIndexesList], ["Objects", runObjects, objectIDsList],
-                 ["Missions", runMissions, missionIDsList], ["NPCs", runNPC, npcsList], ["Enemies", runEnemy, enemyList]
-                 ]
-
-for func in functionsInfo:
-    for id in func[2]:
-        sys.stdout.write("\r" + func[0] + ": " + str(round(func[2].index(id)*100/len(func[2]), 3)) + '%')
-        sys.stdout.flush()
-        func[1]
+for func in config['functionsInfo']:
+    if func[3] == False:
+        for id in eval(func[2]):
+            sys.stdout.write("\r" + func[0] + ": " + str(round(eval(func[2]).index(id)*100/len(eval(func[2])), 3)) + '%')
+            sys.stdout.flush()
+            eval(func[1])(id)
+    else:
+        eval(func[1])(eval(func[2]))
     print("\r" + func[0] + ": 100%")
 

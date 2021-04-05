@@ -3,16 +3,20 @@
   "startFromSqlite": false,
   "justUpdateGivenInfo": true,
   "lootTableIndexesList": [],
-  "objectIDsList":  [12637],
+  "objectIDsList":  [],
   "missionIDsList": [],
   "npcsList":  [],
   "enemyList": [],
-  "output": "output",
-  "run": [
-    ["LootTableIndexes", runLTIs, lootTableIndexesList],
-    ["Objects", runObjects, objectIDsList],
-    ["Missions", runMissions, missionIDsList],
-    ["NPCs", runNPC, npcsList],
-    ["Enemies", runEnemy, enemyList]
+  "cooldownGroupList": [],
+  "levelsList": [],
+  "path": "output",
+  "functionsInfo": [
+    ["LootTableIndexes", "runLTIs", "lootTableIndexesList", false],
+    ["Objects", "runObjects", "objectIDsList", false],
+    ["Missions", "runMissions", "missionIDsList", false],
+    ["NPCs", "runNPC", "npcsList", false],
+    ["Enemies", "runEnemy", "enemyList", false],
+    ["CooldownGroups", "runCooldownGroup", "cooldownGroupList", false],
+    ["Levels", "runLevels", "levelsList", true]
   ]
 }

@@ -3,7 +3,7 @@ def getInfo(conn, data, comp_id):
     cur = conn.cursor()
     cur.execute("SELECT id, icon_asset FROM RenderComponent")
     rows = cur.fetchall()
-
+    icon_path = None
     for row in rows:
         if row[0] == comp_id:
             icon_path = row[1]
