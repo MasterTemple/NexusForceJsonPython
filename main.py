@@ -1,6 +1,7 @@
 import sqlite3
 import json
 import math
+import sys
 
 import functions.getComponents as getComps
 import functions.itemComponent as itemComp
@@ -80,7 +81,7 @@ def runObjects(objectID):
 
     pretty.makePretty(db, objectData)
     writeObjectFile(objectID, objectData)
-    return
+
 
 def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
@@ -142,7 +143,6 @@ missionIDsList = []
 npcsList = []
 enemyList = [4712]
 
-import sys
 
 for lti in lootTableIndexesList:
     sys.stdout.write("\rLootTableIndexes: " + str(lootTableIndexesList.index(lti)*100/len(lootTableIndexesList)) + '%')

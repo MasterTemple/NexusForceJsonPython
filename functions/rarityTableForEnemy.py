@@ -31,6 +31,7 @@ def getInfo(conn, data, enemyID):
         #print(data['drop']['LootMatrixIndex'], lmi['RarityTableIndex'])
         rarityTable(conn, lmi, data['drop']['LootMatrixIndex'], lmi['RarityTableIndex'])
         rarityTableInfoPercents(lmi)
+        weightedChance(data)
 
     return data
 
@@ -75,31 +76,37 @@ def rarityTableInfoPercents(data):
 
 
 
-def overallChance(data):
-    #import math
-    rarityVal = (data['itemComponent']['rarity'])
+def weightedChance(data):
 
-    for lmi in data['drop']['LootTableIndexes']:
-        # try:
-        #rarityVal = str(rarityVal)
-        #if len(data['DestructibleComponent']) > 0:
-        if rarityVal in data['rarityTableInfo'].keys():
+    for lti in data['drop']['LootTableIndexes']:
+        try:
+            if lti['rarityTableInfo'] is not None:
+                total = 0
+                for rti in lti['rarityTableInfo']:
+                    #print(lti['rarityTableInfo'][rti]['chance'])
+                    #print(lti['rarityCount'][str(rti)])
+                    if lti['rarityCount'][str(rti)] != 0:
+                        total+= lti['rarityTableInfo'][rti]['chance']
+                # print(rti['chance'])
 
-            #if rarityVal in data['rarityTableInfo'] and rarityVal in data['rarityCount']:
-            #print('yep')
-            #print(data['DestructibleComponent']['enemyNames']['displayName'])
-            chanceVal = data['rarityTableInfo'][(rarityVal)]['chance']
-            percentVal = data['percent']
-            totalItems = data['rarityCount'][str(rarityVal)]
-            percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
-            howManyToKill = round(1.0/percent)
-            data['overallChance'] = {
-                "percent": percent,
-                "howManyToKill": howManyToKill
-            }
-            #print(data['overallChance'])
-        # except:
-        #     continue
+                for rti in lti['rarityTableInfo']:
+                    if total != 0:
+                        #print(lti['rarityTableInfo'][rti]['chance'], round((100/total)*lti['rarityTableInfo'][rti]['chance'], 2))
+                        lti['rarityTableInfo'][rti]['weightedChance'] = round((100/total)*lti['rarityTableInfo'][rti]['chance'], 2)
+                        if lti['rarityCount'][str(rti)] != 0:
+                            lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = round(((100/total)*lti['rarityTableInfo'][rti]['chance'])/lti['rarityCount'][str(rti)], 2)
+
+                    if lti['rarityCount'][str(rti)] == 0:
+                        print('ran', lti['LootTableIndex'])
+                        lti['rarityTableInfo'][rti]['weightedChance'] = 0
+                        lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = 0
+
+                lti['total'] = total
+                #print(total)
+
+    #print(lti['rarityTableInfo'])
+        except:
+            pass
 
     return data
 
@@ -133,11 +140,11 @@ def bigCalculate(data):
             totalItems = data['rarityCount'][str(rarityVal)]
             percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
             howManyToKill = round(1.0/percent)
-            data['overallChance'] = {
+            data['weightedChance'] = {
                 "percent": percent,
                 "howManyToKill": howManyToKill
             }
-            #print(data['overallChance'])
+            #print(data['weightedChance'])
         # except:
         #     continue
 
