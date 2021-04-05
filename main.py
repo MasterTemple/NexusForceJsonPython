@@ -29,6 +29,9 @@ import externalFunctions.getAllObjects as getAllObjects
 import externalFunctions.getAllNPCs as getAllNPCs
 import externalFunctions.getLTIName as getLTIName
 
+with open('work/config.json') as f:
+    config = json.load(f)
+
 def create_connection(db_file):
     conn = None
     try:
@@ -37,34 +40,33 @@ def create_connection(db_file):
         print("\nError")
     return conn
 
-
 def writeObjectFile(objectID, objectData):
-    with open('output/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
+    with open(config['output'] + '/objects/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
               encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeLTIFile(objectID, objectData):
-    with open('output/lootTableIndexes/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
+    with open(config['output'] + '/lootTableIndexes/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeMissionFile(objectID, objectData):
     # print(objectData)
-    with open('output/missions/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
+    with open(config['output'] + '/missions/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeNPCFile(objectID, objectData):
     # print(objectData)
-    with open('output/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
+    with open(config['output'] + '/npcs/' + str(math.floor(objectID / 256)) + '/' + str(objectID) + '.json', 'w',
               encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
 def writeEnemyFile(objectID, objectData):
     # print(objectData)
-    with open('output/enemies/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
+    with open(config['output'] + '/enemies/' + str(objectID) + '.json', 'w', encoding='utf-8') as f:
         json.dump(objectData, f, ensure_ascii=False, indent=4)
 
 
@@ -128,10 +130,9 @@ def runEnemy(enemyID):
 
 
 
-with open('work/config.json') as f:
-    config = json.load(f)
 
-if config['starFromFdb'] == True:
+
+if config['startFromFdb'] == True:
     import lcdr.fdb_to_sqlite as lcdr
     lcdr.convert('work/cdclient.fdb', 'work/cdclient.sqlite')
 
@@ -139,7 +140,7 @@ if config['starFromFdb'] == True:
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 
-if config['startFromSqlite'] == True or config['starFromFdb'] == True:
+if config['startFromSqlite'] == True or config['startFromFdb'] == True:
 
     lootTableIndexesList = glti.length(db)
     objectIDsList = getAllObjects.length(db)
