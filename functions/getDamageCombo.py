@@ -30,20 +30,34 @@ cur = db.cursor()
 cur.execute("SELECT * FROM BehaviorParameter"),
 rows = cur.fetchall()
 behaviorID = 25981
-obj = {}
+data = {}
 used = []
+data['overview'] = {}
+data['overview']['hasChargeUp'] = False
+data['overview']['spawnsObject'] = False
+data['overview']['meleeAttack'] = False
+data['overview']['projectileAttack'] = False
 for row in rows:
     if row[0] == behaviorID:
         #print(row[1])
-        obj[row[1]] = {"initial_value": int(row[2])}
+        data[row[1]] = {"initial_value": int(row[2])}
     #pass
 
 #print(obj)
 
-def getKidsKids(obj, parameter):
+def getKidsKids(obj, parameter, branch):
     obj[parameter] = {}
     try:
         obj[parameter]['name'] = behaviorData[str(parameter)]
+        if obj[parameter]['name']['templateID'] == 43:
+            data['overview']['hasChargeUp'] = True
+            branch = 'chargeup'
+        elif obj[parameter]['name']['templateID'] == 27:
+            data['overview']['spawnsObject'] = True
+        elif obj[parameter]['name']['templateID'] == 1:
+            data['overview']['meleeAttack'] = True
+        elif obj[parameter]['name']['templateID'] == 4:
+            data['overview']['projectileAttack'] = True
     except:
         pass
     obj[parameter]['hasKids'] = False
@@ -67,12 +81,17 @@ def getKidsKids(obj, parameter):
         if param in actions and obj[parameter]['info'][param] not in used:
             #print(obj[parameter]['kids'])
             used.append(obj[parameter]['info'][param])
-            getKidsKids(obj[parameter]['kids'], int(obj[parameter]['info'][param]))
+            getKidsKids(obj[parameter]['kids'], int(obj[parameter]['info'][param]), branch)
             # pass
             # else:
                 #getKidsKids(obj[parameter]['kids'], int(row[2]), True)
                 # pass
                 #obj[parameter]['kids'][str(row[0])]
+
+        if branch == 'chargeup' and param == 'min damage':
+            data['overview']['chargeUpCombo'] = obj[parameter]['info'][param]
+        # else:
+        #     print(param, branch)
     #used.append(parameter)
     return obj
 
@@ -89,14 +108,20 @@ def getKidsKids(obj, parameter):
 #                 getKidsKids(obj[parameter]['kids'][str(row[0])], int(row[2]))
 
 
-getKidsKids(obj, behaviorID)
+getKidsKids(data, behaviorID, "")
 
 
 def sort(obj):
-    obj['damageCombo'] = {}
+    obj['overview'] = {
+        "meleeCombo": meleeCombo(),
+        "projectileCombo": projectileCombo(),
+        #"chargeUpIsProjectile": chargeUpIsProjectile(),
+    }
+
+
     return obj
 #print(obj)
 
-sort(obj)
+# sort(data)
 
-writeFile(obj)
+writeFile(data)
