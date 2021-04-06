@@ -145,6 +145,9 @@ def runActivity(activityID):
     writeAnyFile(activityID, activityData, False, 'activities')
 
 
+def runBehaviorTrees(behaviorID):
+    pass
+
 def runSetup(db):
     #print("ok")
     import externalFunctions.setup as setup
@@ -152,6 +155,8 @@ def runSetup(db):
     writeAnyFile("packageList", pkgData, False, 'search')
     activityData = setup.activityList(db)
     writeAnyFile("activityList", activityData, False, 'search')
+    behaviorData = setup.behaviorList(db)
+    writeAnyFile("behaviorData", behaviorData, False, 'search')
 
 
 if config['startFromFdb'] == True:
@@ -162,7 +167,6 @@ if config['startFromFdb'] == True:
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 
-runSetup(db)
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLootTableIndexes as glti
@@ -224,6 +228,9 @@ now = time.now()
 previous = now.strftime("%H:%M:%S")
 #current_time = now.strftime("%H:%M:%S")
 print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] Process Started.')
+if config['setup']:
+    runSetup(db)
+print("\r" +'[' + str(now.strftime("%H:%M:%S")) + "] Setup: 100%")
 for func in config['functionsInfo']:
     if func[3] == False:
         for id in eval(func[2]):

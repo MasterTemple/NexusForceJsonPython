@@ -11,6 +11,9 @@ def create_connection(db_file):
     return conn
 
 
+with open('./../output/search/behaviorData.json') as x:
+    behaviorData = json.load(x)
+
 def writeFile(data):
 
     #os.makedirs(os.path.dirname('test.json'), exist_ok=True)
@@ -39,6 +42,10 @@ for row in rows:
 
 def getKidsKids(obj, parameter):
     obj[parameter] = {}
+    try:
+        obj[parameter]['name'] = behaviorData[str(parameter)]
+    except:
+        pass
     obj[parameter]['hasKids'] = False
     obj[parameter]['info'] = {}
     obj[parameter]['kids'] = {}
@@ -47,15 +54,18 @@ def getKidsKids(obj, parameter):
 
     for row in rows:
         if row[0] == int(parameter):
+
             obj[parameter]['hasKids'] = True
             obj[parameter]['info'][row[1]] = int(row[2])
             #obj[parameter]['kids'][row[1]] = int(row[2])
             #print(obj)
 
 
+
+
     for param in obj[parameter]['info']:
         if param in actions and obj[parameter]['info'][param] not in used:
-            print(obj[parameter]['kids'])
+            #print(obj[parameter]['kids'])
             used.append(obj[parameter]['info'][param])
             getKidsKids(obj[parameter]['kids'], int(obj[parameter]['info'][param]))
             # pass
@@ -66,22 +76,27 @@ def getKidsKids(obj, parameter):
     #used.append(parameter)
     return obj
 
-
-for parameter in obj:
-    obj[parameter]['hasKids'] = False
-    obj[parameter]['kids'] = {}
-    #print(obj[parameter]['initial_value'])
-    for row in rows:
-        if row[0] == obj[parameter]['initial_value']:
-            obj[parameter]['hasKids'] = True
-            obj[parameter]['kids'][str(row[0])] = {row[1]: int(row[2])}
-            if row[1] in actions:
-                getKidsKids(obj[parameter]['kids'][str(row[0])], int(row[2]))
-
-
+#
+# for parameter in obj:
+#     obj[parameter]['hasKids'] = False
+#     obj[parameter]['kids'] = {}
+#     #print(obj[parameter]['initial_value'])
+#     for row in rows:
+#         if row[0] == obj[parameter]['initial_value']:
+#             obj[parameter]['hasKids'] = True
+#             obj[parameter]['kids'][str(row[0])] = {row[1]: int(row[2])}
+#             if row[1] in actions:
+#                 getKidsKids(obj[parameter]['kids'][str(row[0])], int(row[2]))
 
 
+getKidsKids(obj, behaviorID)
 
+
+def sort(obj):
+    obj['damageCombo'] = {}
+    return obj
 #print(obj)
+
+sort(obj)
 
 writeFile(obj)

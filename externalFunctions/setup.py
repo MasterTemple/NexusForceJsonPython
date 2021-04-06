@@ -46,3 +46,36 @@ def activityList(conn):
     #         data['LootMatrixIndexes'].append(row[1])
     #         data[row[1]] =  obj[row[0]]
     # return data
+
+def behaviorList(conn):
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM BehaviorTemplateName")
+    rows = cur.fetchall()
+    behaviorTemplateNames = {}
+    for row in rows:
+        behaviorTemplateNames[row[0]] = row[1]
+
+    cur.execute("SELECT * FROM BehaviorTemplate")
+    rows = cur.fetchall()
+    array = []
+    data = {}
+    obj = {}
+
+
+    #data['LootMatrixIndexes'] = []
+    for row in rows:
+        if row[0] not in array:
+            array.append(row[0])
+            obj[row[0]] = {
+                "templateID": row[1],
+                "behaviorTemplateName": behaviorTemplateNames[row[1]],
+                "effectID": row[2]
+            }
+
+
+    return obj
+    return {
+        "behaviorTemplates": obj,
+        "behaviorTemplateNames": array
+    }
