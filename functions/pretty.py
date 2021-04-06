@@ -231,7 +231,7 @@ def removeUnusedLootMatrixIndexes(data):
     lmisToDelete = []
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         #print(len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']))
-        if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent']) == 0:
+        if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent']) == 0:
             #delattr(data, ['buyAndDrop']['LootMatrixIndexes'][lmi])
             lmisToDelete.append(lmi)
 
@@ -279,15 +279,21 @@ def packageNamesForItemDrops(data, conn):
         config = json.load(f)
     with open(config['path']+'/search/packageList.json') as f:
         packageData = json.load(f)
-
+    with open(config['path']+'/search/activityList.json') as f:
+        activityData = json.load(f)
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'] = {}
+        data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent'] = {}
+
     packageLMIs = packageData['LootMatrixIndexes']
+    activityLMIs = activityData['list']
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         #print(lmi)
         if lmi in packageLMIs:
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'][lmi] = name.info(conn, packageData[str(lmi)])
 
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootMatrixIndex'])
+        if lmi in activityLMIs:
+            data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent'] = activityData['info'][str(lmi)]
 
 

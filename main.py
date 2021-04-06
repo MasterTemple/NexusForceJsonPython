@@ -150,6 +150,8 @@ def runSetup(db):
     import externalFunctions.setup as setup
     pkgData = setup.packageList(db)
     writeAnyFile("packageList", pkgData, False, 'search')
+    activityData = setup.activityList(db)
+    writeAnyFile("activityList", activityData, False, 'search')
 
 
 if config['startFromFdb'] == True:
