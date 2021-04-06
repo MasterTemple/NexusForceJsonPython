@@ -178,7 +178,9 @@ def overallChance(data):
 def lootTableIndexRange(data):
     import json
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
-        with open('output/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
+        with open('work/config.json') as f:
+            config = json.load(f)
+        with open(config['path']+'/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
             lti = json.load(f)
         data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndexItems'] = len(lti['items'])
 
@@ -273,7 +275,9 @@ def packageNamesForItemDrops(data, conn):
     import externalFunctions.nameAndDisplayName as name
 
     import json
-    with open('output/search/packageList.json') as f:
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/search/packageList.json') as f:
         packageData = json.load(f)
 
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
@@ -285,3 +289,5 @@ def packageNamesForItemDrops(data, conn):
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'][lmi] = name.info(conn, packageData[str(lmi)])
 
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootMatrixIndex'])
+
+

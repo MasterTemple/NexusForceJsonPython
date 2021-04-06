@@ -17,7 +17,9 @@ def rarityTable(conn, data, lti, rti):
             # data['rarityTableInfo'][row[2]] = obj
             #
             import json
-            with open('output/lootTableIndexes/'+str(lti)+'.json') as f:
+            with open('work/config.json') as f:
+                config = json.load(f)
+            with open(config['path']+'/lootTableIndexes/'+str(lti)+'.json') as f:
                 rarityCount = json.load(f)
 
             data['rarityCount'] = rarityCount['rarityCount']
@@ -53,7 +55,9 @@ def lootTableIndexRange(data):
         #print(lti['LootTableIndex'])
         #num = str(data['drop']['LootTableIndexes'][lti]['LootTableIndex'])
         #print(num)
-        with open('output/lootTableIndexes/' + str(lti['LootTableIndex']) + '.json') as f:
+        with open('work/config.json') as f:
+            config = json.load(f)
+        with open(config['path']+'/lootTableIndexes/' + str(lti['LootTableIndex']) + '.json') as f:
             ltiFile = json.load(f)
         lti['size'] = len(ltiFile['itemsList'])
 

@@ -30,7 +30,9 @@ def getLTIInfo(npcData):
     npcData['LootTables'] = {}
     npcData['totalItemsSold'] = 0
     for ltis in npcData['LootTableIndexes']:
-        with open('output/lootTableIndexes/'+str(ltis)+'.json') as f:
+        with open('work/config.json') as f:
+            config = json.load(f)
+        with open(config['path']+'/lootTableIndexes/'+str(ltis)+'.json') as f:
             lti = json.load(f)
         npcData['LootTables'][ltis] = {
             "sells": len(lti['items']),

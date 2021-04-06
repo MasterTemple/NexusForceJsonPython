@@ -17,7 +17,9 @@ def rarityTable(conn, data, lmi, rti):
             # data['rarityTableInfo'][row[2]] = obj
             #
             import json
-            with open('output/lootTableIndexes/'+str(data['LootTableIndex'])+'.json') as f:
+            with open('work/config.json') as f:
+                config = json.load(f)
+            with open(config['path']+'/lootTableIndexes/'+str(data['LootTableIndex'])+'.json') as f:
                 rarityCount = json.load(f)
 
             data['rarityCount'] = rarityCount['rarityCount']

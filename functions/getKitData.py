@@ -101,7 +101,9 @@ def getItemStats(itemIDsArray, data):
     import math
     for itemID in itemIDsArray:
         try:
-            with open('output/objects/'+str(math.floor(int(itemID)/256))+'/'+str(itemID)+'.json') as f:
+            with open('work/config.json') as f:
+                config = json.load(f)
+            with open(config['path']+'/objects/'+str(math.floor(int(itemID)/256))+'/'+str(itemID)+'.json') as f:
                 item = json.load(f)
             data['items'][itemID] = item['stats']
         except:

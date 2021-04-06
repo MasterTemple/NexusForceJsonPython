@@ -107,7 +107,12 @@ def getVendorNames(conn, data):
 
 
 def getDestructibleComponents(conn, data):
-    implementedEnemies = [6359, 16197, 14572,  6454,  8096,  8097, 14381,  4712, 6253,  6668,  8090,  8091,  6351,  8088,  8089, 11218, 11988, 11214, 11984, 11220, 11989, 11219, 12654, 12002, 12003, 12000, 12001, 12004, 12005, 11212, 11216, 11986, 11217, 11987, 11213, 11983, 11982, 11215, 11985, 13068, 10512,  7815,  7816,  7805, 11225, 11226,  6789,  6806, 6550, 13995, 16050, 16047, 16048, 16049, 16289, 14024, 14026, 14029, 14028, 14027, 14025, 14491, 16191, 14007, 14009, 16511, 14008, 12610, 12588, 12609, 12605, 12612, 12611, 11999, 12467, 12468, 12469, 12590, 13523, 13524, 12591, 12653, 12602, 12586, 12604, 12587, 12589, 12600, 12387, 12542,  8238,  8433]
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/search/implementedEnemies.json') as f:
+        enemiesFile = json.load(f)
+    implementedEnemies = enemiesFile['used']
     #packages = [13102]
     cur = conn.cursor()
     data['buyAndDrop']['DestructibleComponents'] = []
@@ -136,8 +141,18 @@ def getDestructibleComponents(conn, data):
 
 
 def getEnemyIDs(conn, data):
-    implementedEnemies = [6359, 16197, 14572,  6454,  8096,  8097, 14381,  4712, 6253,  6668,  8090,  8091,  6351,  8088,  8089, 11218, 11988, 11214, 11984, 11220, 11989, 11219, 12654, 12002, 12003, 12000, 12001, 12004, 12005, 11212, 11216, 11986, 11217, 11987, 11213, 11983, 11982, 11215, 11985, 13068, 10512,  7815,  7816,  7805, 11225, 11226,  6789,  6806, 6550, 13995, 16050, 16047, 16048, 16049, 16289, 14024, 14026, 14029, 14028, 14027, 14025, 14491, 16191, 14007, 14009, 16511, 14008, 12610, 12588, 12609, 12605, 12612, 12611, 11999, 12467, 12468, 12469, 12590, 13523, 13524, 12591, 12653, 12602, 12586, 12604, 12587, 12589, 12600, 12387, 12542,  8238,  8433]
-
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/search/implementedEnemies.json') as f:
+        enemiesFile = json.load(f)
+    implementedEnemies = enemiesFile['used']
+    #import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/search/implementedEnemies.json') as f:
+        enemiesFile = json.load(f)
+    implementedEnemies = enemiesFile['used']
     cur = conn.cursor()
     data['buyAndDrop']['EnemyIDs'] = []
     cur.execute("SELECT * FROM ComponentsRegistry")
@@ -166,7 +181,12 @@ def getEnemyNames(conn, data):
 
 
 def getOneEnemyID(conn, data, dComp):
-    implementedEnemies = [6359, 16197, 14572,  6454,  8096,  8097, 14381,  4712, 6253,  6668,  8090,  8091,  6351,  8088,  8089, 11218, 11988, 11214, 11984, 11220, 11989, 11219, 12654, 12002, 12003, 12000, 12001, 12004, 12005, 11212, 11216, 11986, 11217, 11987, 11213, 11983, 11982, 11215, 11985, 13068, 10512,  7815,  7816,  7805, 11225, 11226,  6789,  6806, 6550, 13995, 16050, 16047, 16048, 16049, 16289, 14024, 14026, 14029, 14028, 14027, 14025, 14491, 16191, 14007, 14009, 16511, 14008, 12610, 12588, 12609, 12605, 12612, 12611, 11999, 12467, 12468, 12469, 12590, 13523, 13524, 12591, 12653, 12602, 12586, 12604, 12587, 12589, 12600, 12387, 12542,  8238,  8433]
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/search/implementedEnemies.json') as f:
+        enemiesFile = json.load(f)
+    implementedEnemies = enemiesFile['used']
 
     cur = conn.cursor()
     data['buyAndDrop']['EnemyIDs'] = []
@@ -211,7 +231,9 @@ def rarityTable(conn, data, lmi, rti):
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][row[2]] = obj
 
             import json
-            with open('output/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
+            with open('work/config.json') as f:
+                config = json.load(f)
+            with open(config['path']+'/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
                 rarityCount = json.load(f)
 
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'] = rarityCount['rarityCount']
