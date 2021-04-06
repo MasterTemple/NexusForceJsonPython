@@ -24,9 +24,9 @@ import functions.getAllEnemies as getAllEnemies
 import functions.rarityTableForEnemy as enemyRTI
 import functions.getLevelData as getLevelData
 import functions.getCDGSkillIDs as getCDGSkillIDs
+import functions.getKitData as getKitData
 
-
-
+import externalFunctions.parseXML as xml
 
 # use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
 
@@ -122,6 +122,14 @@ def runLevels(level):
     writeAnyFile("levels", lvlData, False, 'levelData')
 
 
+def runKits(kitID):
+    #print(kitID)
+    kitData = {"id": kitID}
+    kitData['name'] = xml.getKitName(kitID)
+    getKitData.getInfo(db, kitData, kitID)
+    writeAnyFile(kitID, kitData, False, 'kitData')
+
+
 
 if config['startFromFdb'] == True:
     import lcdr.fdb_to_sqlite as lcdr
@@ -139,6 +147,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getLTIName as getLTIName
     import externalFunctions.getAllCooldownGroups as getAllCooldownGroups
     import externalFunctions.getAllLevels as getAllLevels
+    import externalFunctions.getAllKits as getAllKits
 
     lootTableIndexesList = glti.length(db)
     objectIDsList = getAllObjects.length(db)
@@ -147,6 +156,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     enemyList = getAllEnemies.length(db)
     cooldownGroupList = getAllCooldownGroups.length(db)
     levelsList = getAllLevels.length(db)
+    kitIDList = getAllKits.length(db)
 
 elif config['justUpdateGivenInfo'] == True:
 
@@ -157,6 +167,7 @@ elif config['justUpdateGivenInfo'] == True:
     enemyList = config['enemyList']
     cooldownGroupList = config['cooldownGroupList']
     levelsList = config['levelsList']
+    kitIDList = config['kitIDList']
 
 else:
 
@@ -168,6 +179,10 @@ else:
     enemyList = config['enemyList']
     cooldownGroupList = config['cooldownGroupList']
     levelsList = config['levelsList']
+    kitIDList = config['kitIDList']
+
+import externalFunctions.getAllKits as getAllKits
+kitIDList = getAllKits.length(db)
 
 """
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]

@@ -23,14 +23,18 @@ def getInfo(conn, data, skillIDs):
 def easyStats(data):
     data['stats'] = {}
     for skill in data['objectSkills']:
-        if data['objectSkills'][skill]['imBonusUI'] is not None:
-            data['stats']['imBonusUI'] = data['objectSkills'][skill]['imBonusUI']
-        elif data['objectSkills'][skill]['lifeBonusUI'] is not None:
-            data['stats']['lifeBonusUI'] = data['objectSkills'][skill]['lifeBonusUI']
-        elif data['objectSkills'][skill]['armorBonusUI'] is not None:
-            data['stats']['armorBonusUI'] = data['objectSkills'][skill]['armorBonusUI']
-        elif data['objectSkills'][skill]['castOnType'] == 0:
-            data['stats']['cooldown'] = data['objectSkills'][skill]['cooldown']
-            data['stats']['cooldowngroup'] = data['objectSkills'][skill]['cooldowngroup']
+        try:
+            if data['objectSkills'][skill]['imBonusUI'] is not None:
+                data['stats']['imBonusUI'] = data['objectSkills'][skill]['imBonusUI']
+            elif data['objectSkills'][skill]['lifeBonusUI'] is not None:
+                data['stats']['lifeBonusUI'] = data['objectSkills'][skill]['lifeBonusUI']
+            elif data['objectSkills'][skill]['armorBonusUI'] is not None:
+                data['stats']['armorBonusUI'] = data['objectSkills'][skill]['armorBonusUI']
+            elif data['objectSkills'][skill]['castOnType'] == 0:
+                data['stats']['cooldown'] = data['objectSkills'][skill]['cooldown']
+                data['stats']['cooldowngroup'] = data['objectSkills'][skill]['cooldowngroup']
+        except:
+            pass
+            #print(skill)
     return data
 

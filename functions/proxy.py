@@ -18,13 +18,16 @@ def getProxy(conn, data, objectID):
         # print(data['itemComponent']['subItems'])
 
         for row in rows:
-            if row[0] in data['itemComponent']['subItems']:
-                data['proxySkillIDs'].append(row[1])
-                obj = {
-                    "castOnType": row[2],
-                    "AICombatWeight": row[3],
-                }
-                data['proxySkills'][row[1]] = obj
+            try:
+                if row[0] in data['itemComponent']['subItems']:
+                    data['proxySkillIDs'].append(row[1])
+                    obj = {
+                        "castOnType": row[2],
+                        "AICombatWeight": row[3],
+                    }
+                    data['proxySkills'][row[1]] = obj
+            except:
+                pass
             #else:
                 #print(row[0], data['itemComponent']['subItems'])
     return data

@@ -61,26 +61,33 @@ def getSkillInfo(skillID):
         if child.attrib['id'] == description:
             #print(child[0].text)
             skill['rawDescription'] = child[0].text
+    try:
+        if '%(DamageCombo)' in skill['rawDescription']:
 
-    if '%(DamageCombo)' in skill['rawDescription']:
+            # print(skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):skill['rawDescription'].rfind('%(')])
+            skill['damageCombo'] = (skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):skill['rawDescription'].rfind('%(')])
+            if skill['damageCombo'] == '':
+                skill['damageCombo'] = (skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):])
+    except:
+        pass
+    try:
+        if '%(Description)' in skill['rawDescription']:
+            # print(skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
+            skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
+            #print(skill['Description'])
+            if skill['Description'] == '':
+                skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):])
+    except:
+        pass
 
-        # print(skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):skill['rawDescription'].rfind('%(')])
-        skill['damageCombo'] = (skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):skill['rawDescription'].rfind('%(')])
-        if skill['damageCombo'] == '':
-            skill['damageCombo'] = (skill['rawDescription'][skill['rawDescription'].find('%(DamageCombo)')+len('%(DamageCombo)'):])
-
-    if '%(Description)' in skill['rawDescription']:
-        # print(skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
-        skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):skill['rawDescription'].rfind('%(')])
-        #print(skill['Description'])
-        if skill['Description'] == '':
-            skill['Description'] = (skill['rawDescription'][skill['rawDescription'].find('%(Description)')+len('%(Description)'):])
-
-    if '%(ChargeUp)' in skill['rawDescription']:
-        # print(skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):skill['rawDescription'].rfind('%(')])
-        skill['ChargeUp'] = (skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):skill['rawDescription'].rfind('%(')])
-        if skill['ChargeUp'] == '':
-            skill['ChargeUp'] = (skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):])
+    try:
+        if '%(ChargeUp)' in skill['rawDescription']:
+            # print(skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):skill['rawDescription'].rfind('%(')])
+            skill['ChargeUp'] = (skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):skill['rawDescription'].rfind('%(')])
+            if skill['ChargeUp'] == '':
+                skill['ChargeUp'] = (skill['rawDescription'][skill['rawDescription'].find('%(ChargeUp)')+len('%(ChargeUp)'):])
+    except:
+        pass
     return skill
 
 #
@@ -88,3 +95,18 @@ def getSkillInfo(skillID):
 # #print(skill)
 # import json
 # print(json.dumps(skill, indent=4, sort_keys=True))
+
+
+def getKitName(kitID):
+    import xml.etree.ElementTree as ET
+    #tree = ET.parse('./../work/locale.xml')
+    tree = ET.parse('./work/locale.xml')
+
+    root = tree.getroot()
+    name = 'ItemSets_'+str(kitID)+'_kitName'
+    for child in root[1]:
+        if child.attrib['id'] == name:
+            #print(child[0].text)
+            return child[0].text
+
+
