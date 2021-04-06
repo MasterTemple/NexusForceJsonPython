@@ -136,6 +136,12 @@ def runKits(kitID):
     writeAnyFile(kitID, kitData, False, 'kitData')
 
 
+def runSetup(db):
+    #print("ok")
+    import externalFunctions.setup as setup
+    pkgData = setup.packageList(db)
+    writeAnyFile("packageList", pkgData, False, 'search')
+
 
 if config['startFromFdb'] == True:
     import lcdr.fdb_to_sqlite as lcdr
@@ -144,6 +150,8 @@ if config['startFromFdb'] == True:
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
+
+runSetup(db)
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLootTableIndexes as glti
@@ -192,9 +200,10 @@ else:
     levelsList = config['levelsList']
     kitIDList = config['kitIDList']
 
-import externalFunctions.getAllPackages as getAllPackages
-packagesList = getAllPackages.length(db)
 
+# import externalFunctions.getAllPackages as getAllPackages
+# packages = getAllPackages.length(db)
+# print(packages)
 """
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
 """

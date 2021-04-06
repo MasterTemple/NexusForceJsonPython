@@ -21,7 +21,8 @@ def makePretty(conn, data):
     data = rarityTableInfoPercents(conn, data)
     data = bigCalculate(data)
     data = lootTableIndexRange(data)
-    # data = removeExtra(data)
+    packageNamesForItemDrops(data, conn)
+    data = removeExtra(data)
     addSkillNamesAndDescriptions(data)
     addProxySkillNamesAndDescriptions(data)
     if data['itemComponent']['preconditions'] is not None:
@@ -228,7 +229,7 @@ def removeUnusedLootMatrixIndexes(data):
     lmisToDelete = []
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         #print(len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']))
-        if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0:
+        if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent']) == 0:
             #delattr(data, ['buyAndDrop']['LootMatrixIndexes'][lmi])
             lmisToDelete.append(lmi)
 
@@ -263,3 +264,24 @@ def addProxySkillNamesAndDescriptions(data):
 def getPreconditions(data):
     import externalFunctions.parseXML as xml
     data['itemComponent']['preconditionDescriptions'] = xml.preconditions(data['itemComponent']['preconditions'])
+
+
+def packageNamesForItemDrops(data, conn):
+    # import json
+    # with open('output/packageLMIs/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
+    #     packageLMIs = json.load(f)
+    import externalFunctions.nameAndDisplayName as name
+
+    import json
+    with open('output/search/packageList.json') as f:
+        packageData = json.load(f)
+
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'] = {}
+    packageLMIs = packageData['LootMatrixIndexes']
+    for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        #print(lmi)
+        if lmi in packageLMIs:
+            data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'][lmi] = name.info(conn, packageData[str(lmi)])
+
+            #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootMatrixIndex'])
