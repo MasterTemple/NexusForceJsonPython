@@ -28,7 +28,7 @@ import functions.getLevelData as getLevelData
 import functions.getCDGSkillIDs as getCDGSkillIDs
 import functions.getKitData as getKitData
 import functions.packageFile as packageFile
-
+import functions.activityFile as activityFile
 import externalFunctions.parseXML as xml
 
 
@@ -139,6 +139,12 @@ def runKits(kitID):
     writeAnyFile(kitID, kitData, False, 'kitData')
 
 
+def runActivity(activityID):
+    activityData = {"id": activityID}
+    activityData = activityFile.getInfo(db, activityID)
+    writeAnyFile(activityID, activityData, False, 'activities')
+
+
 def runSetup(db):
     #print("ok")
     import externalFunctions.setup as setup
@@ -166,7 +172,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLevels as getAllLevels
     import externalFunctions.getAllKits as getAllKits
     import externalFunctions.getAllPackages as getAllPackages
-
+    import externalFunctions.getAllActivities as getAllActivities
 
     lootTableIndexesList = glti.length(db)
     packagesList = getAllPackages.length(db)
@@ -177,6 +183,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     cooldownGroupList = getAllCooldownGroups.length(db)
     levelsList = getAllLevels.length(db)
     kitIDList = getAllKits.length(db)
+    activitiesList = getAllActivities.length(db)
 
 elif config['justUpdateGivenInfo'] == True:
 
@@ -189,7 +196,7 @@ elif config['justUpdateGivenInfo'] == True:
     cooldownGroupList = config['cooldownGroupList']
     levelsList = config['levelsList']
     kitIDList = config['kitIDList']
-
+    activitiesList = config['activitiesList']
 else:
 
     print("Please specify how you would like to create your files in work/config.json")
@@ -202,6 +209,7 @@ else:
     cooldownGroupList = config['cooldownGroupList']
     levelsList = config['levelsList']
     kitIDList = config['kitIDList']
+    activitiesList = config['activitiesList']
 
 
 # import externalFunctions.getAllPackages as getAllPackages
