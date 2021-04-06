@@ -151,6 +151,7 @@ def overallChance(data):
     rarityVal = (data['itemComponent']['rarity'])
 
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
+        #(lmi)
         # try:
         #rarityVal = str(rarityVal)
         #if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) > 0:
@@ -221,6 +222,14 @@ def bigCalculate(data):
                 "howManyToKill": howManyToKill
             }
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'])
+
+        else:
+            data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
+                "percent": 0,
+                "howManyToKill": 0
+            }
+            pass
+            #print(rarityVal)
         # except:
         #     continue
 
