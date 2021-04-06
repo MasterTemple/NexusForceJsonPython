@@ -3,6 +3,8 @@ import json
 import math
 import sys
 import os
+from datetime import datetime as time
+
 import functions.getComponents as getComps
 import functions.itemComponent as itemComp
 import functions.objects as objectInfo
@@ -28,6 +30,7 @@ import functions.getKitData as getKitData
 import functions.packageFile as packageFile
 
 import externalFunctions.parseXML as xml
+
 
 # use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
 
@@ -207,7 +210,10 @@ else:
 """
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
 """
-
+now = time.now()
+previous = now.strftime("%H:%M:%S")
+#current_time = now.strftime("%H:%M:%S")
+print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] Process Started.')
 for func in config['functionsInfo']:
     if func[3] == False:
         for id in eval(func[2]):
@@ -216,5 +222,9 @@ for func in config['functionsInfo']:
             eval(func[1])(id)
     else:
         eval(func[1])(eval(func[2]))
-    print("\r" + func[0] + ": 100%")
+    print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] ' + func[0] + ": 100%")
+    #    print("\r" + func[0] + ": 100% at "+str(now.strftime("%H:%M:%S")) + " -> " + str(previous))
+
+    #previous = time.now()
+    previous = now.strftime("%H:%M:%S")
 

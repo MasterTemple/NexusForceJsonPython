@@ -46,6 +46,7 @@ def getInfo(conn, data, kitID):
 
     sumSkillStats(data)
     sumItemStats(data)
+    getSkillDescriptions(data)
 
     #if data['info']['kitRank'] != 3:
     sumBonuses(data)
@@ -58,6 +59,14 @@ def getItemIDsInfo(cur, itemIDs, data):
     #getItemStats(itemIDsArray, data)
     return itemIDsArray
 
+
+def getSkillDescriptions(data):
+    import externalFunctions.parseXML as xml
+
+    for skillSet in data['skills']:
+        for skill in data['skills'][skillSet]:
+            #print(skill)
+            data['skills'][skillSet][skill]['description'] = xml.getKitAbility(skill)
 
 def getKitBonuses(cur, data):
     cur.execute("SELECT * FROM ItemSetSkills")

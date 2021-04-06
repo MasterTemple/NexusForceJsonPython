@@ -110,3 +110,15 @@ def getKitName(kitID):
             return child[0].text
 
 
+def getKitAbility(skillID):
+    import xml.etree.ElementTree as ET
+    #tree = ET.parse('./../work/locale.xml')
+    tree = ET.parse('./work/locale.xml')
+
+    root = tree.getroot()
+    name = 'SkillBehavior_'+str(skillID)+'_descriptionUI'
+    for child in root[1]:
+        if child.attrib['id'] == name:
+            #print(child[0].text)
+            return child[0].text
+
