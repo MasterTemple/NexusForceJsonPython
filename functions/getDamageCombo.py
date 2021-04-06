@@ -29,7 +29,7 @@ actions = ["action", "miss action", "blocked action", "action_false", "action_tr
 cur = db.cursor()
 cur.execute("SELECT * FROM BehaviorParameter"),
 rows = cur.fetchall()
-behaviorID = 25981
+behaviorID = 13969
 data = {}
 used = []
 data['overview'] = {}
@@ -37,6 +37,8 @@ data['overview']['hasChargeUp'] = False
 data['overview']['spawnsObject'] = False
 data['overview']['meleeAttack'] = False
 data['overview']['projectileAttack'] = False
+data['overview']['chargeUpArmorRestore'] = []
+data['overview']['chargeUpImaginationRestore'] = []
 for row in rows:
     if row[0] == behaviorID:
         #print(row[1])
@@ -92,6 +94,15 @@ def getKidsKids(obj, parameter, branch):
             data['overview']['chargeUpCombo'] = obj[parameter]['info'][param]
         # else:
         #     print(param, branch)
+        if branch == 'chargeup' and param == 'imagination' and obj[parameter]['info'][param] < 0:
+            data['overview']['chargeUpCost'] = obj[parameter]['info'][param]
+        if branch == 'chargeup' and param == 'imagination' and obj[parameter]['info'][param] > 0:
+            data['overview']['chargeUpImaginationRestore'].append(obj[parameter]['info'][param])
+        if branch == 'chargeup' and param == 'armor' and obj[parameter]['info'][param] > 0:
+            data['overview']['chargeUpArmorRestore'].append(obj[parameter]['info'][param])
+
+        if branch == 'chargeup':
+            print(param, obj[parameter]['info'][param])
     #used.append(parameter)
     return obj
 
@@ -111,17 +122,14 @@ def getKidsKids(obj, parameter, branch):
 getKidsKids(data, behaviorID, "")
 
 
-def sort(obj):
-    obj['overview'] = {
-        "meleeCombo": meleeCombo(),
-        "projectileCombo": projectileCombo(),
-        #"chargeUpIsProjectile": chargeUpIsProjectile(),
-    }
+def sort(data):
+    if len(data['overview']['chargeUpArmorRestore']) > 0 or len(data['overview']['chargeUpImaginationRestore']) > 0:
+        del data['overview']['chargeUpCombo']
 
 
-    return obj
+    return data
 #print(obj)
 
-# sort(data)
+sort(data)
 
 writeFile(data)
