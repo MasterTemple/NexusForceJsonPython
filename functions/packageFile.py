@@ -1,4 +1,4 @@
-def rarityTable(conn, data, lmi, rti):
+def rarityTable(conn, data, lti, rti):
     cur = conn.cursor()
     cur.execute("SELECT * FROM RarityTable")
     rows = cur.fetchall()
@@ -17,7 +17,7 @@ def rarityTable(conn, data, lmi, rti):
             # data['rarityTableInfo'][row[2]] = obj
             #
             import json
-            with open('output/lootTableIndexes/'+str(data['LootTableIndex'])+'.json') as f:
+            with open('output/lootTableIndexes/'+str(lti)+'.json') as f:
                 rarityCount = json.load(f)
 
             data['rarityCount'] = rarityCount['rarityCount']
@@ -26,12 +26,81 @@ def rarityTable(conn, data, lmi, rti):
 
     return data
 
-def getInfo(conn, data, enemyID):
-    for lmi in data['drop']['LootTableIndexes']:
-        #print(data['drop']['LootMatrixIndex'], lmi['RarityTableIndex'])
-        rarityTable(conn, lmi, data['drop']['LootMatrixIndex'], lmi['RarityTableIndex'])
+def getInfo(conn, packageID):
+    data = {"id": packageID}
+    data['comp_val'] = getPackageComponentValue(conn, packageID)
+    data['LootMatrixIndex'] = getLMI(conn, data['comp_val'])
+    data['LootMatrixIndexInfo'] = {}
+    getLTIFromLMI(conn, data)
+    lootTableIndexRange(data)
+    editLootTableIndexes(data)
+    #rarityTable(conn, data, lmi, rti)
+    for lmi in data['LootTableIndexes']:
+        #print(lmi)
+        rarityTable(conn, lmi, lmi['LootTableIndex'], lmi['RarityTableIndex'])
         rarityTableInfoPercents(lmi)
         weightedChance(data)
+    #rarityTable(conn, lmi, data['drop']['LootMatrixIndex'], lmi['RarityTableIndex'])
+    # rarityTableInfoPercents(data['LootMatrixIndex'])
+    # weightedChance(data)
+
+    return data
+
+
+def lootTableIndexRange(data):
+    import json
+    for lti in data['LootTableIndexes']:
+        #print(lti['LootTableIndex'])
+        #num = str(data['drop']['LootTableIndexes'][lti]['LootTableIndex'])
+        #print(num)
+        with open('output/lootTableIndexes/' + str(lti['LootTableIndex']) + '.json') as f:
+            ltiFile = json.load(f)
+        lti['size'] = len(ltiFile['itemsList'])
+
+    return data
+
+def editLootTableIndexes(data):
+    import json
+    with open('work/LootTableIndexNames.json') as f:
+        names = json.load(f)
+    for lti in data['LootTableIndexes']:
+        lti['names'] = names['data'][lti['LootTableIndex']]
+    return data
+
+
+def getLMI(conn, comp_val):
+    cur = conn.cursor()
+    cur.execute("SELECT id, LootMatrixIndex FROM PackageComponent")
+    rows = cur.fetchall()
+    for row in rows:
+        if row[0] == comp_val:
+            return row[1]
+
+
+def getPackageComponentValue(conn, packageID):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM ComponentsRegistry")
+    rows = cur.fetchall()
+    for row in rows:
+        if row[0] == packageID and row[1] == 53:
+            return row[2]
+
+
+def getLTIFromLMI(conn, data):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM LootMatrix")
+    rows = cur.fetchall()
+    data['LootTableIndexes'] = []
+    for row in rows:
+        if row[0] == data['LootMatrixIndex']:
+            obj = {
+                "LootTableIndex": row[1],
+                "RarityTableIndex": row[2],
+                "percent": round(row[3] * 100, 2),
+                "minToDrop": row[4],
+                "maxToDrop": row[5],
+            }
+            data['LootTableIndexes'].append(obj)
 
     return data
 
@@ -41,7 +110,7 @@ def rarityTableInfoPercents(data):
     #return data
     #print(data)
     #for lmi in data:
-        #print('lmi'+str(lmi))
+    #print('lmi'+str(lmi))
     arr = []
     for rtinfo in data['rarityTableInfo']:
         arr.append(rtinfo)
@@ -78,7 +147,7 @@ def rarityTableInfoPercents(data):
 
 def weightedChance(data):
 
-    for lti in data['drop']['LootTableIndexes']:
+    for lti in data['LootTableIndexes']:
         try:
             if lti['rarityTableInfo'] is not None:
                 total = 0
@@ -99,14 +168,14 @@ def weightedChance(data):
                             lti['rarityTableInfo'][rti]['weightedChanceForSpecificItemIncludingDrop'] = round( (lti['percent']/100)*((100/total)*lti['rarityTableInfo'][rti]['chance'])/lti['rarityCount'][str(rti)], 3)
 
                 if lti['rarityCount'][str(rti)] == 0:
-                        #print('ran', lti['LootTableIndex'])
-                        lti['rarityTableInfo'][rti]['weightedChance'] = 0
-                        lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = 0
+                    #print('ran', lti['LootTableIndex'])
+                    lti['rarityTableInfo'][rti]['weightedChance'] = 0
+                    lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = 0
 
                 lti['total'] = total
                 #print(total)
 
-    #print(lti['rarityTableInfo'])
+        #print(lti['rarityTableInfo'])
         except:
             pass
 

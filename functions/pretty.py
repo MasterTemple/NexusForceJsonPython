@@ -21,7 +21,7 @@ def makePretty(conn, data):
     data = rarityTableInfoPercents(conn, data)
     data = bigCalculate(data)
     data = lootTableIndexRange(data)
-    data = removeExtra(data)
+    # data = removeExtra(data)
     addSkillNamesAndDescriptions(data)
     addProxySkillNamesAndDescriptions(data)
     if data['itemComponent']['preconditions'] is not None:
@@ -164,7 +164,7 @@ def overallChance(data):
             percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
             howManyToKill = round(1.0/percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
-                "percent": percent,
+                "percent": percent, #not this one
                 "howManyToKill": howManyToKill
             }
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'])
@@ -214,7 +214,7 @@ def bigCalculate(data):
             percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
             howManyToKill = round(1.0/percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
-                "percent": percent,
+                "percent": percent*100,
                 "howManyToKill": howManyToKill
             }
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'])
