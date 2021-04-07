@@ -165,6 +165,7 @@ def run(db, behaviorID):
     data['overview']['projectileLOTs'] = []
     data['overview']['projectileInfo'] = {}
     data['overview']['projectileDamageComboArray'] = []
+    data['overview']['chargeUpCombo'] = 0
     data['projectileBehaviorIDs'] = []
     data['projectileChargeUpBehaviorIDs'] = []
 

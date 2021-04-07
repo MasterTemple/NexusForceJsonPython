@@ -1,6 +1,6 @@
 def length(conn):
     cur = conn.cursor()
-    cur.execute("SELECT ActivityID FROM Activity")
+    cur.execute("SELECT ActivityID FROM Activities")
     rows = cur.fetchall()
     array = []
     for row in rows:

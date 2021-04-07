@@ -39,6 +39,9 @@ import externalFunctions.parseXML as xml
 with open('work/config.json') as f:
     config = json.load(f)
 
+with open('output/search/allLists.json') as f:
+    allLists = json.load(f)
+
 def create_connection(db_file):
     conn = None
     try:
@@ -75,6 +78,7 @@ def runObjects(objectID):
 
 def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
+    import externalFunctions.getLTIName as getLTIName
     ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
     writeAnyFile(lootTableIndex, ltiData, False, 'lootTableIndexes')
 
@@ -172,7 +176,7 @@ if config['startFromFdb'] == True:
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
-
+listObject = {}
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLootTableIndexes as glti
@@ -198,6 +202,38 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     kitIDList = getAllKits.length(db)
     activitiesList = getAllActivities.length(db)
     behaviorsList = getAllBehaviors.length(db)
+    """
+    #creates a file of all these lists
+    listObject['lootTableIndexesList'] = lootTableIndexesList
+    listObject['packagesList'] = packagesList
+    listObject['objectIDsList'] = objectIDsList
+    listObject['missionIDsList'] = missionIDsList
+    listObject['npcsList'] = npcsList
+    listObject['enemyList'] = enemyList
+    listObject['cooldownGroupList'] = cooldownGroupList
+    listObject['levelsList'] = levelsList
+    listObject['kitIDList'] = kitIDList
+    listObject['activitiesList'] = activitiesList
+    listObject['behaviorsList'] = behaviorsList
+    writeAnyFile("allLists", listObject, False, 'search')
+    """
+
+
+elif config['startByImportingList'] == True:
+
+    lootTableIndexesList = allLists['lootTableIndexesList']
+    packagesList = allLists['packagesList']
+    objectIDsList = allLists['objectIDsList']
+    missionIDsList = allLists['missionIDsList']
+    npcsList = allLists['npcsList']
+    enemyList = allLists['enemyList']
+    cooldownGroupList = allLists['cooldownGroupList']
+    levelsList = allLists['levelsList']
+    kitIDList = allLists['kitIDList']
+    activitiesList = allLists['activitiesList']
+    behaviorsList = allLists['behaviorsList']
+
+
 
 elif config['justUpdateGivenInfo'] == True:
 
@@ -212,21 +248,30 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+    behaviorsList = allLists['behaviorsList']
+    #behaviorsList = behaviorsList[behaviorsList.index(752):]
+    percent = 8.1
+    behaviorsList = behaviorsList[behaviorsList.index(behaviorsList[round(len(behaviorsList) * (percent/100))]):]
+
 else:
 
     print("Please specify how you would like to create your files in work/config.json")
-    lootTableIndexesList = config['lootTableIndexesList']
-    packagesList = config['packagesList']
-    objectIDsList = config['objectIDsList']
-    missionIDsList = config['missionIDsList']
-    npcsList = config['npcsList']
-    enemyList = config['enemyList']
-    cooldownGroupList = config['cooldownGroupList']
-    levelsList = config['levelsList']
-    kitIDList = config['kitIDList']
-    activitiesList = config['activitiesList']
-    behaviorsList = config['behaviorsList']
 
+    # lootTableIndexesList = config['lootTableIndexesList']
+    # packagesList = config['packagesList']
+    # objectIDsList = config['objectIDsList']
+    # missionIDsList = config['missionIDsList']
+    # npcsList = config['npcsList']
+    # enemyList = config['enemyList']
+    # cooldownGroupList = config['cooldownGroupList']
+    # levelsList = config['levelsList']
+    # kitIDList = config['kitIDList']
+    # activitiesList = config['activitiesList']
+    # behaviorsList = config['behaviorsList']
+
+print('start')
+# import externalFunctions.getAllBehaviors as getAllBehaviors
+# behaviorsList = getAllBehaviors.length(db)
 
 # import externalFunctions.getAllPackages as getAllPackages
 # packages = getAllPackages.length(db)
@@ -236,6 +281,7 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 """
 now = time.now()
 previous = now.strftime("%H:%M:%S")
+#print(len(behaviorsList))
 #current_time = now.strftime("%H:%M:%S")
 print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] Process Started.')
 if config['setup']:
