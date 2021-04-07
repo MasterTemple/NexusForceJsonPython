@@ -79,3 +79,6 @@ def behaviorList(conn):
         "behaviorTemplates": obj,
         "behaviorTemplateNames": array
     }
+
+
+# def createBehaviorTrees():

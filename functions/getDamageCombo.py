@@ -1,62 +1,4 @@
-import sqlite3
-import os
-import json
-
-import functions.getProjectileStats as projectile
-
-def create_connection(db_file):
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-    except:
-        print("\nError")
-    return conn
-
-
-with open('./../output/search/behaviorData.json') as x:
-    behaviorData = json.load(x)
-
-def writeFile(data):
-
-    #os.makedirs(os.path.dirname('test.json'), exist_ok=True)
-    with open('test.json', 'w',
-              encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-
-file = "./../work/cdclient.sqlite"
-db = create_connection(file)
-
-actions = ["action", "miss action", "blocked action", "action_false", "action_true", "start_action", "chain_action", "break_action", "double_jump_action", "ground_action", "jump_action", "hit_action", "hit_action_enemy", "timeout_action", "air_action", "falling_action", "jetpack_action", "spawn_fail_action", "action_failed", "action_consumed", "blocked_action", "moving_action", "on_success", "behavior","behavior 0","behavior 1","behavior 2","behavior 3","behavior 4","behavior 5","behavior 6","behavior 7","behavior 8","behavior 9","bahavior 2"]
-
-cur = db.cursor()
-cur.execute("SELECT * FROM BehaviorParameter"),
-rows = cur.fetchall()
-behaviorID = 23451
-data = {}
-used = []
-data['overview'] = {}
-data['overview']['hasChargeUp'] = False
-data['overview']['spawnsObject'] = False
-data['overview']['spawnsQuickbuild'] = False
-data['overview']['meleeAttack'] = False
-data['overview']['projectileAttack'] = False
-data['overview']['damageComboArray'] = []
-data['overview']['chargeUpArmorRestore'] = []
-data['overview']['chargeUpImaginationRestore'] = []
-data['overview']['projectileLOTs'] = []
-data['overview']['projectileInfo'] = {}
-data['overview']['projectileDamageComboArray'] = []
-data['projectileBehaviorIDs'] = []
-data['projectileChargeUpBehaviorIDs'] = []
-for row in rows:
-    if row[0] == behaviorID:
-        #print(row[1])
-        data[row[1]] = {"initial_value": int(row[2])}
-    #pass
-
-#print(obj)
-
-def getKidsKids(obj, parameter, branch, movementSwitch):
+def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used, actions, projectile, cur, rows):
     obj[parameter] = {}
     try:
         obj[parameter]['name'] = behaviorData[str(parameter)]
@@ -96,13 +38,13 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
             used.append(obj[parameter]['info'][param])
             startParams = ["double_jump_action","falling_action","ground_action","jetpack_action","jump_action"]
             if param in startParams and movementSwitch not in startParams:
-                getKidsKids(obj[parameter]['kids'], int(obj[parameter]['info'][param]), branch, param)
+                getKidsKids(data, obj[parameter]['kids'], int(obj[parameter]['info'][param]), branch, param, behaviorData, used, actions, projectile, cur, rows)
             else:
-                getKidsKids(obj[parameter]['kids'], int(obj[parameter]['info'][param]), branch, movementSwitch)
+                getKidsKids(data, obj[parameter]['kids'], int(obj[parameter]['info'][param]), branch, movementSwitch, behaviorData, used, actions, projectile, cur, rows)
 
         # pass
             # else:
-                #getKidsKids(obj[parameter]['kids'], int(row[2]), True)
+                #getKidsKids(data, obj[parameter]['kids'], int(row[2]), True)
                 # pass
                 #obj[parameter]['kids'][str(row[0])]
 
@@ -162,13 +104,12 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
 #             obj[parameter]['hasKids'] = True
 #             obj[parameter]['kids'][str(row[0])] = {row[1]: int(row[2])}
 #             if row[1] in actions:
-#                 getKidsKids(obj[parameter]['kids'][str(row[0])], int(row[2]))
+#                 getKidsKids(data, obj[parameter]['kids'][str(row[0])], int(row[2]))
 
 
-getKidsKids(data, behaviorID, "", "")
 
 
-def sort(data):
+def sort(data, behaviorData, used, actions, projectile, cur, rows):
     if len(data['overview']['chargeUpArmorRestore']) > 0 or len(data['overview']['chargeUpImaginationRestore']) > 0:
         data['overview']['damageComboArray'].insert(0, data['overview']['chargeUpCombo'])
         del data['overview']['chargeUpCombo']
@@ -189,15 +130,56 @@ def sort(data):
             #print(data['overview']['projectileDamageComboArray'])
             data['overview']['projectileDamageComboArray'].append(data['overview']['projectileDamageComboArray'][len(data['overview']['projectileDamageComboArray'])-1])
         else:
-            getKidsKids(data, behaviorID, "", "projectile")
+            getKidsKids(data, data, behaviorID, "", "projectile", behaviorData, used, actions, projectile, cur, rows)
         usedProjectileBehaviors.append(behaviorID)
 
     for behaviorID in data['projectileChargeUpBehaviorIDs']:
-        getKidsKids(data, behaviorID, "chargeup", "projectile")
+        getKidsKids(data, data, behaviorID, "chargeup", "projectile", behaviorData, used, actions, projectile, cur, rows)
 
     return data
 #print(obj)
 
-sort(data)
+def run(db, behaviorID):
+    import json
+    import functions.getProjectileStats as projectile
+    with open('output/search/behaviorData.json') as x:
+        behaviorData = json.load(x)
 
-writeFile(data)
+
+    actions = ["action", "miss action", "blocked action", "action_false", "action_true", "start_action", "chain_action", "break_action", "double_jump_action", "ground_action", "jump_action", "hit_action", "hit_action_enemy", "timeout_action", "air_action", "falling_action", "jetpack_action", "spawn_fail_action", "action_failed", "action_consumed", "blocked_action", "moving_action", "on_success", "behavior","behavior 0","behavior 1","behavior 2","behavior 3","behavior 4","behavior 5","behavior 6","behavior 7","behavior 8","behavior 9","bahavior 2"]
+    cur = db.cursor()
+    cur.execute("SELECT * FROM BehaviorParameter"),
+    rows = cur.fetchall()
+    #behaviorID = 23451
+    data = {}
+    used = []
+    data['overview'] = {}
+    data['overview']['hasChargeUp'] = False
+    data['overview']['spawnsObject'] = False
+    data['overview']['spawnsQuickbuild'] = False
+    data['overview']['meleeAttack'] = False
+    data['overview']['projectileAttack'] = False
+    data['overview']['damageComboArray'] = []
+    data['overview']['chargeUpArmorRestore'] = []
+    data['overview']['chargeUpImaginationRestore'] = []
+    data['overview']['projectileLOTs'] = []
+    data['overview']['projectileInfo'] = {}
+    data['overview']['projectileDamageComboArray'] = []
+    data['projectileBehaviorIDs'] = []
+    data['projectileChargeUpBehaviorIDs'] = []
+
+    for row in rows:
+        if row[0] == behaviorID:
+            #print(row[1])
+            data[row[1]] = {"initial_value": int(row[2])}
+        #pass
+
+    getKidsKids(data, data, behaviorID, "", "", behaviorData, used, actions, projectile, cur, rows)
+
+    sort(data, behaviorData, used, actions, projectile, cur, rows)
+
+    return data
+
+
+
+

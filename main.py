@@ -29,6 +29,8 @@ import functions.getCDGSkillIDs as getCDGSkillIDs
 import functions.getKitData as getKitData
 import functions.packageFile as packageFile
 import functions.activityFile as activityFile
+import functions.getDamageCombo as getDamageCombo
+
 import externalFunctions.parseXML as xml
 
 
@@ -146,7 +148,11 @@ def runActivity(activityID):
 
 
 def runBehaviorTrees(behaviorID):
+    behaviorData = getDamageCombo.run(db, behaviorID)
+    writeAnyFile(behaviorID, behaviorData, True, 'behaviors')
+
     pass
+
 
 def runSetup(db):
     #print("ok")
@@ -179,6 +185,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllKits as getAllKits
     import externalFunctions.getAllPackages as getAllPackages
     import externalFunctions.getAllActivities as getAllActivities
+    import externalFunctions.getAllBehaviors as getAllBehaviors
 
     lootTableIndexesList = glti.length(db)
     packagesList = getAllPackages.length(db)
@@ -190,6 +197,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     levelsList = getAllLevels.length(db)
     kitIDList = getAllKits.length(db)
     activitiesList = getAllActivities.length(db)
+    behaviorsList = getAllBehaviors.length(db)
 
 elif config['justUpdateGivenInfo'] == True:
 
@@ -203,6 +211,7 @@ elif config['justUpdateGivenInfo'] == True:
     levelsList = config['levelsList']
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
+    behaviorsList = config['behaviorsList']
 else:
 
     print("Please specify how you would like to create your files in work/config.json")
@@ -216,6 +225,7 @@ else:
     levelsList = config['levelsList']
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
+    behaviorsList = config['behaviorsList']
 
 
 # import externalFunctions.getAllPackages as getAllPackages
