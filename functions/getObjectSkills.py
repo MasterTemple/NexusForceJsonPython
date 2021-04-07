@@ -12,5 +12,5 @@ def getInfo(conn, data, objectID):
                 "castOnType": row[2],
                 "AICombatWeight": row[3],
             }
-
     return data
+

@@ -67,11 +67,37 @@ def runObjects(objectID):
     getComps.getInfo(db, objectData, objectID)
     objectSkills.getInfo(db, objectData, objectID)
     behaviors.getInfo(db, objectData, objectData['skillIDs'])
-    itemComp.getInfo(db, objectData, objectData['components'][11])
-    render.getInfo(db, objectData, objectData['components'][2])
+    objectData['itemComponent'] = {}
+    objectData['itemComponent']['subItems'] = None
+    # objectData['itemComponent']['equipLocation'] = None
+    # objectData['itemComponent']['sellPrice'] = None
+    # objectData['itemComponent']['buyPrice'] = None
+    # objectData['itemComponent']['isKitPiece'] = None
+    # objectData['itemComponent']['rarity'] = None
+    # objectData['itemComponent']['itemComponent'] = None
+    # objectData['itemComponent']['inLootTable'] = None
+    # objectData['itemComponent']['inVendor'] = None
+    # objectData['itemComponent']['stackSize'] = None
+    # objectData['itemComponent']['color'] = None
+    # objectData['itemComponent']['preconditions'] = None
+    # objectData['itemComponent']['isTwoHanded'] = None
+    # objectData['itemComponent']['altCurrencyType'] = None
+    # objectData['itemComponent']['altCurrencyCost'] = None
+    # objectData['itemComponent']['subItems'] = None
+    try:
+        itemComp.getInfo(db, objectData, objectData['components'][11])
+        proxy.getInfo(db, objectData, objectID)
+
+    except:
+        pass
+    try:
+        render.getInfo(db, objectData, objectData['components'][2])
+    except:
+        objectData['iconURL'] = 'https://github.com/MasterTemple/lu_bot/blob/master/src/unknown.png?raw=true'
+
     buy.getInfo(db, objectData, objectID)
     earn.getInfo(db, objectData, objectID)
-    proxy.getInfo(db, objectData, objectID)
+    # proxy.getInfo(db, objectData, objectID)
 
     pretty.makePretty(db, objectData)
     writeAnyFile(objectID, objectData, True, 'objects')
@@ -155,7 +181,6 @@ def runBehaviorTrees(behaviorID):
     behaviorData = getDamageCombo.run(db, behaviorID)
     writeAnyFile(behaviorID, behaviorData, True, 'behaviors')
 
-    pass
 
 
 def runSetup(db):
@@ -169,6 +194,41 @@ def runSetup(db):
     writeAnyFile("behaviorData", behaviorData, False, 'search')
 
 
+def runModify():
+
+    with open('work/modifyFile.json') as f:
+        modifyFile = json.load(f)
+
+    for data in modifyFile['data']:
+        with open(config['path']+'/'+modifyFile['data'][data]['file']) as f:
+            editFile = json.load(f)
+            for edit in modifyFile['data'][data]['edits']:
+                print(edit)
+
+        with open(config['path']+'/'+modifyFile['data'][data]['file']) as f:
+            json.dump(modifyFile, f, ensure_ascii=False, indent=4)
+
+    print(editFile)
+
+
+
+
+def createAllLists(lootTableIndexesList, packagesList, objectIDsList, missionIDsList, npcsList, enemyList, cooldownGroupList, levelsList, kitIDList, activitiesList, behaviorsList):
+    listObject = {}
+    listObject['lootTableIndexesList'] = lootTableIndexesList
+    listObject['packagesList'] = packagesList
+    listObject['objectIDsList'] = objectIDsList
+    listObject['missionIDsList'] = missionIDsList
+    listObject['npcsList'] = npcsList
+    listObject['enemyList'] = enemyList
+    listObject['cooldownGroupList'] = cooldownGroupList
+    listObject['levelsList'] = levelsList
+    listObject['kitIDList'] = kitIDList
+    listObject['activitiesList'] = activitiesList
+    listObject['behaviorsList'] = behaviorsList
+    writeAnyFile("allLists", listObject, False, 'search')
+
+
 if config['startFromFdb'] == True:
     import lcdr.fdb_to_sqlite as lcdr
     lcdr.convert('work/cdclient.fdb', 'work/cdclient.sqlite')
@@ -176,7 +236,7 @@ if config['startFromFdb'] == True:
 
 file = "work/cdclient.sqlite"
 db = create_connection(file)
-listObject = {}
+# listObject = {}
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLootTableIndexes as glti
@@ -202,6 +262,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     kitIDList = getAllKits.length(db)
     activitiesList = getAllActivities.length(db)
     behaviorsList = getAllBehaviors.length(db)
+    createAllLists(lootTableIndexesList, packagesList, objectIDsList, missionIDsList, npcsList, enemyList, cooldownGroupList, levelsList, kitIDList, activitiesList, behaviorsList)
     """
     #creates a file of all these lists
     listObject['lootTableIndexesList'] = lootTableIndexesList
@@ -216,6 +277,8 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     listObject['activitiesList'] = activitiesList
     listObject['behaviorsList'] = behaviorsList
     writeAnyFile("allLists", listObject, False, 'search')
+    
+    createAllLists(lootTableIndexesList, packagesList, objectIDsList, missionIDsList, npcsList, enemyList, cooldownGroupList, levelsList, kitIDList, activitiesList, behaviorsList)
     """
 
 
@@ -232,7 +295,29 @@ elif config['startByImportingList'] == True:
     kitIDList = allLists['kitIDList']
     activitiesList = allLists['activitiesList']
     behaviorsList = allLists['behaviorsList']
+    # lootTableIndexesList = []
+    # packagesList = []
+    # behaviorsList = behaviorsList[behaviorsList.index(5896):]
 
+    # percent = 8.1
+    # behaviorsList = behaviorsList[behaviorsList.index(behaviorsList[round(len(behaviorsList) * (percent/100))]):]
+
+
+elif config['executeSpecific'] == True:
+    lootTableIndexesList = []  # = allLists['lootTableIndexesList']
+    packagesList = []  # = allLists['packagesList']
+    objectIDsList = []  # = allLists['objectIDsList']
+    missionIDsList = []  # = allLists['missionIDsList']
+    npcsList = []  # = allLists['npcsList']
+    enemyList = []  # = allLists['enemyList']
+    cooldownGroupList = []  # = allLists['cooldownGroupList']
+    levelsList = []  # = allLists['levelsList']
+    kitIDList = []  # = allLists['kitIDList']
+    activitiesList = []  # = allLists['activitiesList']
+    behaviorsList = []  # = allLists['behaviorsList']
+
+    # behaviorsList = allLists['behaviorsList']
+    # behaviorsList = behaviorsList[behaviorsList.index(11175):]
 
 
 elif config['justUpdateGivenInfo'] == True:
@@ -248,10 +333,16 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
-    behaviorsList = allLists['behaviorsList']
-    #behaviorsList = behaviorsList[behaviorsList.index(752):]
-    percent = 8.1
-    behaviorsList = behaviorsList[behaviorsList.index(behaviorsList[round(len(behaviorsList) * (percent/100))]):]
+    objectIDsList = allLists['objectIDsList']
+
+
+    # behaviorsList = behaviorsList[behaviorsList.index(11175):]
+    objectIDsList = objectIDsList[objectIDsList.index(4108):]
+
+    #behaviorsList = allLists['behaviorsList']
+    # behaviorsList = behaviorsList[behaviorsList.index(11175):]
+    # percent = 3.458
+    # objectIDsList = objectIDsList[objectIDsList.index(objectIDsList[round(len(objectIDsList) * (percent/100))]):]
 
 else:
 
@@ -269,7 +360,7 @@ else:
     # activitiesList = config['activitiesList']
     # behaviorsList = config['behaviorsList']
 
-print('start')
+#print('start')
 # import externalFunctions.getAllBehaviors as getAllBehaviors
 # behaviorsList = getAllBehaviors.length(db)
 
@@ -279,6 +370,7 @@ print('start')
 """
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
 """
+#print(behaviorsList)
 now = time.now()
 previous = now.strftime("%H:%M:%S")
 #print(len(behaviorsList))
@@ -301,3 +393,4 @@ for func in config['functionsInfo']:
     #previous = time.now()
     previous = now.strftime("%H:%M:%S")
 
+# runModify()

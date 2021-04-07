@@ -22,13 +22,15 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
     #print(parameter)
 
     for row in rows:
-        if row[0] == int(parameter):
+        try:
+            if row[0] == int(parameter):
 
-            obj[parameter]['hasKids'] = True
-            obj[parameter]['info'][row[1]] = int(row[2])
-            #obj[parameter]['kids'][row[1]] = int(row[2])
-            #print(obj)
-
+                obj[parameter]['hasKids'] = True
+                obj[parameter]['info'][row[1]] = int(row[2])
+                #obj[parameter]['kids'][row[1]] = int(row[2])
+                #print(obj)
+        except:
+            pass
 
 
 
@@ -54,6 +56,10 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
         #     print(param, branch)
         if branch == 'chargeup' and param == 'imagination' and obj[parameter]['info'][param] < 0:
             data['overview']['chargeUpCost'] = obj[parameter]['info'][param]
+
+        if param == 'imagination' and obj[parameter]['info'][param] < 0:
+            data['overview']['chargeUpCost'] = obj[parameter]['info'][param]
+
         if branch == 'chargeup' and param == 'imagination' and obj[parameter]['info'][param] > 0:
             data['overview']['chargeUpImaginationRestore'].append(obj[parameter]['info'][param])
         if branch == 'chargeup' and param == 'armor' and obj[parameter]['info'][param] > 0:
@@ -124,14 +130,16 @@ def sort(data, behaviorData, used, actions, projectile, cur, rows):
         data['overview']['damageComboArray'] = [1, 1, 1]
     usedProjectileBehaviors = []
     for behaviorID in data['projectileBehaviorIDs']:
-
-        if behaviorID in usedProjectileBehaviors:
-            #used.remove(behaviorID)
-            #print(data['overview']['projectileDamageComboArray'])
-            data['overview']['projectileDamageComboArray'].append(data['overview']['projectileDamageComboArray'][len(data['overview']['projectileDamageComboArray'])-1])
-        else:
-            getKidsKids(data, data, behaviorID, "", "projectile", behaviorData, used, actions, projectile, cur, rows)
-        usedProjectileBehaviors.append(behaviorID)
+        try:
+            if behaviorID in usedProjectileBehaviors:
+                #used.remove(behaviorID)
+                #print(data['overview']['projectileDamageComboArray'])
+                data['overview']['projectileDamageComboArray'].append(data['overview']['projectileDamageComboArray'][len(data['overview']['projectileDamageComboArray'])-1])
+            else:
+                getKidsKids(data, data, behaviorID, "", "projectile", behaviorData, used, actions, projectile, cur, rows)
+            usedProjectileBehaviors.append(behaviorID)
+        except:
+            pass
 
     for behaviorID in data['projectileChargeUpBehaviorIDs']:
         getKidsKids(data, data, behaviorID, "chargeup", "projectile", behaviorData, used, actions, projectile, cur, rows)

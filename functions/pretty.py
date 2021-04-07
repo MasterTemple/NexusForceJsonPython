@@ -1,33 +1,69 @@
 def makePretty(conn, data):
     cur = conn.cursor()
+
     if data['itemComponent']['subItems'] is not None:
         # print(data['itemComponent']['subItems'])
         #print(data['itemComponent']['subItems'])
         data = subItems(cur, data)
         # print(data['itemComponent']['subItems'])
+    try:
+        data = equipLocation(data)
+    except:
+        pass
+    try:
+        if data['itemComponent']['preconditions'] is not None:
+            #print(data['itemComponent']['preconditions'])
+            data = preconditions(cur, data)
+        else:
+            data['itemComponent']['levelRequirement'] = 0
+    except:
+        pass
+    try:
+        if data['itemComponent']['altCurrencyType'] is not None:
+            data = altCurrencyCostName(conn, data)
+        if data['itemComponent']['commendationCurrencyType'] is not None:
+            data = commendationCurrencyCostName(conn, data)
+    except:
+        pass
 
-    data = equipLocation(data)
-    if data['itemComponent']['preconditions'] is not None:
-        #print(data['itemComponent']['preconditions'])
-        data = preconditions(cur, data)
-    else:
-        data['itemComponent']['levelRequirement'] = 0
+    try:
+        data = rarityTableInfoPercents(conn, data)
+    except:
+        pass
+    try:
+        data = bigCalculate(data)
+    except:
+        pass
+    try:
+        data = lootTableIndexRange(data)
+    except:
+        pass
+    try:
+        packageNamesForItemDrops(data, conn)
+    except:
+        pass
+    try:
+        data = removeExtra(data)
+    except:
+        pass
+    try:
+        addSkillNamesAndDescriptions(data)
+    except:
+        pass
+    try:
+        addProxySkillNamesAndDescriptions(data)
+    except:
+        pass
+    try:
+        getSkillTreeOverview(data)
+    except:
+        pass
 
-    if data['itemComponent']['altCurrencyType'] is not None:
-        data = altCurrencyCostName(conn, data)
-    if data['itemComponent']['commendationCurrencyType'] is not None:
-        data = commendationCurrencyCostName(conn, data)
-
-    data = rarityTableInfoPercents(conn, data)
-    data = bigCalculate(data)
-    data = lootTableIndexRange(data)
-    packageNamesForItemDrops(data, conn)
-    data = removeExtra(data)
-    addSkillNamesAndDescriptions(data)
-    addProxySkillNamesAndDescriptions(data)
-    if data['itemComponent']['preconditions'] is not None:
-        getPreconditions(data)
-
+    try:
+        if data['itemComponent']['preconditions'] is not None:
+            getPreconditions(data)
+    except:
+        pass
     return data
 
 
@@ -306,3 +342,30 @@ def packageNamesForItemDrops(data, conn):
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent'] = activityData['info'][str(lmi)]
 
 
+def getSkillTreeOverview(data):
+    for skill in data['objectSkills']:
+
+        if data['objectSkills'][skill]['castOnType'] == 0:
+            import json
+            import math
+            with open('work/config.json') as f:
+                config = json.load(f)
+            #print(skill, data['objectSkills'][skill])
+            with open(config['path']+'/behaviors/'+str(math.floor(data['objectSkills'][skill]['behaviorID']/256))+'/'+str(data['objectSkills'][skill]['behaviorID'])+'.json') as f:
+                behaviorFile = json.load(f)
+            data['overview'][data['objectSkills'][skill]['behaviorID']] = behaviorFile['overview']
+    try:
+        for skill in data['proxySkills']:
+
+            if data['proxySkills'][skill]['castOnType'] == 0:
+                import json
+                import math
+                with open('work/config.json') as f:
+                    config = json.load(f)
+                #print(skill, data['proxySkills'][skill])
+                with open(config['path']+'/behaviors/'+math.floor(data['proxySkills'][skill]['behaviorID']/256)+'/'+data['proxySkills'][skill]['behaviorID']+'.json') as f:
+                    behaviorFile = json.load(f)
+                data['overview'][data['proxySkills'][skill]['behaviorID']] = behaviorFile['overview']
+    except:
+        pass
+    return data

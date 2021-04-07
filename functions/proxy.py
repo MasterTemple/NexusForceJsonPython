@@ -12,6 +12,7 @@ def getProxy(conn, data, objectID):
     cur = conn.cursor()
     cur.execute("SELECT * FROM ObjectSkills")
     rows = cur.fetchall()
+
     if data['itemComponent']['subItems'] is not None:
         #print('YES')
         #print(data['itemComponent']['subItems'])

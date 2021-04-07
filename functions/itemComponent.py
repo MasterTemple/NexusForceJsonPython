@@ -1,6 +1,10 @@
 def getInfo(conn, data, itemComponentID):
     #data['equipLocation'] = []
-    data['itemComponent'] = {}
+    data['overview'] = {}
+
+    # data['itemComponent'] = {}
+
+
     #data['itemComponent']['subItems'] = []
     cur = conn.cursor()
     cur.execute("SELECT * FROM ItemComponent")
