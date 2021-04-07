@@ -44,6 +44,7 @@ data['overview']['damageComboArray'] = []
 data['overview']['chargeUpArmorRestore'] = []
 data['overview']['chargeUpImaginationRestore'] = []
 data['overview']['projectileLOTs'] = []
+data['overview']['projectileInfo'] = {}
 data['overview']['projectileDamageComboArray'] = []
 data['projectileBehaviorIDs'] = []
 data['projectileChargeUpBehaviorIDs'] = []
@@ -117,10 +118,12 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
             data['overview']['chargeUpArmorRestore'].append(obj[parameter]['info'][param])
 
         if param == 'min damage':
-            print(movementSwitch, param, obj[parameter]['info'][param], branch)
+            #print(movementSwitch, param, obj[parameter]['info'][param], branch)
+            pass
 
         if param == 'imagination':
-            print(movementSwitch, param, obj[parameter]['info'][param], branch)
+            #print(movementSwitch, param, obj[parameter]['info'][param], branch)
+            pass
 
         if param == "projectile_speed" and branch != "chargeup":
             data['overview']['projectileLOTs'].append(obj[parameter]['info']['LOT_ID'])
@@ -135,9 +138,11 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
             data['overview']['doubleJumpSmash'] = obj[parameter]['info'][param]
         if param == 'min damage' and movementSwitch == "ground_action" and branch != "chargeup":
             data['overview']['damageComboArray'].append(obj[parameter]['info'][param])
+            #data['overview']['projectileInfo'][parameter] = [obj[parameter]['info'][param]]
 
         if param == 'min damage' and movementSwitch == "projectile" and branch != "chargeup":
             data['overview']['projectileDamageComboArray'].append(obj[parameter]['info'][param])
+
         if param == 'min damage' and movementSwitch == "projectile" and branch == "chargeup":
             data['overview']['projectileChargeUpDamage'] = obj[parameter]['info'][param]
         #if
@@ -167,17 +172,25 @@ def sort(data):
     if len(data['overview']['chargeUpArmorRestore']) > 0 or len(data['overview']['chargeUpImaginationRestore']) > 0:
         data['overview']['damageComboArray'].insert(0, data['overview']['chargeUpCombo'])
         del data['overview']['chargeUpCombo']
-
-    if data['overview']['chargeUpCost'] < 0:
-        data['overview']['chargeUpArmorRestore'] = []
-        data['overview']['chargeUpImaginationRestore'] = []
+    try:
+        if data['overview']['chargeUpCost'] < 0:
+            data['overview']['chargeUpArmorRestore'] = []
+            data['overview']['chargeUpImaginationRestore'] = []
+    except:
+        pass
 
     if data['overview']['projectileAttack']:
         data['overview']['damageComboArray'] = [1, 1, 1]
-
-
+    usedProjectileBehaviors = []
     for behaviorID in data['projectileBehaviorIDs']:
-        getKidsKids(data, behaviorID, "", "projectile")
+
+        if behaviorID in usedProjectileBehaviors:
+            #used.remove(behaviorID)
+            #print(data['overview']['projectileDamageComboArray'])
+            data['overview']['projectileDamageComboArray'].append(data['overview']['projectileDamageComboArray'][len(data['overview']['projectileDamageComboArray'])-1])
+        else:
+            getKidsKids(data, behaviorID, "", "projectile")
+        usedProjectileBehaviors.append(behaviorID)
 
     for behaviorID in data['projectileChargeUpBehaviorIDs']:
         getKidsKids(data, behaviorID, "chargeup", "projectile")
