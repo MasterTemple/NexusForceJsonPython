@@ -2,6 +2,8 @@ import sqlite3
 import os
 import json
 
+import functions.getProjectileStats as projectile
+
 def create_connection(db_file):
     conn = None
     try:
@@ -29,17 +31,22 @@ actions = ["action", "miss action", "blocked action", "action_false", "action_tr
 cur = db.cursor()
 cur.execute("SELECT * FROM BehaviorParameter"),
 rows = cur.fetchall()
-behaviorID = 25981
+behaviorID = 23451
 data = {}
 used = []
 data['overview'] = {}
 data['overview']['hasChargeUp'] = False
 data['overview']['spawnsObject'] = False
+data['overview']['spawnsQuickbuild'] = False
 data['overview']['meleeAttack'] = False
 data['overview']['projectileAttack'] = False
 data['overview']['damageComboArray'] = []
 data['overview']['chargeUpArmorRestore'] = []
 data['overview']['chargeUpImaginationRestore'] = []
+data['overview']['projectileLOTs'] = []
+data['overview']['projectileDamageComboArray'] = []
+data['projectileBehaviorIDs'] = []
+data['projectileChargeUpBehaviorIDs'] = []
 for row in rows:
     if row[0] == behaviorID:
         #print(row[1])
@@ -57,6 +64,8 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
             branch = 'chargeup'
         elif obj[parameter]['name']['templateID'] == 27:
             data['overview']['spawnsObject'] = True
+        elif obj[parameter]['name']['templateID'] == 57:
+            data['overview']['spawnsQuickbuild'] = True
         elif obj[parameter]['name']['templateID'] == 1:
             data['overview']['meleeAttack'] = True
         elif obj[parameter]['name']['templateID'] == 4:
@@ -107,8 +116,18 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
         if branch == 'chargeup' and param == 'armor' and obj[parameter]['info'][param] > 0:
             data['overview']['chargeUpArmorRestore'].append(obj[parameter]['info'][param])
 
-        # if param == 'min damage':
-        #     print(movementSwitch, param, obj[parameter]['info'][param])
+        if param == 'min damage':
+            print(movementSwitch, param, obj[parameter]['info'][param], branch)
+
+        if param == 'imagination':
+            print(movementSwitch, param, obj[parameter]['info'][param], branch)
+
+        if param == "projectile_speed" and branch != "chargeup":
+            data['overview']['projectileLOTs'].append(obj[parameter]['info']['LOT_ID'])
+            data['projectileBehaviorIDs'].append(projectile.getInfo(cur, obj[parameter]['info']['LOT_ID']))
+        if param == "projectile_speed" and branch == "chargeup":
+            data['overview']['projectileChargeUpLOT'] = obj[parameter]['info']['LOT_ID']
+            data['projectileChargeUpBehaviorIDs'].append(projectile.getInfo(cur, obj[parameter]['info']['LOT_ID']))
 
         if param == 'min damage' and movementSwitch == "falling_action":
             data['overview']['singleJumpSmash'] = obj[parameter]['info'][param]
@@ -116,6 +135,11 @@ def getKidsKids(obj, parameter, branch, movementSwitch):
             data['overview']['doubleJumpSmash'] = obj[parameter]['info'][param]
         if param == 'min damage' and movementSwitch == "ground_action" and branch != "chargeup":
             data['overview']['damageComboArray'].append(obj[parameter]['info'][param])
+
+        if param == 'min damage' and movementSwitch == "projectile" and branch != "chargeup":
+            data['overview']['projectileDamageComboArray'].append(obj[parameter]['info'][param])
+        if param == 'min damage' and movementSwitch == "projectile" and branch == "chargeup":
+            data['overview']['projectileChargeUpDamage'] = obj[parameter]['info'][param]
         #if
 
         # if branch == 'chargeup':
@@ -144,6 +168,19 @@ def sort(data):
         data['overview']['damageComboArray'].insert(0, data['overview']['chargeUpCombo'])
         del data['overview']['chargeUpCombo']
 
+    if data['overview']['chargeUpCost'] < 0:
+        data['overview']['chargeUpArmorRestore'] = []
+        data['overview']['chargeUpImaginationRestore'] = []
+
+    if data['overview']['projectileAttack']:
+        data['overview']['damageComboArray'] = [1, 1, 1]
+
+
+    for behaviorID in data['projectileBehaviorIDs']:
+        getKidsKids(data, behaviorID, "", "projectile")
+
+    for behaviorID in data['projectileChargeUpBehaviorIDs']:
+        getKidsKids(data, behaviorID, "chargeup", "projectile")
 
     return data
 #print(obj)
