@@ -1,0 +1,133 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 16239
+    },
+    "behavior 2": {
+        "initial_value": 16240
+    },
+    "behavior 3": {
+        "initial_value": 16241
+    },
+    "behavior 4": {
+        "initial_value": 16243
+    },
+    "16238": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 16239,
+            "behavior 2": 16240,
+            "behavior 3": 16241,
+            "behavior 4": 16243
+        },
+        "kids": {
+            "16239": {
+                "name": {
+                    "templateID": 42,
+                    "behaviorTemplateName": "AlterCooldown",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add": 0,
+                    "amount": 1
+                },
+                "kids": {}
+            },
+            "16240": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_block": 0,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "16241": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 16242,
+                    "duration": 0
+                },
+                "kids": {
+                    "16242": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "stun_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "16243": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 16244,
+                    "duration": 10
+                },
+                "kids": {
+                    "16244": {
+                        "name": {
+                            "templateID": 23,
+                            "behaviorTemplateName": "Speed",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "affects_caster": 0,
+                            "attack_speed": 0,
+                            "run_speed": 250
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 26109
+    },
+    "26113": {
+        "name": {
+            "templateID": 14,
+            "behaviorTemplateName": "Target Caster",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 26109
+        },
+        "kids": {
+            "26109": {
+                "name": {
+                    "templateID": 22,
+                    "behaviorTemplateName": "RepairArmor",
+                    "effectID": 5727
+                },
+                "hasKids": true,
+                "info": {
+                    "armor": 6
+                },
+                "kids": {}
+            }
+        }
+    }
+}

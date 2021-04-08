@@ -1,0 +1,156 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": true,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            10309
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        14133
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "clear_provided_target": {
+        "initial_value": 1
+    },
+    "LOT_ID": {
+        "initial_value": 10309
+    },
+    "max_distance": {
+        "initial_value": 50
+    },
+    "offset_x": {
+        "initial_value": 0
+    },
+    "offset_y": {
+        "initial_value": 3
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "projectile_speed": {
+        "initial_value": 15
+    },
+    "projectile_type": {
+        "initial_value": 1
+    },
+    "rotate_x_degrees": {
+        "initial_value": 0
+    },
+    "spread_angle": {
+        "initial_value": 120
+    },
+    "spread_count": {
+        "initial_value": 3
+    },
+    "spread_z_load_fudge": {
+        "initial_value": 1
+    },
+    "track_radius": {
+        "initial_value": 5
+    },
+    "track_target": {
+        "initial_value": 0
+    },
+    "use_high_arc": {
+        "initial_value": 1
+    },
+    "use_mouseposit": {
+        "initial_value": 0
+    },
+    "use_prediction": {
+        "initial_value": 0
+    },
+    "14145": {
+        "name": {
+            "templateID": 4,
+            "behaviorTemplateName": "ProjectileAttack",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "clear_provided_target": 1,
+            "LOT_ID": 10309,
+            "max_distance": 50,
+            "offset_x": 0,
+            "offset_y": 3,
+            "offset_z": 0,
+            "projectile_speed": 15,
+            "projectile_type": 1,
+            "rotate_x_degrees": 0,
+            "spread_angle": 120,
+            "spread_count": 3,
+            "spread_z_load_fudge": 1,
+            "track_radius": 5,
+            "track_target": 0,
+            "use_high_arc": 1,
+            "use_mouseposit": 0,
+            "use_prediction": 0
+        },
+        "kids": {}
+    },
+    "14133": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 14134,
+            "behavior 2": 14135
+        },
+        "kids": {
+            "14134": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3312
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "14135": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 14136,
+                    "duration": 20
+                },
+                "kids": {
+                    "14136": {
+                        "name": {
+                            "templateID": 27,
+                            "behaviorTemplateName": "Spawn Object",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "distance": 0,
+                            "LOT_ID": 1625
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

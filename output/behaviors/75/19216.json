@@ -1,0 +1,48 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "chain_action": {
+        "initial_value": 19210
+    },
+    "new_delay": {
+        "initial_value": 1
+    },
+    "19216": {
+        "name": {
+            "templateID": 47,
+            "behaviorTemplateName": "AlterChainDelay",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "chain_action": 19210,
+            "new_delay": 1
+        },
+        "kids": {
+            "19210": {
+                "name": {
+                    "templateID": 38,
+                    "behaviorTemplateName": "Chain",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

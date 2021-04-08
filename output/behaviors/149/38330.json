@@ -1,0 +1,134 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "dir_angle_xz": {
+        "initial_value": 0
+    },
+    "dir_angle_y": {
+        "initial_value": 0
+    },
+    "dir_force": {
+        "initial_value": 7
+    },
+    "max damage": {
+        "initial_value": 1
+    },
+    "min damage": {
+        "initial_value": 1
+    },
+    "on_fail_armor": {
+        "initial_value": 38329
+    },
+    "on_fail_blocked": {
+        "initial_value": 6157
+    },
+    "on_success": {
+        "initial_value": 38329
+    },
+    "use_caster_velocity": {
+        "initial_value": 0
+    },
+    "velocity_multiplier": {
+        "initial_value": 1
+    },
+    "38330": {
+        "name": {
+            "templateID": 1,
+            "behaviorTemplateName": "BasicAttack",
+            "effectID": 9066
+        },
+        "hasKids": true,
+        "info": {
+            "dir_angle_xz": 0,
+            "dir_angle_y": 0,
+            "dir_force": 7,
+            "max damage": 1,
+            "min damage": 1,
+            "on_fail_armor": 38329,
+            "on_fail_blocked": 6157,
+            "on_success": 38329,
+            "use_caster_velocity": 0,
+            "velocity_multiplier": 1
+        },
+        "kids": {
+            "38329": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 38328,
+                    "behavior 2": 38327
+                },
+                "kids": {
+                    "38328": {
+                        "name": {
+                            "templateID": 41,
+                            "behaviorTemplateName": "Interrupt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "interrupt_attack": 1,
+                            "interrupt_block": 0,
+                            "interrupt_charge": 0,
+                            "target": 1
+                        },
+                        "kids": {}
+                    },
+                    "38327": {
+                        "name": {
+                            "templateID": 16,
+                            "behaviorTemplateName": "Duration",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 38326,
+                            "duration": 0,
+                            "originator_is_owner": 0
+                        },
+                        "kids": {
+                            "38326": {
+                                "name": {
+                                    "templateID": 15,
+                                    "behaviorTemplateName": "Stun",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "cant_attack": 1,
+                                    "cant_equip": 1,
+                                    "cant_interact": 1,
+                                    "cant_jump": 1,
+                                    "cant_move": 1,
+                                    "cant_turn": 1,
+                                    "cant_use_item": 1,
+                                    "ignore_immunity": 0,
+                                    "stun_caster": 0
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

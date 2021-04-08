@@ -1,0 +1,62 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 40505
+    },
+    "duration": {
+        "initial_value": 3
+    },
+    "originator_is_owner": {
+        "initial_value": 0
+    },
+    "40506": {
+        "name": {
+            "templateID": 16,
+            "behaviorTemplateName": "Duration",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 40505,
+            "duration": 3,
+            "originator_is_owner": 0
+        },
+        "kids": {
+            "40505": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 9574
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 0,
+                    "cant_interact": 0,
+                    "cant_jump": 0,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "cant_use_item": 0,
+                    "ignore_immunity": 0,
+                    "stun_caster": 0
+                },
+                "kids": {}
+            }
+        }
+    }
+}

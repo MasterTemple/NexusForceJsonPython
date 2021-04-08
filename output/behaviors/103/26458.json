@@ -1,0 +1,88 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 26454
+    },
+    "ignore_faction": {
+        "initial_value": 1
+    },
+    "max targets": {
+        "initial_value": 20
+    },
+    "radius": {
+        "initial_value": 25
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "target_friend": {
+        "initial_value": 1
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "use_target_as_caster": {
+        "initial_value": 0
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "26458": {
+        "name": {
+            "templateID": 7,
+            "behaviorTemplateName": "AoE",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 26454,
+            "ignore_faction": 1,
+            "max targets": 20,
+            "radius": 25,
+            "target_enemy": 1,
+            "target_friend": 1,
+            "target_self": 0,
+            "target_team": 0,
+            "use_target_as_caster": 0,
+            "use_target_position": 0
+        },
+        "kids": {
+            "26454": {
+                "name": {
+                    "templateID": 1,
+                    "behaviorTemplateName": "BasicAttack",
+                    "effectID": 5786
+                },
+                "hasKids": true,
+                "info": {
+                    "dir_angle_xz": 0,
+                    "dir_angle_y": 15,
+                    "dir_force": 20,
+                    "max damage": 18,
+                    "min damage": 18,
+                    "use_caster_velocity": 0,
+                    "velocity_multiplier": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

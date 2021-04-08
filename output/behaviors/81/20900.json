@@ -1,0 +1,84 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 20901
+    },
+    "behavior 2": {
+        "initial_value": 20903
+    },
+    "20900": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 20901,
+            "behavior 2": 20903
+        },
+        "kids": {
+            "20901": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 20902,
+                    "duration": 3
+                },
+                "kids": {
+                    "20902": {
+                        "name": {
+                            "templateID": 23,
+                            "behaviorTemplateName": "Speed",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "affects_caster": 0,
+                            "attack_speed": 0,
+                            "run_speed": 133
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "20903": {
+                "name": {
+                    "templateID": 1,
+                    "behaviorTemplateName": "BasicAttack",
+                    "effectID": 4790
+                },
+                "hasKids": true,
+                "info": {
+                    "dir_angle_xz": 0,
+                    "dir_angle_y": 0,
+                    "dir_force": 7,
+                    "max damage": 1,
+                    "min damage": 1,
+                    "use_caster_velocity": 0,
+                    "velocity_multiplier": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

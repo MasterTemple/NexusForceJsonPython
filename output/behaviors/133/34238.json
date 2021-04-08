@@ -1,0 +1,142 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "dir_angle_xz": {
+        "initial_value": -75
+    },
+    "dir_angle_y": {
+        "initial_value": 0
+    },
+    "dir_force": {
+        "initial_value": 14
+    },
+    "dont_apply_immune": {
+        "initial_value": 0
+    },
+    "max damage": {
+        "initial_value": 1
+    },
+    "min damage": {
+        "initial_value": 1
+    },
+    "on_fail_armor": {
+        "initial_value": 34239
+    },
+    "on_success": {
+        "initial_value": 34239
+    },
+    "use_caster_velocity": {
+        "initial_value": 0
+    },
+    "velocity_multiplier": {
+        "initial_value": 1
+    },
+    "34238": {
+        "name": {
+            "templateID": 1,
+            "behaviorTemplateName": "BasicAttack",
+            "effectID": 7489
+        },
+        "hasKids": true,
+        "info": {
+            "dir_angle_xz": -75,
+            "dir_angle_y": 0,
+            "dir_force": 14,
+            "dont_apply_immune": 0,
+            "max damage": 1,
+            "min damage": 1,
+            "on_fail_armor": 34239,
+            "on_success": 34239,
+            "use_caster_velocity": 0,
+            "velocity_multiplier": 1
+        },
+        "kids": {
+            "34239": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 34240,
+                    "behavior 2": 34242,
+                    "behavior 3": 34243
+                },
+                "kids": {
+                    "34240": {
+                        "name": {
+                            "templateID": 16,
+                            "behaviorTemplateName": "Duration",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 34241,
+                            "duration": 0
+                        },
+                        "kids": {
+                            "34241": {
+                                "name": {
+                                    "templateID": 15,
+                                    "behaviorTemplateName": "Stun",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "cant_attack": 1,
+                                    "cant_equip": 0,
+                                    "cant_interact": 0,
+                                    "cant_move": 1,
+                                    "cant_turn": 1
+                                },
+                                "kids": {}
+                            }
+                        }
+                    },
+                    "34242": {
+                        "name": {
+                            "templateID": 17,
+                            "behaviorTemplateName": "Knockback",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "angle": 10,
+                            "strength": 2
+                        },
+                        "kids": {}
+                    },
+                    "34243": {
+                        "name": {
+                            "templateID": 41,
+                            "behaviorTemplateName": "Interrupt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "interrupt_attack": 1,
+                            "interrupt_charge": 1,
+                            "target": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

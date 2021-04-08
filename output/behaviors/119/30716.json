@@ -1,0 +1,88 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 30717
+    },
+    "behavior 2": {
+        "initial_value": 30718
+    },
+    "30716": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 30717,
+            "behavior 2": 30718
+        },
+        "kids": {
+            "30717": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_block": 0,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "30718": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 30719,
+                    "duration": 5,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "30719": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 6759
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_jump": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "cant_use_item": 1,
+                            "ignore_immunity": 0,
+                            "stun_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

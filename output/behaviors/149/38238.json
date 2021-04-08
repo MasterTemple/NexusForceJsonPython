@@ -1,0 +1,214 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 38239
+    },
+    "behavior 2": {
+        "initial_value": 38241
+    },
+    "38238": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 38239,
+            "behavior 2": 38241
+        },
+        "kids": {
+            "38239": {
+                "name": {
+                    "templateID": 2,
+                    "behaviorTemplateName": "TacArc",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 38240,
+                    "angle": 360,
+                    "angle_weight": 0,
+                    "check_env": 0,
+                    "distance_weight": 0,
+                    "far_height": 0,
+                    "far_width": 0,
+                    "height": 2,
+                    "include_faction": 500,
+                    "lower_bound": 0,
+                    "max range": 12,
+                    "max targets": 20,
+                    "method": 1,
+                    "min range": 0,
+                    "near_height": 0,
+                    "near_width": 0,
+                    "offset_x": 0,
+                    "offset_y": 0,
+                    "offset_z": 0,
+                    "target_enemy": 0,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "upper_bound": 5,
+                    "use_attack_priority": 0,
+                    "use_picked_target": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "38240": {
+                        "name": {
+                            "templateID": 32,
+                            "behaviorTemplateName": "Skill Event",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "target_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "38241": {
+                "name": {
+                    "templateID": 2,
+                    "behaviorTemplateName": "TacArc",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 38242,
+                    "angle": 360,
+                    "angle_weight": 0,
+                    "check_env": 0,
+                    "distance_weight": 0,
+                    "far_height": 0,
+                    "far_width": 0,
+                    "height": 2,
+                    "include_faction": 14,
+                    "lower_bound": 0,
+                    "max range": 12,
+                    "max targets": 20,
+                    "method": 1,
+                    "min range": 0,
+                    "near_height": 0,
+                    "near_width": 0,
+                    "offset_x": 0,
+                    "offset_y": 0,
+                    "offset_z": 0,
+                    "target_enemy": 1,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "upper_bound": 5,
+                    "use_attack_priority": 0,
+                    "use_picked_target": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "38242": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 9045
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 45,
+                            "dir_force": 16,
+                            "dont_apply_immune": 0,
+                            "max damage": 1,
+                            "min damage": 1,
+                            "on_fail_armor": 38243,
+                            "on_success": 38243,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {
+                            "38243": {
+                                "name": {
+                                    "templateID": 29,
+                                    "behaviorTemplateName": "Switch",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action_false": 38244,
+                                    "action_true": 38245,
+                                    "distance": -1,
+                                    "imagination": 0,
+                                    "isEnemyFaction": 0,
+                                    "target_has_buff": 2
+                                },
+                                "kids": {
+                                    "38244": {
+                                        "name": {
+                                            "templateID": 37,
+                                            "behaviorTemplateName": "ApplyBuff",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "add_immunity": 0,
+                                            "apply_on_teammates": 0,
+                                            "buff_id": 63,
+                                            "cancel_on_damaged": 0,
+                                            "cancel_on_death": 1,
+                                            "cancel_on_logout": 0,
+                                            "cancel_on_remove_buff": 1,
+                                            "cancel_on_ui": 0,
+                                            "cancel_on_unequip": 0,
+                                            "cancel_on_zone": 0,
+                                            "duration_secs": 5,
+                                            "target_caster": 0
+                                        },
+                                        "kids": {}
+                                    },
+                                    "38245": {
+                                        "name": {
+                                            "templateID": 37,
+                                            "behaviorTemplateName": "ApplyBuff",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "add_immunity": 0,
+                                            "apply_on_teammates": 0,
+                                            "buff_id": 62,
+                                            "cancel_on_damaged": 0,
+                                            "cancel_on_death": 1,
+                                            "cancel_on_logout": 0,
+                                            "cancel_on_remove_buff": 1,
+                                            "cancel_on_ui": 0,
+                                            "cancel_on_unequip": 0,
+                                            "cancel_on_zone": 0,
+                                            "duration_secs": 5,
+                                            "target_caster": 0
+                                        },
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

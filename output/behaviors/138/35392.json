@@ -1,0 +1,96 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "double_jump_action": {
+        "initial_value": 35391
+    },
+    "falling_action": {
+        "initial_value": 35391
+    },
+    "ground_action": {
+        "initial_value": 35391
+    },
+    "jetpack_action": {
+        "initial_value": 35391
+    },
+    "jump_action": {
+        "initial_value": 35391
+    },
+    "35392": {
+        "name": {
+            "templateID": 6,
+            "behaviorTemplateName": "Movement Switch",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "double_jump_action": 35391,
+            "falling_action": 35391,
+            "ground_action": 35391,
+            "jetpack_action": 35391,
+            "jump_action": 35391
+        },
+        "kids": {
+            "35391": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 35390,
+                    "behavior 2": 35389
+                },
+                "kids": {
+                    "35390": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 7722
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    },
+                    "35389": {
+                        "name": {
+                            "templateID": 37,
+                            "behaviorTemplateName": "ApplyBuff",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "add_immunity": 0,
+                            "buff_id": 37,
+                            "cancel_on_damaged": 0,
+                            "cancel_on_death": 1,
+                            "cancel_on_logout": 1,
+                            "cancel_on_remove_buff": 1,
+                            "cancel_on_ui": 0,
+                            "cancel_on_unequip": 0,
+                            "cancel_on_zone": 0,
+                            "duration_secs": 45,
+                            "target_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

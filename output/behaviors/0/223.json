@@ -1,0 +1,56 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 224
+    },
+    "max targets": {
+        "initial_value": 2
+    },
+    "radius": {
+        "initial_value": 50
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "223": {
+        "name": {
+            "templateID": 7,
+            "behaviorTemplateName": "AoE",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 224,
+            "max targets": 2,
+            "radius": 50,
+            "target_enemy": 1
+        },
+        "kids": {
+            "224": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 204
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

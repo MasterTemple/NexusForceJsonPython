@@ -1,0 +1,170 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            13607
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            2
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        29062
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "clear_provided_target": {
+        "initial_value": 0
+    },
+    "LOT_ID": {
+        "initial_value": 13607
+    },
+    "max_distance": {
+        "initial_value": 43
+    },
+    "offset_x": {
+        "initial_value": 0
+    },
+    "offset_y": {
+        "initial_value": 3
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "projectile_speed": {
+        "initial_value": 30
+    },
+    "projectile_type": {
+        "initial_value": 1
+    },
+    "rotate_x_degrees": {
+        "initial_value": 0
+    },
+    "spread_angle": {
+        "initial_value": 0
+    },
+    "spread_count": {
+        "initial_value": 0
+    },
+    "spread_z_load_fudge": {
+        "initial_value": 0
+    },
+    "track_radius": {
+        "initial_value": 5
+    },
+    "track_target": {
+        "initial_value": 0
+    },
+    "use_high_arc": {
+        "initial_value": 0
+    },
+    "use_mouseposit": {
+        "initial_value": 0
+    },
+    "use_prediction": {
+        "initial_value": 0
+    },
+    "29041": {
+        "name": {
+            "templateID": 4,
+            "behaviorTemplateName": "ProjectileAttack",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "clear_provided_target": 0,
+            "LOT_ID": 13607,
+            "max_distance": 43,
+            "offset_x": 0,
+            "offset_y": 3,
+            "offset_z": 0,
+            "projectile_speed": 30,
+            "projectile_type": 1,
+            "rotate_x_degrees": 0,
+            "spread_angle": 0,
+            "spread_count": 0,
+            "spread_z_load_fudge": 0,
+            "track_radius": 5,
+            "track_target": 0,
+            "use_high_arc": 0,
+            "use_mouseposit": 0,
+            "use_prediction": 0
+        },
+        "kids": {}
+    },
+    "29062": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 29063,
+            "behavior 2": 29064
+        },
+        "kids": {
+            "29063": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 6352
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "29064": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 29065,
+                    "max targets": 20,
+                    "radius": 7,
+                    "target_enemy": 1,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "29065": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 6353
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 2,
+                            "min damage": 2,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

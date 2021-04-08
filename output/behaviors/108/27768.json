@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": true,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "distance": {
+        "initial_value": 3
+    },
+    "LOT_ID": {
+        "initial_value": 13296
+    },
+    "objectRadius": {
+        "initial_value": 3
+    },
+    "spawn_fail_action": {
+        "initial_value": 11860
+    },
+    "updatePositionWithParent": {
+        "initial_value": 0
+    },
+    "27768": {
+        "name": {
+            "templateID": 27,
+            "behaviorTemplateName": "Spawn Object",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "distance": 3,
+            "LOT_ID": 13296,
+            "objectRadius": 3,
+            "spawn_fail_action": 11860,
+            "updatePositionWithParent": 0
+        },
+        "kids": {
+            "11860": {
+                "name": {
+                    "templateID": 34,
+                    "behaviorTemplateName": "SkillCastFailed",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

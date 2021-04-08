@@ -1,0 +1,289 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 40854
+    },
+    "behavior 2": {
+        "initial_value": 40855
+    },
+    "behavior 3": {
+        "initial_value": 40857
+    },
+    "behavior 4": {
+        "initial_value": 40866
+    },
+    "40853": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 40854,
+            "behavior 2": 40855,
+            "behavior 3": 40857,
+            "behavior 4": 40866
+        },
+        "kids": {
+            "40854": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 9671
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "40855": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 40856,
+                    "duration": 0
+                },
+                "kids": {
+                    "40856": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "stun_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "40857": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 40858,
+                    "max targets": 20,
+                    "radius": 5,
+                    "target_enemy": 1,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "40858": {
+                        "name": {
+                            "templateID": 29,
+                            "behaviorTemplateName": "Switch",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action_false": 40859,
+                            "action_true": 40865,
+                            "distance": -1,
+                            "imagination": 0,
+                            "isEnemyFaction": 0,
+                            "target_has_buff": 2
+                        },
+                        "kids": {
+                            "40859": {
+                                "name": {
+                                    "templateID": 1,
+                                    "behaviorTemplateName": "BasicAttack",
+                                    "effectID": 9672
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "dir_angle_xz": 0,
+                                    "dir_angle_y": 80,
+                                    "dir_force": 15,
+                                    "dont_apply_immune": 0,
+                                    "max damage": 1,
+                                    "min damage": 1,
+                                    "on_fail_armor": 40860,
+                                    "on_success": 40860,
+                                    "use_caster_velocity": 0,
+                                    "velocity_multiplier": 1
+                                },
+                                "kids": {
+                                    "40860": {
+                                        "name": {
+                                            "templateID": 3,
+                                            "behaviorTemplateName": "And",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "behavior 1": 40861,
+                                            "behavior 2": 40862,
+                                            "behavior 3": 40864
+                                        },
+                                        "kids": {
+                                            "40861": {
+                                                "name": {
+                                                    "templateID": 41,
+                                                    "behaviorTemplateName": "Interrupt",
+                                                    "effectID": 0
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "interrupt_attack": 1,
+                                                    "interrupt_block": 0,
+                                                    "interrupt_charge": 1,
+                                                    "target": 1
+                                                },
+                                                "kids": {}
+                                            },
+                                            "40862": {
+                                                "name": {
+                                                    "templateID": 16,
+                                                    "behaviorTemplateName": "Duration",
+                                                    "effectID": 0
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "action": 40863,
+                                                    "duration": 0
+                                                },
+                                                "kids": {
+                                                    "40863": {
+                                                        "name": {
+                                                            "templateID": 15,
+                                                            "behaviorTemplateName": "Stun",
+                                                            "effectID": 0
+                                                        },
+                                                        "hasKids": true,
+                                                        "info": {
+                                                            "cant_attack": 1,
+                                                            "cant_equip": 1,
+                                                            "cant_interact": 1,
+                                                            "cant_move": 1,
+                                                            "cant_turn": 1,
+                                                            "stun_caster": 0
+                                                        },
+                                                        "kids": {}
+                                                    }
+                                                }
+                                            },
+                                            "40864": {
+                                                "name": {
+                                                    "templateID": 17,
+                                                    "behaviorTemplateName": "Knockback",
+                                                    "effectID": 0
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "angle": 45,
+                                                    "caster": 0,
+                                                    "ignore_self": 0,
+                                                    "relative": 0,
+                                                    "strength": 15
+                                                },
+                                                "kids": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "40865": {
+                                "name": {
+                                    "templateID": 1,
+                                    "behaviorTemplateName": "BasicAttack",
+                                    "effectID": 9673
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "dir_angle_xz": 0,
+                                    "dir_angle_y": 80,
+                                    "dir_force": 15,
+                                    "dont_apply_immune": 0,
+                                    "max damage": 6,
+                                    "min damage": 6,
+                                    "on_fail_armor": 40860,
+                                    "on_success": 40860,
+                                    "use_caster_velocity": 0,
+                                    "velocity_multiplier": 1
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "40866": {
+                "name": {
+                    "templateID": 46,
+                    "behaviorTemplateName": "End",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "start_action": 40850
+                },
+                "kids": {
+                    "40850": {
+                        "name": {
+                            "templateID": 45,
+                            "behaviorTemplateName": "Start",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 40851
+                        },
+                        "kids": {
+                            "40851": {
+                                "name": {
+                                    "templateID": 15,
+                                    "behaviorTemplateName": "Stun",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "cant_attack": 1,
+                                    "cant_equip": 1,
+                                    "cant_interact": 1,
+                                    "cant_move": 1,
+                                    "cant_turn": 1,
+                                    "stun_caster": 1
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

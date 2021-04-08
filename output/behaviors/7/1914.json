@@ -1,0 +1,99 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 1913
+    },
+    "behavior 2": {
+        "initial_value": 1917
+    },
+    "1914": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 1913,
+            "behavior 2": 1917
+        },
+        "kids": {
+            "1913": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 1912,
+                    "max targets": 4,
+                    "radius": 15,
+                    "target_enemy": 0,
+                    "target_friend": 1,
+                    "target_self": 1
+                },
+                "kids": {
+                    "1912": {
+                        "name": {
+                            "templateID": 5,
+                            "behaviorTemplateName": "Heal",
+                            "effectID": 651
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "health": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "1917": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 1916,
+                    "duration": 2
+                },
+                "kids": {
+                    "1916": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "stun_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

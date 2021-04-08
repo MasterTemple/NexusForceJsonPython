@@ -1,0 +1,67 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 119
+    },
+    "angle": {
+        "initial_value": 90
+    },
+    "max range": {
+        "initial_value": 9
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "118": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 27
+        },
+        "hasKids": true,
+        "info": {
+            "action": 119,
+            "angle": 90,
+            "max range": 9,
+            "max targets": 1,
+            "min range": 0,
+            "target_enemy": 1
+        },
+        "kids": {
+            "119": {
+                "name": {
+                    "templateID": 1,
+                    "behaviorTemplateName": "BasicAttack",
+                    "effectID": 88
+                },
+                "hasKids": true,
+                "info": {
+                    "max damage": 1,
+                    "min damage": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 292
+    },
+    "angle": {
+        "initial_value": 90
+    },
+    "max range": {
+        "initial_value": 10
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "294": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 292,
+            "angle": 90,
+            "max range": 10,
+            "max targets": 1,
+            "min range": 0,
+            "target_enemy": 1
+        },
+        "kids": {
+            "292": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 293,
+                    "duration": 4
+                },
+                "kids": {
+                    "293": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 339
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": -1,
+                            "cant_equip": -1,
+                            "cant_interact": -1,
+                            "cant_move": -1,
+                            "cant_turn": -1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,219 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            12634
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            3
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        21295
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 21305
+    },
+    "behavior 2": {
+        "initial_value": 29592
+    },
+    "behavior 3": {
+        "initial_value": 21308
+    },
+    "behavior 4": {
+        "initial_value": 38409
+    },
+    "behavior 5": {
+        "initial_value": 38410
+    },
+    "21304": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 21305,
+            "behavior 2": 29592,
+            "behavior 3": 21308,
+            "behavior 4": 38409,
+            "behavior 5": 38410
+        },
+        "kids": {
+            "21305": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 21306,
+                    "duration": 0
+                },
+                "kids": {
+                    "21306": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "stun_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "29592": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 6411
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "21308": {
+                "name": {
+                    "templateID": 4,
+                    "behaviorTemplateName": "ProjectileAttack",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "clear_provided_target": 0,
+                    "LOT_ID": 12634,
+                    "max_distance": 43,
+                    "offset_x": 0,
+                    "offset_y": 2,
+                    "offset_z": 0,
+                    "projectile_speed": 100,
+                    "projectile_type": 2,
+                    "rotate_x_degrees": 0,
+                    "spread_angle": 0,
+                    "spread_count": 0,
+                    "spread_z_load_fudge": 0,
+                    "track_radius": 5,
+                    "track_target": 0,
+                    "use_high_arc": 0,
+                    "use_mouseposit": 0,
+                    "use_prediction": 0
+                },
+                "kids": {}
+            },
+            "38409": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 9079
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "38410": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 9080
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    },
+    "21295": {
+        "name": {
+            "templateID": 29,
+            "behaviorTemplateName": "Switch",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action_false": 0,
+            "action_true": 21296,
+            "distance": -1,
+            "imagination": 0,
+            "isEnemyFaction": 1
+        },
+        "kids": {
+            "0": {
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "21296": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 21297,
+                    "behavior 2": 21298
+                },
+                "kids": {
+                    "21297": {
+                        "name": {
+                            "templateID": 41,
+                            "behaviorTemplateName": "Interrupt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "interrupt_attack": 1,
+                            "interrupt_block": 0,
+                            "interrupt_charge": 1,
+                            "target": 1
+                        },
+                        "kids": {}
+                    },
+                    "21298": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 4863
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 3,
+                            "min damage": 3,
+                            "on_fail_blocked": 21299,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

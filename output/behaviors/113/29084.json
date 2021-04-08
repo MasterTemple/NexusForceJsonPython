@@ -1,0 +1,63 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 29091
+    },
+    "29084": {
+        "name": {
+            "templateID": 14,
+            "behaviorTemplateName": "Target Caster",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 29091
+        },
+        "kids": {
+            "29091": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 29083,
+                    "duration": 120,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "29083": {
+                        "name": {
+                            "templateID": 30,
+                            "behaviorTemplateName": "Buff",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "armor": 5,
+                            "imag": 5,
+                            "life": 5
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

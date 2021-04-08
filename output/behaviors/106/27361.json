@@ -1,0 +1,48 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 16589
+    },
+    "27361": {
+        "name": {
+            "templateID": 14,
+            "behaviorTemplateName": "Target Caster",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 16589
+        },
+        "kids": {
+            "16589": {
+                "name": {
+                    "templateID": 23,
+                    "behaviorTemplateName": "Speed",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "affects_caster": 1,
+                    "attack_speed": 0,
+                    "run_speed": 550
+                },
+                "kids": {}
+            }
+        }
+    }
+}

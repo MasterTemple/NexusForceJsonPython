@@ -1,0 +1,107 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 15877
+    },
+    "behavior 2": {
+        "initial_value": 15890
+    },
+    "behavior 3": {
+        "initial_value": 15887
+    },
+    "behavior 4": {
+        "initial_value": 15888
+    },
+    "behavior 5": {
+        "initial_value": 15886
+    },
+    "15891": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 15877,
+            "behavior 2": 15890,
+            "behavior 3": 15887,
+            "behavior 4": 15888,
+            "behavior 5": 15886
+        },
+        "kids": {
+            "15877": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "stun_caster": 1
+                },
+                "kids": {}
+            },
+            "15890": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3680
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "15887": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3683
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "15888": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3682
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "15886": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3681
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

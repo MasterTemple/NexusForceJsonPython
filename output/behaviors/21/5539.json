@@ -1,0 +1,79 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 4384
+    },
+    "behavior 2": {
+        "initial_value": 4388
+    },
+    "behavior 3": {
+        "initial_value": 3471
+    },
+    "5539": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 4384,
+            "behavior 2": 4388,
+            "behavior 3": 3471
+        },
+        "kids": {
+            "4384": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "stun_caster": 0
+                },
+                "kids": {}
+            },
+            "4388": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1187
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "3471": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 949
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

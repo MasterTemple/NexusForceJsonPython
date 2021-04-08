@@ -1,0 +1,296 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 33249
+    },
+    "angle": {
+        "initial_value": 45
+    },
+    "angle_weight": {
+        "initial_value": 1
+    },
+    "blocked action": {
+        "initial_value": 33257
+    },
+    "check_env": {
+        "initial_value": 0
+    },
+    "distance_weight": {
+        "initial_value": 0
+    },
+    "far_height": {
+        "initial_value": 0
+    },
+    "far_width": {
+        "initial_value": 0
+    },
+    "height": {
+        "initial_value": 2
+    },
+    "include_faction": {
+        "initial_value": 14
+    },
+    "lower_bound": {
+        "initial_value": -15
+    },
+    "max range": {
+        "initial_value": 40
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "method": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "miss action": {
+        "initial_value": 11860
+    },
+    "near_height": {
+        "initial_value": 0
+    },
+    "near_width": {
+        "initial_value": 0
+    },
+    "offset_x": {
+        "initial_value": 0
+    },
+    "offset_y": {
+        "initial_value": 0
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "target_friend": {
+        "initial_value": 0
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "upper_bound": {
+        "initial_value": 15
+    },
+    "use_attack_priority": {
+        "initial_value": 0
+    },
+    "use_picked_target": {
+        "initial_value": 0
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "33248": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 33249,
+            "angle": 45,
+            "angle_weight": 1,
+            "blocked action": 33257,
+            "check_env": 0,
+            "distance_weight": 0,
+            "far_height": 0,
+            "far_width": 0,
+            "height": 2,
+            "include_faction": 14,
+            "lower_bound": -15,
+            "max range": 40,
+            "max targets": 1,
+            "method": 1,
+            "min range": 0,
+            "miss action": 11860,
+            "near_height": 0,
+            "near_width": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "offset_z": 0,
+            "target_enemy": 1,
+            "target_friend": 0,
+            "target_self": 0,
+            "target_team": 0,
+            "upper_bound": 15,
+            "use_attack_priority": 0,
+            "use_picked_target": 0,
+            "use_target_position": 0
+        },
+        "kids": {
+            "33249": {
+                "name": {
+                    "templateID": 29,
+                    "behaviorTemplateName": "Switch",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action_false": 33250,
+                    "action_true": 33256,
+                    "distance": -1,
+                    "imagination": 0,
+                    "isEnemyFaction": 0,
+                    "target_has_buff": 2
+                },
+                "kids": {
+                    "33250": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 7310
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 5,
+                            "min damage": 5,
+                            "on_fail_armor": 33251,
+                            "on_success": 33251,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {
+                            "33251": {
+                                "name": {
+                                    "templateID": 3,
+                                    "behaviorTemplateName": "And",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "behavior 1": 33252,
+                                    "behavior 2": 33253
+                                },
+                                "kids": {
+                                    "33252": {
+                                        "name": {
+                                            "templateID": 41,
+                                            "behaviorTemplateName": "Interrupt",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "interrupt_attack": 1,
+                                            "interrupt_block": 0,
+                                            "interrupt_charge": 1,
+                                            "target": 1
+                                        },
+                                        "kids": {}
+                                    },
+                                    "33253": {
+                                        "name": {
+                                            "templateID": 16,
+                                            "behaviorTemplateName": "Duration",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "action": 33254,
+                                            "duration": 2,
+                                            "originator_is_owner": 0
+                                        },
+                                        "kids": {
+                                            "33254": {
+                                                "name": {
+                                                    "templateID": 15,
+                                                    "behaviorTemplateName": "Stun",
+                                                    "effectID": 7311
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "cant_attack": 1,
+                                                    "cant_equip": 1,
+                                                    "cant_interact": 1,
+                                                    "cant_jump": 1,
+                                                    "cant_move": 1,
+                                                    "cant_turn": 1,
+                                                    "cant_use_item": 1,
+                                                    "ignore_immunity": 0,
+                                                    "stun_caster": 0
+                                                },
+                                                "kids": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "33256": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 7310
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 20,
+                            "min damage": 20,
+                            "on_fail_armor": 33251,
+                            "on_success": 33251,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "33257": {
+                "name": {
+                    "templateID": 17,
+                    "behaviorTemplateName": "Knockback",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 10,
+                    "caster": 0,
+                    "ignore_self": 0,
+                    "relative": 0,
+                    "strength": 7,
+                    "time_ms": 0
+                },
+                "kids": {}
+            },
+            "11860": {
+                "name": {
+                    "templateID": 34,
+                    "behaviorTemplateName": "SkillCastFailed",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

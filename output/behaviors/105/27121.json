@@ -1,0 +1,46 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 27122
+    },
+    "27121": {
+        "name": {
+            "templateID": 14,
+            "behaviorTemplateName": "Target Caster",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 27122
+        },
+        "kids": {
+            "27122": {
+                "name": {
+                    "templateID": 5,
+                    "behaviorTemplateName": "Heal",
+                    "effectID": 5957
+                },
+                "hasKids": true,
+                "info": {
+                    "health": 6
+                },
+                "kids": {}
+            }
+        }
+    }
+}

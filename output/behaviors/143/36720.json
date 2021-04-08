@@ -1,0 +1,73 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 36721
+    },
+    "behavior 2": {
+        "initial_value": 36723
+    },
+    "36720": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 36721,
+            "behavior 2": 36723
+        },
+        "kids": {
+            "36721": {
+                "name": {
+                    "templateID": 14,
+                    "behaviorTemplateName": "Target Caster",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 36722
+                },
+                "kids": {
+                    "36722": {
+                        "name": {
+                            "templateID": 13,
+                            "behaviorTemplateName": "Imagination",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "imagination": 5
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "36723": {
+                "name": {
+                    "templateID": 34,
+                    "behaviorTemplateName": "SkillCastFailed",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

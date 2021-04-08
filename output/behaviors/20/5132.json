@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 5133
+    },
+    "behavior 2": {
+        "initial_value": 5134
+    },
+    "5132": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 5133,
+            "behavior 2": 5134
+        },
+        "kids": {
+            "5133": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1323
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "5134": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": 11
+                },
+                "kids": {}
+            }
+        }
+    }
+}

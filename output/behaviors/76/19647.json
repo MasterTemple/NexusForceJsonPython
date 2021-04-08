@@ -1,0 +1,215 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            12285
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        19628
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "clear_provided_target": {
+        "initial_value": 1
+    },
+    "LOT_ID": {
+        "initial_value": 12285
+    },
+    "max_distance": {
+        "initial_value": 100
+    },
+    "offset_x": {
+        "initial_value": -1
+    },
+    "offset_y": {
+        "initial_value": 1
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "projectile_speed": {
+        "initial_value": 45
+    },
+    "projectile_type": {
+        "initial_value": 1
+    },
+    "rotate_x_degrees": {
+        "initial_value": 60
+    },
+    "spread_angle": {
+        "initial_value": 0
+    },
+    "spread_count": {
+        "initial_value": 1
+    },
+    "spread_z_load_fudge": {
+        "initial_value": 0
+    },
+    "track_radius": {
+        "initial_value": 5
+    },
+    "track_target": {
+        "initial_value": 0
+    },
+    "use_high_arc": {
+        "initial_value": 0
+    },
+    "use_mouseposit": {
+        "initial_value": 0
+    },
+    "use_prediction": {
+        "initial_value": 0
+    },
+    "19647": {
+        "name": {
+            "templateID": 4,
+            "behaviorTemplateName": "ProjectileAttack",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "clear_provided_target": 1,
+            "LOT_ID": 12285,
+            "max_distance": 100,
+            "offset_x": -1,
+            "offset_y": 1,
+            "offset_z": 0,
+            "projectile_speed": 45,
+            "projectile_type": 1,
+            "rotate_x_degrees": 60,
+            "spread_angle": 0,
+            "spread_count": 1,
+            "spread_z_load_fudge": 0,
+            "track_radius": 5,
+            "track_target": 0,
+            "use_high_arc": 0,
+            "use_mouseposit": 0,
+            "use_prediction": 0
+        },
+        "kids": {}
+    },
+    "19628": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 19629,
+            "behavior 2": 19630
+        },
+        "kids": {
+            "19629": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 4472
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "19630": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 19631,
+                    "max targets": 20,
+                    "radius": 7,
+                    "target_enemy": 0,
+                    "target_friend": 1,
+                    "target_self": 0,
+                    "target_team": 1,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "19631": {
+                        "name": {
+                            "templateID": 3,
+                            "behaviorTemplateName": "And",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "behavior 1": 19632,
+                            "behavior 2": 19634
+                        },
+                        "kids": {
+                            "19632": {
+                                "name": {
+                                    "templateID": 16,
+                                    "behaviorTemplateName": "Duration",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action": 19633,
+                                    "duration": 6
+                                },
+                                "kids": {
+                                    "19633": {
+                                        "name": {
+                                            "templateID": 8,
+                                            "behaviorTemplateName": "PlayEffect",
+                                            "effectID": 4473
+                                        },
+                                        "hasKids": false,
+                                        "info": {},
+                                        "kids": {}
+                                    }
+                                }
+                            },
+                            "19634": {
+                                "name": {
+                                    "templateID": 12,
+                                    "behaviorTemplateName": "Over Time",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action": 19635,
+                                    "delay": 1,
+                                    "num_intervals": 10
+                                },
+                                "kids": {
+                                    "19635": {
+                                        "name": {
+                                            "templateID": 13,
+                                            "behaviorTemplateName": "Imagination",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "imagination": 1
+                                        },
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

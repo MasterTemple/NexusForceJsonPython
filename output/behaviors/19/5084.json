@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 5085
+    },
+    "behavior 2": {
+        "initial_value": 5086
+    },
+    "5084": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 5085,
+            "behavior 2": 5086
+        },
+        "kids": {
+            "5085": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1308
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "5086": {
+                "name": {
+                    "templateID": 22,
+                    "behaviorTemplateName": "RepairArmor",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "armor": 12
+                },
+                "kids": {}
+            }
+        }
+    }
+}

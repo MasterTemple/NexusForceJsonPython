@@ -1,0 +1,92 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "start_action": {
+        "initial_value": 29144
+    },
+    "29151": {
+        "name": {
+            "templateID": 46,
+            "behaviorTemplateName": "End",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "start_action": 29144
+        },
+        "kids": {
+            "29144": {
+                "name": {
+                    "templateID": 45,
+                    "behaviorTemplateName": "Start",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 29145
+                },
+                "kids": {
+                    "29145": {
+                        "name": {
+                            "templateID": 3,
+                            "behaviorTemplateName": "And",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "behavior 1": 29146,
+                            "behavior 2": 29147
+                        },
+                        "kids": {
+                            "29146": {
+                                "name": {
+                                    "templateID": 23,
+                                    "behaviorTemplateName": "Speed",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "affects_caster": 1,
+                                    "attack_speed": 0,
+                                    "run_speed": 500
+                                },
+                                "kids": {}
+                            },
+                            "29147": {
+                                "name": {
+                                    "templateID": 15,
+                                    "behaviorTemplateName": "Stun",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "cant_attack": 1,
+                                    "cant_equip": 1,
+                                    "cant_interact": 1,
+                                    "cant_move": 0,
+                                    "cant_turn": 0,
+                                    "stun_caster": 1
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,126 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 40828
+    },
+    "behavior 2": {
+        "initial_value": 40790
+    },
+    "behavior 3": {
+        "initial_value": 40836
+    },
+    "40827": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 40828,
+            "behavior 2": 40790,
+            "behavior 3": 40836
+        },
+        "kids": {
+            "40828": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 40829,
+                    "duration": 1,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "40829": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 9663
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 0,
+                            "cant_equip": 0,
+                            "cant_interact": 0,
+                            "cant_jump": 0,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "cant_use_item": 0,
+                            "ignore_immunity": 0,
+                            "stun_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "40790": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "40836": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 40835,
+                    "duration": 1,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "40835": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 9664
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 0,
+                            "cant_interact": 0,
+                            "cant_jump": 0,
+                            "cant_move": 0,
+                            "cant_turn": 0,
+                            "cant_use_item": 0,
+                            "ignore_immunity": 0,
+                            "stun_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

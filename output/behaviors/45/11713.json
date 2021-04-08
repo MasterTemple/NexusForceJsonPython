@@ -1,0 +1,56 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 11712
+    },
+    "delay": {
+        "initial_value": 5
+    },
+    "ignore_interrupts": {
+        "initial_value": 1
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "11713": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 11712,
+            "delay": 5,
+            "ignore_interrupts": 1,
+            "num_intervals": 1
+        },
+        "kids": {
+            "11712": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 712
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

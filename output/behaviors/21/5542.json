@@ -1,0 +1,68 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 5543
+    },
+    "behavior 2": {
+        "initial_value": 5544
+    },
+    "5542": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 5543,
+            "behavior 2": 5544
+        },
+        "kids": {
+            "5543": {
+                "name": {
+                    "templateID": 23,
+                    "behaviorTemplateName": "Speed",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "affects_caster": 1,
+                    "run_speed": 133
+                },
+                "kids": {}
+            },
+            "5544": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 0,
+                    "cant_turn": 0,
+                    "stun_caster": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

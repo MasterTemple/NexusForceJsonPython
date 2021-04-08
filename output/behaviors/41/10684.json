@@ -1,0 +1,73 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": true,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 11162
+    },
+    "delay": {
+        "initial_value": 0
+    },
+    "ignore_interrupts": {
+        "initial_value": 0
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "10684": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 2420
+        },
+        "hasKids": true,
+        "info": {
+            "action": 11162,
+            "delay": 0,
+            "ignore_interrupts": 0,
+            "num_intervals": 1
+        },
+        "kids": {
+            "11162": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 10685,
+                    "duration": 15
+                },
+                "kids": {
+                    "10685": {
+                        "name": {
+                            "templateID": 27,
+                            "behaviorTemplateName": "Spawn Object",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "distance": 4,
+                            "LOT_ID": 8239
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

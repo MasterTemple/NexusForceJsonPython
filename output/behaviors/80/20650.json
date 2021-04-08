@@ -1,0 +1,202 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 20651
+    },
+    "behavior 2": {
+        "initial_value": 20652
+    },
+    "behavior 3": {
+        "initial_value": 20654
+    },
+    "20650": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 20651,
+            "behavior 2": 20652,
+            "behavior 3": 20654
+        },
+        "kids": {
+            "20651": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 4729
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "20652": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 20653,
+                    "duration": 1
+                },
+                "kids": {
+                    "20653": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 4730
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            },
+            "20654": {
+                "name": {
+                    "templateID": 40,
+                    "behaviorTemplateName": "ForceMovement",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "duration": 1,
+                    "forward": 20,
+                    "hit_action_enemy": 20655,
+                    "ignore_projectile_collision": 1,
+                    "left": 0,
+                    "move_target": 0,
+                    "timeout_action": 20661,
+                    "yaw": 0,
+                    "yaw_abs": 0
+                },
+                "kids": {
+                    "20655": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 10,
+                            "min damage": 10,
+                            "on_fail_armor": 20656,
+                            "on_success": 20656,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {
+                            "20656": {
+                                "name": {
+                                    "templateID": 3,
+                                    "behaviorTemplateName": "And",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "behavior 1": 20657,
+                                    "behavior 2": 20658,
+                                    "behavior 3": 20660
+                                },
+                                "kids": {
+                                    "20657": {
+                                        "name": {
+                                            "templateID": 41,
+                                            "behaviorTemplateName": "Interrupt",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "interrupt_attack": 1,
+                                            "interrupt_block": 0,
+                                            "interrupt_charge": 1,
+                                            "target": 1
+                                        },
+                                        "kids": {}
+                                    },
+                                    "20658": {
+                                        "name": {
+                                            "templateID": 16,
+                                            "behaviorTemplateName": "Duration",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "action": 20659,
+                                            "duration": 1
+                                        },
+                                        "kids": {
+                                            "20659": {
+                                                "name": {
+                                                    "templateID": 15,
+                                                    "behaviorTemplateName": "Stun",
+                                                    "effectID": 4731
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "cant_attack": 1,
+                                                    "cant_equip": 0,
+                                                    "cant_interact": 0,
+                                                    "cant_jump": 0,
+                                                    "cant_move": 1,
+                                                    "cant_turn": 1,
+                                                    "cant_use_item": 0,
+                                                    "ignore_immunity": 0,
+                                                    "stun_caster": 0
+                                                },
+                                                "kids": {}
+                                            }
+                                        }
+                                    },
+                                    "20660": {
+                                        "name": {
+                                            "templateID": 8,
+                                            "behaviorTemplateName": "PlayEffect",
+                                            "effectID": 4732
+                                        },
+                                        "hasKids": false,
+                                        "info": {},
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "20661": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 4733
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

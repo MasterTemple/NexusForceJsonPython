@@ -1,0 +1,126 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": true,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 27808
+    },
+    "behavior 2": {
+        "initial_value": 27810
+    },
+    "27807": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 27808,
+            "behavior 2": 27810
+        },
+        "kids": {
+            "27808": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 27809,
+                    "duration": 2
+                },
+                "kids": {
+                    "27809": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "stun_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "27810": {
+                "name": {
+                    "templateID": 18,
+                    "behaviorTemplateName": "AttackDelay",
+                    "effectID": 6136
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 27811,
+                    "delay": 1,
+                    "ignore_interrupts": 1,
+                    "num_intervals": 1
+                },
+                "kids": {
+                    "27811": {
+                        "name": {
+                            "templateID": 16,
+                            "behaviorTemplateName": "Duration",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 27812,
+                            "duration": 44
+                        },
+                        "kids": {
+                            "27812": {
+                                "name": {
+                                    "templateID": 27,
+                                    "behaviorTemplateName": "Spawn Object",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "distance": 4,
+                                    "LOT_ID": 13297,
+                                    "objectRadius": 3,
+                                    "spawn_fail_action": 11860,
+                                    "updatePositionWithParent": 0
+                                },
+                                "kids": {
+                                    "11860": {
+                                        "name": {
+                                            "templateID": 34,
+                                            "behaviorTemplateName": "SkillCastFailed",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": false,
+                                        "info": {},
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

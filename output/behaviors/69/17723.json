@@ -1,0 +1,51 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 11941
+    },
+    "17723": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 11941
+        },
+        "kids": {
+            "11941": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "stun_caster": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            4802
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            3
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        426
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "LOT_ID": {
+        "initial_value": 4802
+    },
+    "max_distance": {
+        "initial_value": 200
+    },
+    "projectile_speed": {
+        "initial_value": 45
+    },
+    "projectile_type": {
+        "initial_value": 2
+    },
+    "21145": {
+        "name": {
+            "templateID": 4,
+            "behaviorTemplateName": "ProjectileAttack",
+            "effectID": 4842
+        },
+        "hasKids": true,
+        "info": {
+            "LOT_ID": 4802,
+            "max_distance": 200,
+            "projectile_speed": 45,
+            "projectile_type": 2
+        },
+        "kids": {}
+    },
+    "426": {
+        "name": {
+            "templateID": 29,
+            "behaviorTemplateName": "Switch",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action_false": 0,
+            "action_true": 427,
+            "isEnemyFaction": 1
+        },
+        "kids": {
+            "0": {
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "427": {
+                "name": {
+                    "templateID": 1,
+                    "behaviorTemplateName": "BasicAttack",
+                    "effectID": 2
+                },
+                "hasKids": true,
+                "info": {
+                    "max damage": 3,
+                    "min damage": 3
+                },
+                "kids": {}
+            }
+        }
+    }
+}

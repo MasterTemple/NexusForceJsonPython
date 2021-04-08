@@ -1,0 +1,146 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 25800
+    },
+    "angle": {
+        "initial_value": 25
+    },
+    "angle_weight": {
+        "initial_value": 0
+    },
+    "check_env": {
+        "initial_value": 0
+    },
+    "distance_weight": {
+        "initial_value": 0
+    },
+    "height": {
+        "initial_value": 2
+    },
+    "25799": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 25800,
+            "angle": 25,
+            "angle_weight": 0,
+            "check_env": 0,
+            "distance_weight": 0,
+            "height": 2
+        },
+        "kids": {
+            "25800": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 25801,
+                    "behavior 2": 25802
+                },
+                "kids": {
+                    "25801": {
+                        "name": {
+                            "templateID": 32,
+                            "behaviorTemplateName": "Skill Event",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "target_caster": 0
+                        },
+                        "kids": {}
+                    },
+                    "25802": {
+                        "name": {
+                            "templateID": 46,
+                            "behaviorTemplateName": "End",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "start_action": 25803,
+                            "use_target": 1
+                        },
+                        "kids": {
+                            "25803": {
+                                "name": {
+                                    "templateID": 45,
+                                    "behaviorTemplateName": "Start",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action": 25804,
+                                    "use_target": 1
+                                },
+                                "kids": {
+                                    "25804": {
+                                        "name": {
+                                            "templateID": 3,
+                                            "behaviorTemplateName": "And",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "behavior 1": 25805,
+                                            "behavior 2": 25806
+                                        },
+                                        "kids": {
+                                            "25805": {
+                                                "name": {
+                                                    "templateID": 8,
+                                                    "behaviorTemplateName": "PlayEffect",
+                                                    "effectID": 5673
+                                                },
+                                                "hasKids": false,
+                                                "info": {},
+                                                "kids": {}
+                                            },
+                                            "25806": {
+                                                "name": {
+                                                    "templateID": 23,
+                                                    "behaviorTemplateName": "Speed",
+                                                    "effectID": 0
+                                                },
+                                                "hasKids": true,
+                                                "info": {
+                                                    "affects_caster": 0,
+                                                    "attack_speed": 0,
+                                                    "run_speed": 250
+                                                },
+                                                "kids": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

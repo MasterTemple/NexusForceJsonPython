@@ -1,0 +1,80 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 11600
+    },
+    "behavior 2": {
+        "initial_value": 11601
+    },
+    "behavior 3": {
+        "initial_value": 11602
+    },
+    "11599": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 11600,
+            "behavior 2": 11601,
+            "behavior 3": 11602
+        },
+        "kids": {
+            "11600": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 2781
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "11601": {
+                "name": {
+                    "templateID": 58,
+                    "behaviorTemplateName": "PullToPoint",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "arc_height": 10,
+                    "distance_offset": 6
+                },
+                "kids": {}
+            },
+            "11602": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_block": 0,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

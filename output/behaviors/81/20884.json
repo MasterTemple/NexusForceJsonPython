@@ -1,0 +1,116 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 20883
+    },
+    "delay": {
+        "initial_value": 1
+    },
+    "ignore_interrupts": {
+        "initial_value": 0
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "20884": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 4784
+        },
+        "hasKids": true,
+        "info": {
+            "action": 20883,
+            "delay": 1,
+            "ignore_interrupts": 0,
+            "num_intervals": 1
+        },
+        "kids": {
+            "20883": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 20882,
+                    "max targets": 20,
+                    "radius": 15,
+                    "target_enemy": 0,
+                    "target_friend": 1,
+                    "target_self": 1,
+                    "target_team": 1,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "20882": {
+                        "name": {
+                            "templateID": 3,
+                            "behaviorTemplateName": "And",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "behavior 1": 20881,
+                            "behavior 2": 20880,
+                            "behavior 3": 20908
+                        },
+                        "kids": {
+                            "20881": {
+                                "name": {
+                                    "templateID": 5,
+                                    "behaviorTemplateName": "Heal",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "health": 5
+                                },
+                                "kids": {}
+                            },
+                            "20880": {
+                                "name": {
+                                    "templateID": 13,
+                                    "behaviorTemplateName": "Imagination",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "imagination": 10
+                                },
+                                "kids": {}
+                            },
+                            "20908": {
+                                "name": {
+                                    "templateID": 8,
+                                    "behaviorTemplateName": "PlayEffect",
+                                    "effectID": 4783
+                                },
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 963
+    },
+    "delay": {
+        "initial_value": 3
+    },
+    "num_intervals": {
+        "initial_value": 5
+    },
+    "5476": {
+        "name": {
+            "templateID": 12,
+            "behaviorTemplateName": "Over Time",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 963,
+            "delay": 3,
+            "num_intervals": 5
+        },
+        "kids": {
+            "963": {
+                "name": {
+                    "templateID": 42,
+                    "behaviorTemplateName": "AlterCooldown",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add": 0,
+                    "amount": 0
+                },
+                "kids": {}
+            }
+        }
+    }
+}

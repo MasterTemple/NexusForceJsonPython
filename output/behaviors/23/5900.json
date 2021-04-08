@@ -1,0 +1,120 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            12844
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        null
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 5897
+    },
+    "behavior 2": {
+        "initial_value": 5899
+    },
+    "5900": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 5897,
+            "behavior 2": 5899
+        },
+        "kids": {
+            "5897": {
+                "name": {
+                    "templateID": 4,
+                    "behaviorTemplateName": "ProjectileAttack",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "clear_provided_target": 0,
+                    "LOT_ID": 12844,
+                    "max_distance": 30,
+                    "offset_x": 0,
+                    "offset_y": 3,
+                    "offset_z": 0,
+                    "projectile_speed": 100,
+                    "projectile_type": 2,
+                    "rotate_x_degrees": 0,
+                    "spread_angle": 320,
+                    "spread_count": 3,
+                    "spread_z_load_fudge": 0,
+                    "track_radius": 5,
+                    "track_target": 0,
+                    "use_high_arc": 0,
+                    "use_mouseposit": 0,
+                    "use_prediction": 0
+                },
+                "kids": {}
+            },
+            "5899": {
+                "name": {
+                    "templateID": 18,
+                    "behaviorTemplateName": "AttackDelay",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 5898,
+                    "delay": 0,
+                    "ignore_interrupts": 1,
+                    "num_intervals": 1
+                },
+                "kids": {
+                    "5898": {
+                        "name": {
+                            "templateID": 56,
+                            "behaviorTemplateName": "AirMovement",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "goto_target": 0,
+                            "gravity_scale": 1,
+                            "ground_action": 0,
+                            "hit_action": 0,
+                            "hit_action_enemy": 0,
+                            "x_velocity": 0,
+                            "y_velocity": 0,
+                            "z_velocity": 0
+                        },
+                        "kids": {
+                            "0": {
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "null": {
+        "hasKids": false,
+        "info": {},
+        "kids": {}
+    }
+}

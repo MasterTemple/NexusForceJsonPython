@@ -1,0 +1,77 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 1938
+    },
+    "max range": {
+        "initial_value": 20
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "miss action": {
+        "initial_value": 1938
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "1937": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 1938,
+            "max range": 20,
+            "max targets": 1,
+            "miss action": 1938,
+            "target_enemy": 1
+        },
+        "kids": {
+            "1938": {
+                "name": {
+                    "templateID": 54,
+                    "behaviorTemplateName": "Verify",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 1939,
+                    "check_blocking": 1
+                },
+                "kids": {
+                    "1939": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "max damage": 1,
+                            "min damage": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

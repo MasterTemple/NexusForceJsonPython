@@ -1,0 +1,71 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 37216
+    },
+    "delay": {
+        "initial_value": 2
+    },
+    "ignore_interrupts": {
+        "initial_value": 0
+    },
+    "num_intervals": {
+        "initial_value": 5
+    },
+    "37215": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 37216,
+            "delay": 2,
+            "ignore_interrupts": 0,
+            "num_intervals": 5
+        },
+        "kids": {
+            "37216": {
+                "name": {
+                    "templateID": 14,
+                    "behaviorTemplateName": "Target Caster",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37217
+                },
+                "kids": {
+                    "37217": {
+                        "name": {
+                            "templateID": 5,
+                            "behaviorTemplateName": "Heal",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "health": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

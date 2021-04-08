@@ -1,0 +1,102 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 11345
+    },
+    "max targets": {
+        "initial_value": 20
+    },
+    "radius": {
+        "initial_value": 24
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "target_friend": {
+        "initial_value": 0
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "use_target_as_caster": {
+        "initial_value": 0
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "11346": {
+        "name": {
+            "templateID": 7,
+            "behaviorTemplateName": "AoE",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 11345,
+            "max targets": 20,
+            "radius": 24,
+            "target_enemy": 1,
+            "target_friend": 0,
+            "target_self": 0,
+            "target_team": 0,
+            "use_target_as_caster": 0,
+            "use_target_position": 0
+        },
+        "kids": {
+            "11345": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 11343,
+                    "behavior 2": 11344
+                },
+                "kids": {
+                    "11343": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 2706
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    },
+                    "11344": {
+                        "name": {
+                            "templateID": 55,
+                            "behaviorTemplateName": "Taunt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "threat to add": 250
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

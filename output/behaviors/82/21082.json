@@ -1,0 +1,65 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 21083
+    },
+    "behavior 2": {
+        "initial_value": 21084
+    },
+    "21082": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 21083,
+            "behavior 2": 21084
+        },
+        "kids": {
+            "21083": {
+                "name": {
+                    "templateID": 39,
+                    "behaviorTemplateName": "ChangeOrientation",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 0,
+                    "orient_caster": 0,
+                    "relative": 0,
+                    "to_angle": 0,
+                    "to_point": 0,
+                    "to_target": 1
+                },
+                "kids": {}
+            },
+            "21084": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 4829
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

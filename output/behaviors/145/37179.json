@@ -1,0 +1,101 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 37180
+    },
+    "check_blocking": {
+        "initial_value": 1
+    },
+    "check_range": {
+        "initial_value": 1
+    },
+    "range": {
+        "initial_value": 6
+    },
+    "37179": {
+        "name": {
+            "templateID": 54,
+            "behaviorTemplateName": "Verify",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 37180,
+            "check_blocking": 1,
+            "check_range": 1,
+            "range": 6
+        },
+        "kids": {
+            "37180": {
+                "name": {
+                    "templateID": 29,
+                    "behaviorTemplateName": "Switch",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action_false": 37181,
+                    "action_true": 37185,
+                    "distance": -1,
+                    "imagination": 0,
+                    "isEnemyFaction": 0,
+                    "target_has_buff": 2
+                },
+                "kids": {
+                    "37181": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 8088
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 3,
+                            "min damage": 3,
+                            "on_fail_blocked": 37182,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    },
+                    "37185": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 8090
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 10,
+                            "min damage": 10,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

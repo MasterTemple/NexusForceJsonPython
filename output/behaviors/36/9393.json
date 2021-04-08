@@ -1,0 +1,93 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "dir_angle_xz": {
+        "initial_value": 0
+    },
+    "dir_angle_y": {
+        "initial_value": 0
+    },
+    "dir_force": {
+        "initial_value": 7
+    },
+    "max damage": {
+        "initial_value": 4
+    },
+    "min damage": {
+        "initial_value": 4
+    },
+    "on_fail_armor": {
+        "initial_value": 30069
+    },
+    "on_success": {
+        "initial_value": 30069
+    },
+    "use_caster_velocity": {
+        "initial_value": 0
+    },
+    "velocity_multiplier": {
+        "initial_value": 1
+    },
+    "9393": {
+        "name": {
+            "templateID": 1,
+            "behaviorTemplateName": "BasicAttack",
+            "effectID": 2104
+        },
+        "hasKids": true,
+        "info": {
+            "dir_angle_xz": 0,
+            "dir_angle_y": 0,
+            "dir_force": 7,
+            "max damage": 4,
+            "min damage": 4,
+            "on_fail_armor": 30069,
+            "on_success": 30069,
+            "use_caster_velocity": 0,
+            "velocity_multiplier": 1
+        },
+        "kids": {
+            "30069": {
+                "name": {
+                    "templateID": 12,
+                    "behaviorTemplateName": "Over Time",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 1309,
+                    "delay": 1,
+                    "num_intervals": 3
+                },
+                "kids": {
+                    "1309": {
+                        "name": {
+                            "templateID": 13,
+                            "behaviorTemplateName": "Imagination",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "imagination": -1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

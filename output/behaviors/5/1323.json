@@ -1,0 +1,143 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action_false": {
+        "initial_value": 1326
+    },
+    "action_true": {
+        "initial_value": 1330
+    },
+    "imagination": {
+        "initial_value": 1
+    },
+    "1323": {
+        "name": {
+            "templateID": 29,
+            "behaviorTemplateName": "Switch",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action_false": 1326,
+            "action_true": 1330,
+            "imagination": 1
+        },
+        "kids": {
+            "1326": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 1329,
+                    "behavior 2": 1327
+                },
+                "kids": {
+                    "1329": {
+                        "name": {
+                            "templateID": 46,
+                            "behaviorTemplateName": "End",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "start_action": 1328
+                        },
+                        "kids": {
+                            "1328": {
+                                "name": {
+                                    "templateID": 45,
+                                    "behaviorTemplateName": "Start",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action": 1320
+                                },
+                                "kids": {
+                                    "1320": {
+                                        "name": {
+                                            "templateID": 25,
+                                            "behaviorTemplateName": "LootBuff",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "scale": 10
+                                        },
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "1327": {
+                        "name": {
+                            "templateID": 41,
+                            "behaviorTemplateName": "Interrupt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "interrupt_attack": 1,
+                            "target": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "1330": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 1322,
+                    "behavior 2": 1331
+                },
+                "kids": {
+                    "1322": {
+                        "name": {
+                            "templateID": 13,
+                            "behaviorTemplateName": "Imagination",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "imagination": -1
+                        },
+                        "kids": {}
+                    },
+                    "1331": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 473
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

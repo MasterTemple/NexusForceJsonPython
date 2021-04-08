@@ -1,0 +1,62 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 26721
+    },
+    "behavior 2": {
+        "initial_value": 26722
+    },
+    "26720": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 26721,
+            "behavior 2": 26722
+        },
+        "kids": {
+            "26721": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 5862
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "26722": {
+                "name": {
+                    "templateID": 23,
+                    "behaviorTemplateName": "Speed",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "affects_caster": 0,
+                    "attack_speed": 0,
+                    "run_speed": 250
+                },
+                "kids": {}
+            }
+        }
+    }
+}

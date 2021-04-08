@@ -1,0 +1,91 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 27660
+    },
+    "behavior 2": {
+        "initial_value": 27661
+    },
+    "27662": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 27660,
+            "behavior 2": 27661
+        },
+        "kids": {
+            "27660": {
+                "name": {
+                    "templateID": 14,
+                    "behaviorTemplateName": "Target Caster",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 27659
+                },
+                "kids": {
+                    "27659": {
+                        "name": {
+                            "templateID": 9,
+                            "behaviorTemplateName": "Immunity",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "immune_basic_attack": 1,
+                            "immune_damage_over_time": 1,
+                            "immune_interrupt": 1,
+                            "immune_knockback": 1,
+                            "immune_quickbuild_interrupts": 0,
+                            "immune_speed": 1,
+                            "immune_stun_attack": 1,
+                            "immune_stun_equip": 1,
+                            "immune_stun_interact": 1,
+                            "immune_stun_move": 1,
+                            "immune_stun_rotate": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "27661": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "cant_use_item": 1,
+                    "stun_caster": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

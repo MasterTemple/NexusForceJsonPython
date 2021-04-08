@@ -1,0 +1,89 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 19632
+    },
+    "behavior 2": {
+        "initial_value": 19634
+    },
+    "19631": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 19632,
+            "behavior 2": 19634
+        },
+        "kids": {
+            "19632": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 19633,
+                    "duration": 6
+                },
+                "kids": {
+                    "19633": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 4473
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            },
+            "19634": {
+                "name": {
+                    "templateID": 12,
+                    "behaviorTemplateName": "Over Time",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 19635,
+                    "delay": 1,
+                    "num_intervals": 10
+                },
+                "kids": {
+                    "19635": {
+                        "name": {
+                            "templateID": 13,
+                            "behaviorTemplateName": "Imagination",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "imagination": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

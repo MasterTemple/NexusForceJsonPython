@@ -1,0 +1,397 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            14602
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            3,
+            10
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        39524
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 33439
+    },
+    "angle": {
+        "initial_value": 360
+    },
+    "angle_weight": {
+        "initial_value": 1
+    },
+    "check_env": {
+        "initial_value": 0
+    },
+    "distance_weight": {
+        "initial_value": 0
+    },
+    "far_height": {
+        "initial_value": 0
+    },
+    "far_width": {
+        "initial_value": 0
+    },
+    "height": {
+        "initial_value": 2
+    },
+    "include_faction": {
+        "initial_value": 14
+    },
+    "lower_bound": {
+        "initial_value": 0
+    },
+    "max range": {
+        "initial_value": 40
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "method": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "miss action": {
+        "initial_value": 33444
+    },
+    "near_height": {
+        "initial_value": 0
+    },
+    "near_width": {
+        "initial_value": 0
+    },
+    "offset_x": {
+        "initial_value": 0
+    },
+    "offset_y": {
+        "initial_value": 0
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "target_friend": {
+        "initial_value": 0
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "upper_bound": {
+        "initial_value": 5
+    },
+    "use_attack_priority": {
+        "initial_value": 1
+    },
+    "use_picked_target": {
+        "initial_value": 1
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "33438": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 33439,
+            "angle": 360,
+            "angle_weight": 1,
+            "check_env": 0,
+            "distance_weight": 0,
+            "far_height": 0,
+            "far_width": 0,
+            "height": 2,
+            "include_faction": 14,
+            "lower_bound": 0,
+            "max range": 40,
+            "max targets": 1,
+            "method": 1,
+            "min range": 0,
+            "miss action": 33444,
+            "near_height": 0,
+            "near_width": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "offset_z": 0,
+            "target_enemy": 1,
+            "target_friend": 0,
+            "target_self": 0,
+            "target_team": 0,
+            "upper_bound": 5,
+            "use_attack_priority": 1,
+            "use_picked_target": 1,
+            "use_target_position": 0
+        },
+        "kids": {
+            "33439": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 33440,
+                    "behavior 2": 33441,
+                    "behavior 3": 33442
+                },
+                "kids": {
+                    "33440": {
+                        "name": {
+                            "templateID": 39,
+                            "behaviorTemplateName": "ChangeOrientation",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "angle": 0,
+                            "orient_caster": 1,
+                            "relative": 0,
+                            "to_angle": 0,
+                            "to_target": 1
+                        },
+                        "kids": {}
+                    },
+                    "33441": {
+                        "name": {
+                            "templateID": 40,
+                            "behaviorTemplateName": "ForceMovement",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "duration": 0,
+                            "forward": 0,
+                            "ignore_projectile_collision": 0,
+                            "left": 0,
+                            "move_target": 0,
+                            "yaw": 0,
+                            "yaw_abs": 0
+                        },
+                        "kids": {}
+                    },
+                    "33442": {
+                        "name": {
+                            "templateID": 18,
+                            "behaviorTemplateName": "AttackDelay",
+                            "effectID": 7334
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 33443,
+                            "delay": 0,
+                            "ignore_interrupts": 0,
+                            "num_intervals": 1
+                        },
+                        "kids": {
+                            "33443": {
+                                "name": {
+                                    "templateID": 4,
+                                    "behaviorTemplateName": "ProjectileAttack",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "clear_provided_target": 0,
+                                    "LOT_ID": 14602,
+                                    "max_distance": 45,
+                                    "offset_x": 0,
+                                    "offset_y": 3,
+                                    "offset_z": 0,
+                                    "projectile_speed": 100,
+                                    "projectile_type": 2,
+                                    "rotate_x_degrees": 0,
+                                    "spread_angle": 0,
+                                    "spread_count": 0,
+                                    "spread_z_load_fudge": 0,
+                                    "track_radius": 5,
+                                    "track_target": 1,
+                                    "use_high_arc": 0,
+                                    "use_mouseposit": 0,
+                                    "use_prediction": 0
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "33444": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 33441,
+                    "behavior 2": 33442
+                },
+                "kids": {}
+            }
+        }
+    },
+    "39524": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 33004,
+            "behavior 2": 39523
+        },
+        "kids": {
+            "33004": {
+                "name": {
+                    "templateID": 29,
+                    "behaviorTemplateName": "Switch",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action_false": 0,
+                    "action_true": 33003,
+                    "distance": -1,
+                    "imagination": 0,
+                    "isEnemyFaction": 1,
+                    "target_has_buff": -1
+                },
+                "kids": {
+                    "0": {
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    },
+                    "33003": {
+                        "name": {
+                            "templateID": 3,
+                            "behaviorTemplateName": "And",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "behavior 1": 14273,
+                            "behavior 2": 33002
+                        },
+                        "kids": {
+                            "14273": {
+                                "name": {
+                                    "templateID": 41,
+                                    "behaviorTemplateName": "Interrupt",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "interrupt_attack": 1,
+                                    "interrupt_block": 0,
+                                    "interrupt_charge": 1,
+                                    "target": 1
+                                },
+                                "kids": {}
+                            },
+                            "33002": {
+                                "name": {
+                                    "templateID": 29,
+                                    "behaviorTemplateName": "Switch",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action_false": 33001,
+                                    "action_true": 33000,
+                                    "distance": -1,
+                                    "imagination": 0,
+                                    "isEnemyFaction": 0,
+                                    "target_has_buff": 2
+                                },
+                                "kids": {
+                                    "33001": {
+                                        "name": {
+                                            "templateID": 1,
+                                            "behaviorTemplateName": "BasicAttack",
+                                            "effectID": 7254
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "dir_angle_xz": 0,
+                                            "dir_angle_y": 0,
+                                            "dir_force": 7,
+                                            "max damage": 3,
+                                            "min damage": 3,
+                                            "use_caster_velocity": 0,
+                                            "velocity_multiplier": 1
+                                        },
+                                        "kids": {}
+                                    },
+                                    "33000": {
+                                        "name": {
+                                            "templateID": 1,
+                                            "behaviorTemplateName": "BasicAttack",
+                                            "effectID": 7255
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "dir_angle_xz": 0,
+                                            "dir_angle_y": 0,
+                                            "dir_force": 7,
+                                            "max damage": 10,
+                                            "min damage": 10,
+                                            "use_caster_velocity": 0,
+                                            "velocity_multiplier": 1
+                                        },
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "39523": {
+                "name": {
+                    "templateID": 29,
+                    "behaviorTemplateName": "Switch",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action_false": 0,
+                    "action_true": 33001,
+                    "distance": -1,
+                    "faction": 14,
+                    "imagination": 0,
+                    "isEnemyFaction": 0,
+                    "target_has_buff": -1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

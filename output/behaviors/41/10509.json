@@ -1,0 +1,54 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": true,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 10510
+    },
+    "duration": {
+        "initial_value": 30
+    },
+    "10509": {
+        "name": {
+            "templateID": 16,
+            "behaviorTemplateName": "Duration",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 10510,
+            "duration": 30
+        },
+        "kids": {
+            "10510": {
+                "name": {
+                    "templateID": 57,
+                    "behaviorTemplateName": "SpawnQuickbuild",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "distance": 5,
+                    "LOT_ID": 9264,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "offsetZ": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

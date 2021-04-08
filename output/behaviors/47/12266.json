@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 12265
+    },
+    "12266": {
+        "name": {
+            "templateID": 14,
+            "behaviorTemplateName": "Target Caster",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 12265
+        },
+        "kids": {
+            "12265": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 12264,
+                    "duration": 20
+                },
+                "kids": {
+                    "12264": {
+                        "name": {
+                            "templateID": 11,
+                            "behaviorTemplateName": "Damage Absorption",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "absorb_amount": 4
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

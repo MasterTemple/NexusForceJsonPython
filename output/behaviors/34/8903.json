@@ -1,0 +1,74 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 8902
+    },
+    "behavior 2": {
+        "initial_value": 8901
+    },
+    "8903": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 8902,
+            "behavior 2": 8901
+        },
+        "kids": {
+            "8902": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 2651
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "8901": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 8900,
+                    "duration": 10
+                },
+                "kids": {
+                    "8900": {
+                        "name": {
+                            "templateID": 11,
+                            "behaviorTemplateName": "Damage Absorption",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "absorb_amount": 12
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 20622
+    },
+    "delay": {
+        "initial_value": 1
+    },
+    "ignore_interrupts": {
+        "initial_value": 0
+    },
+    "num_intervals": {
+        "initial_value": 11
+    },
+    "20623": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 20622,
+            "delay": 1,
+            "ignore_interrupts": 0,
+            "num_intervals": 11
+        },
+        "kids": {
+            "20622": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 20621,
+                    "max targets": 20,
+                    "radius": 25,
+                    "target_enemy": 0,
+                    "target_friend": 1,
+                    "target_self": 1,
+                    "target_team": 1,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "20621": {
+                        "name": {
+                            "templateID": 5,
+                            "behaviorTemplateName": "Heal",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "health": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,90 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 6098
+    },
+    "behavior 2": {
+        "initial_value": 6099
+    },
+    "behavior 3": {
+        "initial_value": 15472
+    },
+    "behavior 4": {
+        "initial_value": 15473
+    },
+    "6097": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 6098,
+            "behavior 2": 6099,
+            "behavior 3": 15472,
+            "behavior 4": 15473
+        },
+        "kids": {
+            "6098": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1085
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "6099": {
+                "name": {
+                    "templateID": 23,
+                    "behaviorTemplateName": "Speed",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "affects_caster": 0,
+                    "attack_speed": 0,
+                    "run_speed": 750
+                },
+                "kids": {}
+            },
+            "15472": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3551
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "15473": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 3550
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

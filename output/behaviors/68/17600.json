@@ -1,0 +1,50 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 17601
+    },
+    "duration": {
+        "initial_value": 30
+    },
+    "17600": {
+        "name": {
+            "templateID": 16,
+            "behaviorTemplateName": "Duration",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 17601,
+            "duration": 30
+        },
+        "kids": {
+            "17601": {
+                "name": {
+                    "templateID": 11,
+                    "behaviorTemplateName": "Damage Absorption",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "absorb_amount": 3
+                },
+                "kids": {}
+            }
+        }
+    }
+}

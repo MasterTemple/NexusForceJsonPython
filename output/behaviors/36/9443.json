@@ -1,0 +1,68 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 9447
+    },
+    "action_failed": {
+        "initial_value": 10490
+    },
+    "active": {
+        "initial_value": 0
+    },
+    "time": {
+        "initial_value": 3
+    },
+    "9443": {
+        "name": {
+            "templateID": 19,
+            "behaviorTemplateName": "Car Boost",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 9447,
+            "action_failed": 10490,
+            "active": 0,
+            "time": 3
+        },
+        "kids": {
+            "9447": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": -60
+                },
+                "kids": {}
+            },
+            "10490": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 2380
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

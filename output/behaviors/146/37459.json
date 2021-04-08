@@ -1,0 +1,134 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 37460
+    },
+    "behavior 2": {
+        "initial_value": 37461
+    },
+    "behavior 3": {
+        "initial_value": 37463
+    },
+    "behavior 4": {
+        "initial_value": 38536
+    },
+    "37459": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 37460,
+            "behavior 2": 37461,
+            "behavior 3": 37463,
+            "behavior 4": 38536
+        },
+        "kids": {
+            "37460": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_block": 0,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "37461": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37462,
+                    "duration": 0
+                },
+                "kids": {
+                    "37462": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "cant_use_item": 1,
+                            "stun_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "37463": {
+                "name": {
+                    "templateID": 17,
+                    "behaviorTemplateName": "Knockback",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 35,
+                    "caster": 0,
+                    "ignore_self": 0,
+                    "relative": 0,
+                    "strength": 20,
+                    "time_ms": 0
+                },
+                "kids": {}
+            },
+            "38536": {
+                "name": {
+                    "templateID": 37,
+                    "behaviorTemplateName": "ApplyBuff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add_immunity": 0,
+                    "apply_on_teammates": 0,
+                    "buff_id": 60,
+                    "cancel_on_damaged": 0,
+                    "cancel_on_death": 1,
+                    "cancel_on_logout": 0,
+                    "cancel_on_remove_buff": 1,
+                    "cancel_on_ui": 0,
+                    "cancel_on_unequip": 0,
+                    "cancel_on_zone": 0,
+                    "duration_secs": 30,
+                    "target_caster": 0,
+                    "use_ref_count": 0
+                },
+                "kids": {}
+            }
+        }
+    }
+}

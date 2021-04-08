@@ -1,0 +1,67 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 31
+    },
+    "angle": {
+        "initial_value": 90
+    },
+    "max range": {
+        "initial_value": 15
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "12": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 30
+        },
+        "hasKids": true,
+        "info": {
+            "action": 31,
+            "angle": 90,
+            "max range": 15,
+            "max targets": 1,
+            "min range": 0,
+            "target_enemy": 1
+        },
+        "kids": {
+            "31": {
+                "name": {
+                    "templateID": 17,
+                    "behaviorTemplateName": "Knockback",
+                    "effectID": 23
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 45,
+                    "strength": 50
+                },
+                "kids": {}
+            }
+        }
+    }
+}

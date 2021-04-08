@@ -1,0 +1,54 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 34412
+    },
+    "delay": {
+        "initial_value": 1
+    },
+    "num_intervals": {
+        "initial_value": 10
+    },
+    "34411": {
+        "name": {
+            "templateID": 12,
+            "behaviorTemplateName": "Over Time",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 34412,
+            "delay": 1,
+            "num_intervals": 10
+        },
+        "kids": {
+            "34412": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

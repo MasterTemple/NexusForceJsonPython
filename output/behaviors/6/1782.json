@@ -1,0 +1,92 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 1781
+    },
+    "behavior 2": {
+        "initial_value": 1780
+    },
+    "behavior 3": {
+        "initial_value": 1779
+    },
+    "behavior 4": {
+        "initial_value": 1785
+    },
+    "1782": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 1781,
+            "behavior 2": 1780,
+            "behavior 3": 1779,
+            "behavior 4": 1785
+        },
+        "kids": {
+            "1781": {
+                "name": {
+                    "templateID": 22,
+                    "behaviorTemplateName": "RepairArmor",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "armor": 1
+                },
+                "kids": {}
+            },
+            "1780": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": 1
+                },
+                "kids": {}
+            },
+            "1779": {
+                "name": {
+                    "templateID": 5,
+                    "behaviorTemplateName": "Heal",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "health": 1
+                },
+                "kids": {}
+            },
+            "1785": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 581
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

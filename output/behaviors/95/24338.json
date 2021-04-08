@@ -1,0 +1,115 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 24339
+    },
+    "behavior 2": {
+        "initial_value": 24341
+    },
+    "behavior 3": {
+        "initial_value": 24294
+    },
+    "behavior 4": {
+        "initial_value": 29593
+    },
+    "24338": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 24339,
+            "behavior 2": 24341,
+            "behavior 3": 24294,
+            "behavior 4": 29593
+        },
+        "kids": {
+            "24339": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 24340,
+                    "duration": 0
+                },
+                "kids": {
+                    "24340": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 0,
+                            "cant_interact": 0,
+                            "cant_move": 1,
+                            "cant_turn": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "24341": {
+                "name": {
+                    "templateID": 17,
+                    "behaviorTemplateName": "Knockback",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 10,
+                    "strength": 2
+                },
+                "kids": {}
+            },
+            "24294": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "29593": {
+                "name": {
+                    "templateID": 55,
+                    "behaviorTemplateName": "Taunt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "threat to add": 25
+                },
+                "kids": {}
+            }
+        }
+    }
+}

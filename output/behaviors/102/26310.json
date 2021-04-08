@@ -1,0 +1,78 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 26309
+    },
+    "max targets": {
+        "initial_value": 20
+    },
+    "radius": {
+        "initial_value": 30
+    },
+    "target_enemy": {
+        "initial_value": 0
+    },
+    "target_friend": {
+        "initial_value": 1
+    },
+    "target_self": {
+        "initial_value": 1
+    },
+    "target_team": {
+        "initial_value": 1
+    },
+    "use_target_as_caster": {
+        "initial_value": 0
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "26310": {
+        "name": {
+            "templateID": 7,
+            "behaviorTemplateName": "AoE",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 26309,
+            "max targets": 20,
+            "radius": 30,
+            "target_enemy": 0,
+            "target_friend": 1,
+            "target_self": 1,
+            "target_team": 1,
+            "use_target_as_caster": 0,
+            "use_target_position": 0
+        },
+        "kids": {
+            "26309": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 5760
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": 10
+                },
+                "kids": {}
+            }
+        }
+    }
+}

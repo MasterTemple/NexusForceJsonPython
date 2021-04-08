@@ -1,0 +1,81 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 19757
+    },
+    "behavior 2": {
+        "initial_value": 19738
+    },
+    "19759": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 19757,
+            "behavior 2": 19738
+        },
+        "kids": {
+            "19757": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 4509
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "19738": {
+                "name": {
+                    "templateID": 12,
+                    "behaviorTemplateName": "Over Time",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 967,
+                    "delay": 0,
+                    "num_intervals": 4
+                },
+                "kids": {
+                    "967": {
+                        "name": {
+                            "templateID": 40,
+                            "behaviorTemplateName": "ForceMovement",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "duration": 0,
+                            "forward": 0,
+                            "left": 0,
+                            "move_target": 0,
+                            "relative": 1,
+                            "yaw": 0,
+                            "yaw_abs": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

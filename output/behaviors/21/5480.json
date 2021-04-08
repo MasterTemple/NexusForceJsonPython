@@ -1,0 +1,50 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 5477
+    },
+    "duration": {
+        "initial_value": 60
+    },
+    "5480": {
+        "name": {
+            "templateID": 16,
+            "behaviorTemplateName": "Duration",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 5477,
+            "duration": 60
+        },
+        "kids": {
+            "5477": {
+                "name": {
+                    "templateID": 30,
+                    "behaviorTemplateName": "Buff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "run_speed": 1000
+                },
+                "kids": {}
+            }
+        }
+    }
+}

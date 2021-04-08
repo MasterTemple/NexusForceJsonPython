@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 3852
+    },
+    "behavior 2": {
+        "initial_value": 3851
+    },
+    "3853": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 3852,
+            "behavior 2": 3851
+        },
+        "kids": {
+            "3852": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1064
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "3851": {
+                "name": {
+                    "templateID": 25,
+                    "behaviorTemplateName": "LootBuff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "scale": 10
+                },
+                "kids": {}
+            }
+        }
+    }
+}

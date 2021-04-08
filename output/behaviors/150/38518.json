@@ -1,0 +1,97 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 38514
+    },
+    "behavior 2": {
+        "initial_value": 38515
+    },
+    "behavior 3": {
+        "initial_value": 38517
+    },
+    "38518": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 38514,
+            "behavior 2": 38515,
+            "behavior 3": 38517
+        },
+        "kids": {
+            "38514": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 9105
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "38515": {
+                "name": {
+                    "templateID": 34,
+                    "behaviorTemplateName": "SkillCastFailed",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "38517": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 38516,
+                    "duration": 2,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "38516": {
+                        "name": {
+                            "templateID": 15,
+                            "behaviorTemplateName": "Stun",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "cant_attack": 1,
+                            "cant_equip": 1,
+                            "cant_interact": 1,
+                            "cant_jump": 1,
+                            "cant_move": 1,
+                            "cant_turn": 1,
+                            "cant_use_item": 1,
+                            "ignore_immunity": 0,
+                            "stun_caster": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

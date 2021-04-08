@@ -1,0 +1,78 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 28929
+    },
+    "behavior 2": {
+        "initial_value": 28930
+    },
+    "behavior 3": {
+        "initial_value": 28931
+    },
+    "28928": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 28929,
+            "behavior 2": 28930,
+            "behavior 3": 28931
+        },
+        "kids": {
+            "28929": {
+                "name": {
+                    "templateID": 5,
+                    "behaviorTemplateName": "Heal",
+                    "effectID": 6335
+                },
+                "hasKids": true,
+                "info": {
+                    "health": 10
+                },
+                "kids": {}
+            },
+            "28930": {
+                "name": {
+                    "templateID": 22,
+                    "behaviorTemplateName": "RepairArmor",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "armor": 15
+                },
+                "kids": {}
+            },
+            "28931": {
+                "name": {
+                    "templateID": 13,
+                    "behaviorTemplateName": "Imagination",
+                    "effectID": 6336
+                },
+                "hasKids": true,
+                "info": {
+                    "imagination": 25
+                },
+                "kids": {}
+            }
+        }
+    }
+}

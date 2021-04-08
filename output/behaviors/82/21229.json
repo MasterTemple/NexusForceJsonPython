@@ -1,0 +1,142 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 21225
+    },
+    "angle": {
+        "initial_value": 90
+    },
+    "first_within_range": {
+        "initial_value": 7
+    },
+    "max range": {
+        "initial_value": 80
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "miss action": {
+        "initial_value": 21225
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "use_attack_priority": {
+        "initial_value": 1
+    },
+    "use_picked_target": {
+        "initial_value": 1
+    },
+    "21229": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 4855
+        },
+        "hasKids": true,
+        "info": {
+            "action": 21225,
+            "angle": 90,
+            "first_within_range": 7,
+            "max range": 80,
+            "max targets": 1,
+            "min range": 0,
+            "miss action": 21225,
+            "target_enemy": 1,
+            "use_attack_priority": 1,
+            "use_picked_target": 1
+        },
+        "kids": {
+            "21225": {
+                "name": {
+                    "templateID": 18,
+                    "behaviorTemplateName": "AttackDelay",
+                    "effectID": 4854
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 21272,
+                    "delay": 0,
+                    "ignore_interrupts": 1,
+                    "num_intervals": 1
+                },
+                "kids": {
+                    "21272": {
+                        "name": {
+                            "templateID": 2,
+                            "behaviorTemplateName": "TacArc",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 21273,
+                            "angle": 45,
+                            "angle_weight": 0,
+                            "check_env": 1,
+                            "distance_weight": 0,
+                            "far_height": 5,
+                            "far_width": 3,
+                            "height": 2,
+                            "lower_bound": 0,
+                            "max range": 30,
+                            "max targets": 20,
+                            "method": 2,
+                            "min range": 0,
+                            "near_height": 5,
+                            "near_width": 3,
+                            "offset_x": 0,
+                            "offset_y": 0,
+                            "offset_z": 0,
+                            "target_enemy": 1,
+                            "target_friend": 0,
+                            "target_self": 0,
+                            "target_team": 0,
+                            "upper_bound": 5,
+                            "use_attack_priority": 0,
+                            "use_picked_target": 0,
+                            "use_target_position": 0
+                        },
+                        "kids": {
+                            "21273": {
+                                "name": {
+                                    "templateID": 1,
+                                    "behaviorTemplateName": "BasicAttack",
+                                    "effectID": 4862
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "dir_angle_xz": 0,
+                                    "dir_angle_y": 0,
+                                    "dir_force": 12,
+                                    "max damage": 12,
+                                    "min damage": 12,
+                                    "use_caster_velocity": 0,
+                                    "velocity_multiplier": 1
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

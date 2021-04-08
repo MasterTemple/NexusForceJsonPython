@@ -1,0 +1,72 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": true,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "distance": {
+        "initial_value": 6
+    },
+    "LOT_ID": {
+        "initial_value": 14131
+    },
+    "objectRadius": {
+        "initial_value": 3
+    },
+    "offsetX": {
+        "initial_value": 0
+    },
+    "offsetY": {
+        "initial_value": 0
+    },
+    "offsetZ": {
+        "initial_value": 0
+    },
+    "repositionPlayer": {
+        "initial_value": 0
+    },
+    "spawn_fail_action": {
+        "initial_value": 11860
+    },
+    "30588": {
+        "name": {
+            "templateID": 57,
+            "behaviorTemplateName": "SpawnQuickbuild",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "distance": 6,
+            "LOT_ID": 14131,
+            "objectRadius": 3,
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "repositionPlayer": 0,
+            "spawn_fail_action": 11860
+        },
+        "kids": {
+            "11860": {
+                "name": {
+                    "templateID": 34,
+                    "behaviorTemplateName": "SkillCastFailed",
+                    "effectID": 0
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            }
+        }
+    }
+}

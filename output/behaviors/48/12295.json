@@ -1,0 +1,165 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 16089
+    },
+    "behavior 2": {
+        "initial_value": 12296
+    },
+    "charge_time": {
+        "initial_value": 1
+    },
+    "distance_to_target": {
+        "initial_value": 0
+    },
+    "value 1": {
+        "initial_value": 1
+    },
+    "value 2": {
+        "initial_value": 17
+    },
+    "12295": {
+        "name": {
+            "templateID": 44,
+            "behaviorTemplateName": "SwitchMultiple",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 16089,
+            "behavior 2": 12296,
+            "charge_time": 1,
+            "distance_to_target": 0,
+            "value 1": 1,
+            "value 2": 17
+        },
+        "kids": {
+            "16089": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 12298,
+                    "behavior 2": 12301,
+                    "behavior 3": 16088,
+                    "behavior 4": 12297
+                },
+                "kids": {
+                    "12298": {
+                        "name": {
+                            "templateID": 46,
+                            "behaviorTemplateName": "End",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "start_action": 12299
+                        },
+                        "kids": {
+                            "12299": {
+                                "name": {
+                                    "templateID": 45,
+                                    "behaviorTemplateName": "Start",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "action": 12300
+                                },
+                                "kids": {
+                                    "12300": {
+                                        "name": {
+                                            "templateID": 15,
+                                            "behaviorTemplateName": "Stun",
+                                            "effectID": 0
+                                        },
+                                        "hasKids": true,
+                                        "info": {
+                                            "cant_attack": 1,
+                                            "cant_equip": 1,
+                                            "cant_interact": 1,
+                                            "cant_move": 1,
+                                            "cant_turn": 1,
+                                            "stun_caster": 1
+                                        },
+                                        "kids": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "12301": {
+                        "name": {
+                            "templateID": 41,
+                            "behaviorTemplateName": "Interrupt",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "interrupt_attack": 1,
+                            "interrupt_block": 0,
+                            "interrupt_charge": 1,
+                            "target": 0
+                        },
+                        "kids": {}
+                    },
+                    "16088": {
+                        "name": {
+                            "templateID": 42,
+                            "behaviorTemplateName": "AlterCooldown",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "add": 0,
+                            "amount": 0
+                        },
+                        "kids": {}
+                    },
+                    "12297": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 2951
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            },
+            "12296": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 12297,
+                    "behavior 2": 12298,
+                    "behavior 3": 12301
+                },
+                "kids": {}
+            }
+        }
+    }
+}

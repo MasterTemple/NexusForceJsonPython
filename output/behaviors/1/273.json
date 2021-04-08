@@ -1,0 +1,50 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 272
+    },
+    "duration": {
+        "initial_value": 60
+    },
+    "273": {
+        "name": {
+            "templateID": 16,
+            "behaviorTemplateName": "Duration",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 272,
+            "duration": 60
+        },
+        "kids": {
+            "272": {
+                "name": {
+                    "templateID": 35,
+                    "behaviorTemplateName": "ImitationSkunkStink",
+                    "effectID": 302
+                },
+                "hasKids": true,
+                "info": {
+                    "effect_id": 302
+                },
+                "kids": {}
+            }
+        }
+    }
+}

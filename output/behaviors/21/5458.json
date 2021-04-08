@@ -1,0 +1,95 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 5459
+    },
+    "behavior 2": {
+        "initial_value": 5460
+    },
+    "behavior 3": {
+        "initial_value": 5475
+    },
+    "5458": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 5459,
+            "behavior 2": 5460,
+            "behavior 3": 5475
+        },
+        "kids": {
+            "5459": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 1382
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "5460": {
+                "name": {
+                    "templateID": 41,
+                    "behaviorTemplateName": "Interrupt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "interrupt_attack": 1,
+                    "interrupt_block": 0,
+                    "interrupt_charge": 1,
+                    "target": 1
+                },
+                "kids": {}
+            },
+            "5475": {
+                "name": {
+                    "templateID": 12,
+                    "behaviorTemplateName": "Over Time",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 963,
+                    "delay": 3,
+                    "num_intervals": 3
+                },
+                "kids": {
+                    "963": {
+                        "name": {
+                            "templateID": 42,
+                            "behaviorTemplateName": "AlterCooldown",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "add": 0,
+                            "amount": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

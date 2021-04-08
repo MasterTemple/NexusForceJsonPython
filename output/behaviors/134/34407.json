@@ -1,0 +1,92 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 34408
+    },
+    "include_faction": {
+        "initial_value": 1
+    },
+    "max targets": {
+        "initial_value": 20
+    },
+    "radius": {
+        "initial_value": 7
+    },
+    "target_enemy": {
+        "initial_value": 0
+    },
+    "target_friend": {
+        "initial_value": 0
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "use_target_as_caster": {
+        "initial_value": 0
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "34407": {
+        "name": {
+            "templateID": 7,
+            "behaviorTemplateName": "AoE",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 34408,
+            "include_faction": 1,
+            "max targets": 20,
+            "radius": 7,
+            "target_enemy": 0,
+            "target_friend": 0,
+            "target_self": 0,
+            "target_team": 0,
+            "use_target_as_caster": 0,
+            "use_target_position": 0
+        },
+        "kids": {
+            "34408": {
+                "name": {
+                    "templateID": 37,
+                    "behaviorTemplateName": "ApplyBuff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add_immunity": 0,
+                    "buff_id": 36,
+                    "cancel_on_damaged": 0,
+                    "cancel_on_death": 1,
+                    "cancel_on_logout": 1,
+                    "cancel_on_remove_buff": 1,
+                    "cancel_on_ui": 1,
+                    "cancel_on_unequip": 0,
+                    "cancel_on_zone": 1,
+                    "duration_secs": 15,
+                    "target_caster": 0
+                },
+                "kids": {}
+            }
+        }
+    }
+}

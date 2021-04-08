@@ -1,0 +1,206 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            14738
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            9
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        12288
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 35067
+    },
+    "behavior 2": {
+        "initial_value": 35068
+    },
+    "35066": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 35067,
+            "behavior 2": 35068
+        },
+        "kids": {
+            "35067": {
+                "name": {
+                    "templateID": 39,
+                    "behaviorTemplateName": "ChangeOrientation",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "angle": 0,
+                    "orient_caster": 1,
+                    "relative": 0,
+                    "to_angle": 0,
+                    "to_target": 1
+                },
+                "kids": {}
+            },
+            "35068": {
+                "name": {
+                    "templateID": 18,
+                    "behaviorTemplateName": "AttackDelay",
+                    "effectID": 7653
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 35069,
+                    "delay": 0,
+                    "ignore_interrupts": 1,
+                    "num_intervals": 1
+                },
+                "kids": {
+                    "35069": {
+                        "name": {
+                            "templateID": 2,
+                            "behaviorTemplateName": "TacArc",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 35070,
+                            "angle": 45,
+                            "angle_weight": 5,
+                            "check_env": 0,
+                            "distance_weight": 1,
+                            "height": 2,
+                            "lower_bound": -15,
+                            "max range": 40,
+                            "max targets": 1,
+                            "method": 1,
+                            "min range": 0,
+                            "miss action": 35070,
+                            "offset_x": 0,
+                            "offset_y": 0,
+                            "offset_z": 0,
+                            "target_enemy": 1,
+                            "target_friend": 0,
+                            "target_self": 0,
+                            "target_team": 0,
+                            "upper_bound": 15,
+                            "use_attack_priority": 1,
+                            "use_picked_target": 0,
+                            "use_target_position": 0
+                        },
+                        "kids": {
+                            "35070": {
+                                "name": {
+                                    "templateID": 4,
+                                    "behaviorTemplateName": "ProjectileAttack",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "clear_provided_target": 0,
+                                    "LOT_ID": 14738,
+                                    "max_distance": 43,
+                                    "offset_x": 0,
+                                    "offset_y": 3,
+                                    "offset_z": 0,
+                                    "projectile_speed": 75,
+                                    "projectile_type": 2,
+                                    "rotate_x_degrees": 0,
+                                    "spread_angle": 0,
+                                    "spread_count": 0,
+                                    "spread_z_load_fudge": 0,
+                                    "track_radius": 5,
+                                    "track_target": 1,
+                                    "use_high_arc": 0,
+                                    "use_mouseposit": 0,
+                                    "use_prediction": 0
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "12288": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 12289,
+            "behavior 2": 12290
+        },
+        "kids": {
+            "12289": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 2969
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "12290": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 12291,
+                    "max targets": 20,
+                    "radius": 5,
+                    "target_enemy": 1,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "12291": {
+                        "name": {
+                            "templateID": 1,
+                            "behaviorTemplateName": "BasicAttack",
+                            "effectID": 2947
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "dir_angle_xz": 0,
+                            "dir_angle_y": 0,
+                            "dir_force": 7,
+                            "max damage": 9,
+                            "min damage": 9,
+                            "use_caster_velocity": 0,
+                            "velocity_multiplier": 1
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

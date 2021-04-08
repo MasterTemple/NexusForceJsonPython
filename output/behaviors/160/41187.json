@@ -1,0 +1,87 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            16727
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        null
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 41188
+    },
+    "delay": {
+        "initial_value": 0
+    },
+    "ignore_interrupts": {
+        "initial_value": 0
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "41187": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 9752
+        },
+        "hasKids": true,
+        "info": {
+            "action": 41188,
+            "delay": 0,
+            "ignore_interrupts": 0,
+            "num_intervals": 1
+        },
+        "kids": {
+            "41188": {
+                "name": {
+                    "templateID": 4,
+                    "behaviorTemplateName": "ProjectileAttack",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "clear_provided_target": 1,
+                    "LOT_ID": 16727,
+                    "max_distance": 43,
+                    "offset_x": 0,
+                    "offset_y": 3,
+                    "offset_z": 0,
+                    "projectile_speed": 100,
+                    "projectile_type": 2,
+                    "rotate_x_degrees": 0,
+                    "spread_angle": 0,
+                    "spread_count": 0,
+                    "spread_z_load_fudge": 0,
+                    "track_radius": 5,
+                    "track_target": 0,
+                    "use_high_arc": 0,
+                    "use_mouseposit": 0,
+                    "use_prediction": 0
+                },
+                "kids": {}
+            }
+        }
+    },
+    "null": {
+        "hasKids": false,
+        "info": {},
+        "kids": {}
+    }
+}

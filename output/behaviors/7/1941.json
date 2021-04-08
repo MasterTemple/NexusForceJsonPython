@@ -1,0 +1,61 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 1944
+    },
+    "1941": {
+        "name": {
+            "templateID": 45,
+            "behaviorTemplateName": "Start",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 1944
+        },
+        "kids": {
+            "1944": {
+                "name": {
+                    "templateID": 53,
+                    "behaviorTemplateName": "Block",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "block_damage": 1,
+                    "block_knockbacks": 1,
+                    "block_stuns": 1,
+                    "break_action": 4116,
+                    "num_attacks_can_block": 2
+                },
+                "kids": {
+                    "4116": {
+                        "name": {
+                            "templateID": 8,
+                            "behaviorTemplateName": "PlayEffect",
+                            "effectID": 3017
+                        },
+                        "hasKids": false,
+                        "info": {},
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

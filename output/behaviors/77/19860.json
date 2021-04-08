@@ -1,0 +1,91 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 19856
+    },
+    "behavior 2": {
+        "initial_value": 19854
+    },
+    "19860": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 19856,
+            "behavior 2": 19854
+        },
+        "kids": {
+            "19856": {
+                "name": {
+                    "templateID": 15,
+                    "behaviorTemplateName": "Stun",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "cant_attack": 1,
+                    "cant_equip": 1,
+                    "cant_interact": 1,
+                    "cant_move": 1,
+                    "cant_turn": 1,
+                    "cant_use_item": 1,
+                    "stun_caster": 1
+                },
+                "kids": {}
+            },
+            "19854": {
+                "name": {
+                    "templateID": 14,
+                    "behaviorTemplateName": "Target Caster",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 19822
+                },
+                "kids": {
+                    "19822": {
+                        "name": {
+                            "templateID": 9,
+                            "behaviorTemplateName": "Immunity",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "immune_basic_attack": 0,
+                            "immune_damage_over_time": 0,
+                            "immune_interrupt": 1,
+                            "immune_knockback": 1,
+                            "immune_quickbuild_interrupts": 0,
+                            "immune_speed": 1,
+                            "immune_stun_attack": 0,
+                            "immune_stun_equip": 0,
+                            "immune_stun_interact": 1,
+                            "immune_stun_move": 0,
+                            "immune_stun_rotate": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

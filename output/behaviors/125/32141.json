@@ -1,0 +1,68 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 32050
+    },
+    "delay": {
+        "initial_value": 0
+    },
+    "ignore_interrupts": {
+        "initial_value": 1
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "32141": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 7021
+        },
+        "hasKids": true,
+        "info": {
+            "action": 32050,
+            "delay": 0,
+            "ignore_interrupts": 1,
+            "num_intervals": 1
+        },
+        "kids": {
+            "32050": {
+                "name": {
+                    "templateID": 37,
+                    "behaviorTemplateName": "ApplyBuff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add_immunity": 0,
+                    "buff_id": 25,
+                    "cancel_on_damaged": 0,
+                    "cancel_on_death": 1,
+                    "cancel_on_logout": 0,
+                    "cancel_on_remove_buff": 1,
+                    "cancel_on_ui": 0,
+                    "cancel_on_unequip": 0,
+                    "cancel_on_zone": 0,
+                    "duration_secs": 60,
+                    "target_caster": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

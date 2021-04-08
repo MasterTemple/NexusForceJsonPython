@@ -1,0 +1,77 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": true,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 10657
+    },
+    "delay": {
+        "initial_value": 0
+    },
+    "ignore_interrupts": {
+        "initial_value": 1
+    },
+    "num_intervals": {
+        "initial_value": 1
+    },
+    "10656": {
+        "name": {
+            "templateID": 18,
+            "behaviorTemplateName": "AttackDelay",
+            "effectID": 2407
+        },
+        "hasKids": true,
+        "info": {
+            "action": 10657,
+            "delay": 0,
+            "ignore_interrupts": 1,
+            "num_intervals": 1
+        },
+        "kids": {
+            "10657": {
+                "name": {
+                    "templateID": 16,
+                    "behaviorTemplateName": "Duration",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 10658,
+                    "duration": 45,
+                    "originator_is_owner": 0
+                },
+                "kids": {
+                    "10658": {
+                        "name": {
+                            "templateID": 57,
+                            "behaviorTemplateName": "SpawnQuickbuild",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "distance": 5,
+                            "LOT_ID": 9304,
+                            "offsetX": 0,
+                            "offsetY": 0,
+                            "offsetZ": 2
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}

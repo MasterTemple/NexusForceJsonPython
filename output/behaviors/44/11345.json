@@ -1,0 +1,60 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 11343
+    },
+    "behavior 2": {
+        "initial_value": 11344
+    },
+    "11345": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 11343,
+            "behavior 2": 11344
+        },
+        "kids": {
+            "11343": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 2706
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "11344": {
+                "name": {
+                    "templateID": 55,
+                    "behaviorTemplateName": "Taunt",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "threat to add": 250
+                },
+                "kids": {}
+            }
+        }
+    }
+}

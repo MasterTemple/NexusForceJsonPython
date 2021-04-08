@@ -1,0 +1,70 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 32051
+    },
+    "behavior 2": {
+        "initial_value": 32050
+    },
+    "32052": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 32051,
+            "behavior 2": 32050
+        },
+        "kids": {
+            "32051": {
+                "name": {
+                    "templateID": 8,
+                    "behaviorTemplateName": "PlayEffect",
+                    "effectID": 7021
+                },
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "32050": {
+                "name": {
+                    "templateID": 37,
+                    "behaviorTemplateName": "ApplyBuff",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "add_immunity": 0,
+                    "buff_id": 25,
+                    "cancel_on_damaged": 0,
+                    "cancel_on_death": 1,
+                    "cancel_on_logout": 0,
+                    "cancel_on_remove_buff": 1,
+                    "cancel_on_ui": 0,
+                    "cancel_on_unequip": 0,
+                    "cancel_on_zone": 0,
+                    "duration_secs": 60,
+                    "target_caster": 1
+                },
+                "kids": {}
+            }
+        }
+    }
+}

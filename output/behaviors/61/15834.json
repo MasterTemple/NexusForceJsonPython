@@ -1,0 +1,234 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": true,
+        "projectileAttack": true,
+        "damageComboArray": [
+            1,
+            1,
+            1
+        ],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [
+            4794
+        ],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [
+            3
+        ],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [
+        426
+    ],
+    "projectileChargeUpBehaviorIDs": [],
+    "action": {
+        "initial_value": 15835
+    },
+    "angle": {
+        "initial_value": 2890
+    },
+    "angle_weight": {
+        "initial_value": 4
+    },
+    "check_env": {
+        "initial_value": 0
+    },
+    "distance_weight": {
+        "initial_value": 2
+    },
+    "height": {
+        "initial_value": 2
+    },
+    "lower_bound": {
+        "initial_value": -15
+    },
+    "max range": {
+        "initial_value": 40
+    },
+    "max targets": {
+        "initial_value": 1
+    },
+    "method": {
+        "initial_value": 1
+    },
+    "min range": {
+        "initial_value": 0
+    },
+    "miss action": {
+        "initial_value": 15836
+    },
+    "offset_x": {
+        "initial_value": 0
+    },
+    "offset_y": {
+        "initial_value": 0
+    },
+    "offset_z": {
+        "initial_value": 0
+    },
+    "target_enemy": {
+        "initial_value": 1
+    },
+    "target_friend": {
+        "initial_value": 0
+    },
+    "target_self": {
+        "initial_value": 0
+    },
+    "target_team": {
+        "initial_value": 0
+    },
+    "upper_bound": {
+        "initial_value": 15
+    },
+    "use_attack_priority": {
+        "initial_value": 1
+    },
+    "use_picked_target": {
+        "initial_value": 1
+    },
+    "use_target_position": {
+        "initial_value": 0
+    },
+    "15834": {
+        "name": {
+            "templateID": 2,
+            "behaviorTemplateName": "TacArc",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action": 15835,
+            "angle": 2890,
+            "angle_weight": 4,
+            "check_env": 0,
+            "distance_weight": 2,
+            "height": 2,
+            "lower_bound": -15,
+            "max range": 40,
+            "max targets": 1,
+            "method": 1,
+            "min range": 0,
+            "miss action": 15836,
+            "offset_x": 0,
+            "offset_y": 0,
+            "offset_z": 0,
+            "target_enemy": 1,
+            "target_friend": 0,
+            "target_self": 0,
+            "target_team": 0,
+            "upper_bound": 15,
+            "use_attack_priority": 1,
+            "use_picked_target": 1,
+            "use_target_position": 0
+        },
+        "kids": {
+            "15835": {
+                "name": {
+                    "templateID": 3,
+                    "behaviorTemplateName": "And",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "behavior 1": 15825,
+                    "behavior 2": 15836
+                },
+                "kids": {
+                    "15825": {
+                        "name": {
+                            "templateID": 39,
+                            "behaviorTemplateName": "ChangeOrientation",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "duration": 0,
+                            "to_target": 1
+                        },
+                        "kids": {}
+                    },
+                    "15836": {
+                        "name": {
+                            "templateID": 18,
+                            "behaviorTemplateName": "AttackDelay",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 15837,
+                            "delay": 0
+                        },
+                        "kids": {
+                            "15837": {
+                                "name": {
+                                    "templateID": 4,
+                                    "behaviorTemplateName": "ProjectileAttack",
+                                    "effectID": 3665
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "clear_provided_target": 1,
+                                    "LOT_ID": 4794,
+                                    "max_distance": 43,
+                                    "offset_x": 0,
+                                    "offset_y": 3,
+                                    "offset_z": 0,
+                                    "projectile_speed": 100,
+                                    "projectile_type": 2,
+                                    "rotate_x_degrees": 0,
+                                    "spread_angle": 0,
+                                    "spread_count": 0,
+                                    "spread_z_load_fudge": 0,
+                                    "track_radius": 5,
+                                    "track_target": 0,
+                                    "use_high_arc": 0,
+                                    "use_mouseposit": 0,
+                                    "use_prediction": 0
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "426": {
+        "name": {
+            "templateID": 29,
+            "behaviorTemplateName": "Switch",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "action_false": 0,
+            "action_true": 427,
+            "isEnemyFaction": 1
+        },
+        "kids": {
+            "0": {
+                "hasKids": false,
+                "info": {},
+                "kids": {}
+            },
+            "427": {
+                "name": {
+                    "templateID": 1,
+                    "behaviorTemplateName": "BasicAttack",
+                    "effectID": 2
+                },
+                "hasKids": true,
+                "info": {
+                    "max damage": 3,
+                    "min damage": 3
+                },
+                "kids": {}
+            }
+        }
+    }
+}

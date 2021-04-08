@@ -1,0 +1,258 @@
+{
+    "overview": {
+        "hasChargeUp": false,
+        "spawnsObject": false,
+        "spawnsQuickbuild": false,
+        "meleeAttack": false,
+        "projectileAttack": false,
+        "damageComboArray": [],
+        "chargeUpArmorRestore": [],
+        "chargeUpImaginationRestore": [],
+        "projectileLOTs": [],
+        "projectileInfo": {},
+        "projectileDamageComboArray": [],
+        "chargeUpCombo": 0
+    },
+    "projectileBehaviorIDs": [],
+    "projectileChargeUpBehaviorIDs": [],
+    "behavior 1": {
+        "initial_value": 37856
+    },
+    "behavior 2": {
+        "initial_value": 37857
+    },
+    "behavior 3": {
+        "initial_value": 37862
+    },
+    "behavior 4": {
+        "initial_value": 37865
+    },
+    "behavior 5": {
+        "initial_value": 37845
+    },
+    "37855": {
+        "name": {
+            "templateID": 3,
+            "behaviorTemplateName": "And",
+            "effectID": 0
+        },
+        "hasKids": true,
+        "info": {
+            "behavior 1": 37856,
+            "behavior 2": 37857,
+            "behavior 3": 37862,
+            "behavior 4": 37865,
+            "behavior 5": 37845
+        },
+        "kids": {
+            "37856": {
+                "name": {
+                    "templateID": 46,
+                    "behaviorTemplateName": "End",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "start_action": 37831,
+                    "use_target": 0
+                },
+                "kids": {
+                    "37831": {
+                        "name": {
+                            "templateID": 45,
+                            "behaviorTemplateName": "Start",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 37832,
+                            "use_target": 0
+                        },
+                        "kids": {
+                            "37832": {
+                                "name": {
+                                    "templateID": 8,
+                                    "behaviorTemplateName": "PlayEffect",
+                                    "effectID": 8958
+                                },
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "37857": {
+                "name": {
+                    "templateID": 45,
+                    "behaviorTemplateName": "Start",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37858,
+                    "use_target": 0
+                },
+                "kids": {
+                    "37858": {
+                        "name": {
+                            "templateID": 3,
+                            "behaviorTemplateName": "And",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "behavior 1": 37859,
+                            "behavior 2": 37860,
+                            "behavior 3": 37861
+                        },
+                        "kids": {
+                            "37859": {
+                                "name": {
+                                    "templateID": 8,
+                                    "behaviorTemplateName": "PlayEffect",
+                                    "effectID": 8963
+                                },
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            },
+                            "37860": {
+                                "name": {
+                                    "templateID": 8,
+                                    "behaviorTemplateName": "PlayEffect",
+                                    "effectID": 8964
+                                },
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            },
+                            "37861": {
+                                "name": {
+                                    "templateID": 8,
+                                    "behaviorTemplateName": "PlayEffect",
+                                    "effectID": 8965
+                                },
+                                "hasKids": false,
+                                "info": {},
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "37862": {
+                "name": {
+                    "templateID": 18,
+                    "behaviorTemplateName": "AttackDelay",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37863,
+                    "delay": 0,
+                    "ignore_interrupts": 0,
+                    "num_intervals": 20
+                },
+                "kids": {
+                    "37863": {
+                        "name": {
+                            "templateID": 7,
+                            "behaviorTemplateName": "AoE",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "action": 37864,
+                            "include_faction": 500,
+                            "max targets": 20,
+                            "radius": 3,
+                            "target_enemy": 0,
+                            "target_friend": 0,
+                            "target_self": 0,
+                            "target_team": 0,
+                            "use_target_as_caster": 0,
+                            "use_target_position": 0
+                        },
+                        "kids": {
+                            "37864": {
+                                "name": {
+                                    "templateID": 32,
+                                    "behaviorTemplateName": "Skill Event",
+                                    "effectID": 0
+                                },
+                                "hasKids": true,
+                                "info": {
+                                    "target_caster": 0
+                                },
+                                "kids": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "37865": {
+                "name": {
+                    "templateID": 7,
+                    "behaviorTemplateName": "AoE",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37866,
+                    "include_faction": 500,
+                    "max targets": 20,
+                    "radius": 3,
+                    "target_enemy": 0,
+                    "target_friend": 0,
+                    "target_self": 0,
+                    "target_team": 0,
+                    "use_target_as_caster": 0,
+                    "use_target_position": 0
+                },
+                "kids": {
+                    "37866": {
+                        "name": {
+                            "templateID": 32,
+                            "behaviorTemplateName": "Skill Event",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "target_caster": 0
+                        },
+                        "kids": {}
+                    }
+                }
+            },
+            "37845": {
+                "name": {
+                    "templateID": 45,
+                    "behaviorTemplateName": "Start",
+                    "effectID": 0
+                },
+                "hasKids": true,
+                "info": {
+                    "action": 37846,
+                    "use_target": 0
+                },
+                "kids": {
+                    "37846": {
+                        "name": {
+                            "templateID": 36,
+                            "behaviorTemplateName": "ChangeIdleFlags",
+                            "effectID": 0
+                        },
+                        "hasKids": true,
+                        "info": {
+                            "flags_off": 0,
+                            "flags_on": 22
+                        },
+                        "kids": {}
+                    }
+                }
+            }
+        }
+    }
+}
