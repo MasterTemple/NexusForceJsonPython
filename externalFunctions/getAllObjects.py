@@ -1,4 +1,4 @@
-def length(conn):
+def getObjects(conn):
     cur = conn.cursor()
     cur.execute("SELECT id, type FROM Objects")
     rows = cur.fetchall()

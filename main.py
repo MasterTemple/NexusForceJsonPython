@@ -30,6 +30,7 @@ import functions.getKitData as getKitData
 import functions.packageFile as packageFile
 import functions.activityFile as activityFile
 import functions.getDamageCombo as getDamageCombo
+import functions.references as references
 
 import externalFunctions.parseXML as xml
 
@@ -194,6 +195,24 @@ def runSetup(db):
     writeAnyFile("behaviorData", behaviorData, False, 'search')
 
 
+
+def runReferences():
+    # objectsData = references.getInfo(db)
+    # # ltiData = ltiFile.getInfo(db, lootTableIndex)
+    # # ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
+    # writeAnyFile("objects", objectsData, False, 'references')
+    ObjectsData = references.getObjects(db)
+    writeAnyFile("Objects", ObjectsData, False, 'references')
+    ItemsData = references.getItems(db)
+    writeAnyFile("Items", ItemsData, False, 'references')
+    NPCsData = references.getNPCs(db)
+    writeAnyFile("NPCs", NPCsData, False, 'references')
+    BricksData = references.getBricks(db)
+    writeAnyFile("Bricks", BricksData, False, 'references')
+    MissionsData = references.getMissions(db)
+    writeAnyFile("Missions", MissionsData, False, 'references')
+
+
 def runModify():
 
     with open('work/modifyFile.json') as f:
@@ -333,11 +352,11 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
-    objectIDsList = allLists['objectIDsList']
-
-
-    # behaviorsList = behaviorsList[behaviorsList.index(11175):]
-    objectIDsList = objectIDsList[objectIDsList.index(12651):]
+    # objectIDsList = allLists['objectIDsList']
+    #
+    #
+    # # behaviorsList = behaviorsList[behaviorsList.index(11175):]
+    # objectIDsList = objectIDsList[objectIDsList.index(12651):]
 
     #behaviorsList = allLists['behaviorsList']
     # behaviorsList = behaviorsList[behaviorsList.index(11175):]
@@ -386,7 +405,10 @@ for func in config['functionsInfo']:
             sys.stdout.flush()
             eval(func[1])(id)
     else:
-        eval(func[1])(eval(func[2]))
+        try:
+            eval(func[1])(eval(func[2]))
+        except:
+            eval(func[1])()
     print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] ' + func[0] + ": 100%")
     #    print("\r" + func[0] + ": 100% at "+str(now.strftime("%H:%M:%S")) + " -> " + str(previous))
 
