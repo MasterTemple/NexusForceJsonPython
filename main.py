@@ -337,7 +337,7 @@ elif config['justUpdateGivenInfo'] == True:
 
 
     # behaviorsList = behaviorsList[behaviorsList.index(11175):]
-    objectIDsList = objectIDsList[objectIDsList.index(4108):]
+    objectIDsList = objectIDsList[objectIDsList.index(12651):]
 
     #behaviorsList = allLists['behaviorsList']
     # behaviorsList = behaviorsList[behaviorsList.index(11175):]

@@ -12,27 +12,29 @@ def getInfo(conn, data, objectID):
     rows = cur.fetchall()
 
     for row in rows:
-        if row[4] == objectID or row[6] == objectID or row[8] == objectID or row[10] == objectID:
-            if row[12] == 1:
-                missionData = missionInfo.getMissionInfo(row[0], root)
-            if row[12] == 0:
-                missionData = missionInfo.getAchievementInfo(row[0], root)
-            data['earn'][row[0]] = {
-                "defined_type": row[1],
-                "defined_subtype": row[2],
-                "missionName": missionData['name'],
-                "missionDescription": missionData['description'],
-                "isMission": row[12]
-            }
+        try:
+            if row[4] == objectID or row[6] == objectID or row[8] == objectID or row[10] == objectID:
+                if row[12] == 1:
+                    missionData = missionInfo.getMissionInfo(row[0], root)
+                if row[12] == 0:
+                    missionData = missionInfo.getAchievementInfo(row[0], root)
+                data['earn'][row[0]] = {
+                    "defined_type": row[1],
+                    "defined_subtype": row[2],
+                    "missionName": missionData['name'],
+                    "missionDescription": missionData['description'],
+                    "isMission": row[12]
+                }
 
-            if objectID == row[4]:
-                data['earn'][row[0]]['rewardCount'] = row[5]
-            if objectID == row[6]:
-                data['earn'][row[0]]['rewardCount'] = row[7]
-            if objectID == row[8]:
-                data['earn'][row[0]]['rewardCount'] = row[9]
-            if objectID == row[10]:
-                data['earn'][row[0]]['rewardCount'] = row[11]
-
+                if objectID == row[4]:
+                    data['earn'][row[0]]['rewardCount'] = row[5]
+                if objectID == row[6]:
+                    data['earn'][row[0]]['rewardCount'] = row[7]
+                if objectID == row[8]:
+                    data['earn'][row[0]]['rewardCount'] = row[9]
+                if objectID == row[10]:
+                    data['earn'][row[0]]['rewardCount'] = row[11]
+        except:
+            pass
     return data
 
