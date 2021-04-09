@@ -17,6 +17,8 @@ def getAchievementInfo(id, root):
     name = 'Missions_'+str(id)+'_name'
     inProgress = 'MissionText_'+str(id)+'_description'
     mission = {}
+    mission['name'] = "Unavailable"
+    mission['description'] = "Unavailable"
     for child in root[1]:
         if child.attrib['id'] == name:
             #print(child[0].text)

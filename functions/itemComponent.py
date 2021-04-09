@@ -34,7 +34,8 @@ def getInfo(conn, data, itemComponentID):
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].split(';')
                 # data['itemComponent']['subItems'] = data['itemComponent']['subItems'].replace(' ', '')
                 try:
-                    data['itemComponent']['subItems'] = row[31].replace(" ", "")
+                    data['itemComponent']['subItems'] = row[31].replace(" ", ";")
+                    data['itemComponent']['subItems'] = row[31].replace(",", ";")
 
                     #data['itemComponent']['subItems'] = [i for i in data['itemComponent']['subItems'].replace(" ", "")]
                     #print(data['itemComponent']['subItems'])

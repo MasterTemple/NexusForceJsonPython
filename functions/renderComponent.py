@@ -10,8 +10,8 @@ def getInfo(conn, data, comp_id):
             break
 
     if icon_path is not None:
-        icon_path = icon_path.replace('DDS', 'png')
-        icon_path = icon_path.replace('dds', 'png')
+        icon_path = icon_path.replace('.DDS', '.png')
+        icon_path = icon_path.replace('.dds', '.png')
         icon_path = icon_path.replace("\\\\", "/")
         icon_path = icon_path.replace("\\", "/")
         icon_path = icon_path.replace(' ', "%20")

@@ -88,7 +88,7 @@ def runObjects(objectID):
     try:
         itemComp.getInfo(db, objectData, objectData['components'][11])
         proxy.getInfo(db, objectData, objectID)
-
+        #print(objectData)
     except:
         pass
     try:
@@ -211,6 +211,9 @@ def runReferences():
     writeAnyFile("Bricks", BricksData, False, 'references')
     MissionsData = references.getMissions(db)
     writeAnyFile("Missions", MissionsData, False, 'references')
+    MissionsLocationData = references.getMissionLocation()
+    writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
+
 
 
 def runModify():
@@ -256,6 +259,8 @@ if config['startFromFdb'] == True:
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 # listObject = {}
+
+
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     import externalFunctions.getAllLootTableIndexes as glti
@@ -408,7 +413,8 @@ for func in config['functionsInfo']:
         try:
             eval(func[1])(eval(func[2]))
         except:
-            eval(func[1])()
+            pass
+            #eval(func[1])()
     print("\r" +'[' + str(now.strftime("%H:%M:%S")) + '] ' + func[0] + ": 100%")
     #    print("\r" + func[0] + ": 100% at "+str(now.strftime("%H:%M:%S")) + " -> " + str(previous))
 
