@@ -253,6 +253,7 @@ def bigCalculate(data):
             totalItems = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(rarityVal)]
             percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
             howManyToKill = round(1.0/percent)
+            #print(percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
                 "percent": percent*100,
                 "howManyToKill": howManyToKill

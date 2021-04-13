@@ -5,12 +5,19 @@ def getObjects(conn):
     array = []
     for row in rows:
         if row[0] not in array:
+            if row[3] is None:
+                displayName = row[1]
+            else:
+                displayName = row[3]
             array.append({
                 "id": row[0],
                 "name": row[1],
                 "type": row[2],
-                "displayName": row[3]
+                "displayName": displayName
             })
+        else:
+            pass
+            #print(row[0])
     return array
 
 
@@ -21,11 +28,15 @@ def getItems(conn):
     array = []
     for row in rows:
         if row[0] not in array and (row[2] == 'Loot'):
+            if row[3] is None:
+                displayName = row[1]
+            else:
+                displayName = row[3]
             array.append({
                 "id": row[0],
                 "name": row[1],
                 "type": row[2],
-                "displayName": row[3]
+                "displayName": displayName
             })
     return array
 
@@ -76,6 +87,8 @@ def getMissions(conn):
             missionInfo = xml.getMissionInfo(row[0], root)
         if row[3] == 0:
             missionInfo = xml.getAchievementInfo(row[0], root)
+
+
 
         array.append({
             "id": row[0],

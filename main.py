@@ -147,7 +147,8 @@ def runEnemy(enemyID):
     getComps.getInfo(db, enemyData, enemyID)
     enemyDrops.getInfo(db, enemyData, enemyID)
     enemySkills.getInfo(db, enemyData, enemyID)
-    enemyRTI.getInfo(db, enemyData, enemyID)
+    if enemyData['doesntDropAnything'] == False:
+        enemyRTI.getInfo(db, enemyData, enemyID)
     writeAnyFile(enemyID, enemyData, False, 'enemies')
 
 
@@ -230,7 +231,7 @@ def runModify():
         with open(config['path']+'/'+modifyFile['data'][data]['file']) as f:
             json.dump(modifyFile, f, ensure_ascii=False, indent=4)
 
-    print(editFile)
+    #print(editFile)
 
 
 
@@ -260,6 +261,7 @@ file = "work/cdclient.sqlite"
 db = create_connection(file)
 # listObject = {}
 
+#runReferences()
 
 
 if config['startFromSqlite'] == True or config['startFromFdb'] == True:
@@ -357,6 +359,8 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+    #enemyList = allLists['enemyList']
+
     # objectIDsList = allLists['objectIDsList']
     #
     #

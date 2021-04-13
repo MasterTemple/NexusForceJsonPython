@@ -1,14 +1,18 @@
 def getInfo(conn, data, objectID):
-    data['drop'] = {
-        "DestructibleComponent": data['components'][7]
-    }
-    data['drop']['LootMatrixIndex'] = {}
-    data['drop']['LootTableIndexes'] = []
+    try:
+        data['doesntDropAnything'] = False
+        data['drop'] = {
+            "DestructibleComponent": data['components'][7]
+        }
+        data['drop']['LootMatrixIndex'] = {}
+        data['drop']['LootTableIndexes'] = []
 
-    getLMIfromDC(conn, data)
-    getLTIFromLMI(conn, data)
-    lootTableIndexRange(data)
-    editLootTableIndexes(data)
+        getLMIfromDC(conn, data)
+        getLTIFromLMI(conn, data)
+        lootTableIndexRange(data)
+        editLootTableIndexes(data)
+    except:
+        data['doesntDropAnything'] = True
 
     #data = getLTI(conn, data, objectID)
     #data = getLMI(conn, data)
