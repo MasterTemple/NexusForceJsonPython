@@ -33,6 +33,7 @@ def makePretty(conn, data):
     try:
         data = bigCalculate(data)
     except:
+        data = bigCalculate(data)
         pass
     try:
         data = lootTableIndexRange(data)
@@ -251,7 +252,13 @@ def bigCalculate(data):
             chanceVal = chanceVal * (100.0/chanceSum)
             percentVal = data['buyAndDrop']['LootMatrixIndexes'][lmi]['percent']
             totalItems = data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(rarityVal)]
-            percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
+            #percent = round((percentVal/100.0) * (chanceVal/100.0) * (1.0/totalItems), 6)
+            #print(percentVal/100.0)
+            #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(data['buyAndDrop']['LootMatrixIndexes'][lmi]['RarityTableIndex'])]['chance']/100.0)
+            #print(1.0/data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['RarityTableIndex'])])
+
+            percent =round((percentVal/100.0) * (data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(data['itemComponent']['rarity'])]['chance']/100.0) * (1.0/data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(data['itemComponent']['rarity'])]), 6)
+            #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'], percentVal, chanceVal, totalItems)
             howManyToKill = round(1.0/percent)
             #print(percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
