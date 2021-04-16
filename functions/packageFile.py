@@ -28,8 +28,8 @@ def rarityTable(conn, data, lti, rti):
 
     return data
 
-def getInfo(conn, packageID):
-    data = {"id": packageID}
+def getInfo(conn, packageID, data):
+    data['id'] = packageID
     data['comp_val'] = getPackageComponentValue(conn, packageID)
     data['LootMatrixIndex'] = getLMI(conn, data['comp_val'])
     data['LootMatrixIndexInfo'] = {}

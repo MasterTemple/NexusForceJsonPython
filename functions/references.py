@@ -88,12 +88,15 @@ def getMissions(conn):
         if row[3] == 0:
             missionInfo = xml.getAchievementInfo(row[0], root)
 
+        subtype = row[2]
+        if subtype is None:
+            subtype = row[1]
 
 
         array.append({
             "id": row[0],
             "defined_type": row[1],
-            "defined_subtype": row[2],
+            "defined_subtype": subtype,
             "name": missionInfo['name'],
             "description": missionInfo['description'],
             "isMission": row[3]
@@ -129,6 +132,14 @@ def getMissionLocation():
 
 
     for mission in missionFile:
+
+        if mission['defined_subtype'] is None:
+            #print(mission['defined_subtype'])
+            mission['defined_subtype'] = mission['defined_type']
+            #print(mission['defined_subtype'])
+
+
+
         if mission['isMission'] == 0:
             missionData['Achievements'][mission['defined_type']] = {}
 
@@ -138,24 +149,50 @@ def getMissionLocation():
             missionData['Missions'][mission['defined_type']] = {}
             missionData['Missions'][mission['defined_type']][mission['defined_subtype']] = []
 
+    # for mission in missionFile:
+    #     if mission['isMission'] == 0:
+    #
+    #         try:
+    #             missionData['Achievements'][mission['defined_type']][mission['defined_subtype']].append({
+    #                 "id": mission['id'],
+    #                 "name": mission['name'],
+    #                 "description": mission['description']
+    #
+    #             })
+    #         except:
+    #             missionData['Achievements'][mission['defined_type']][mission['defined_subtype']] = []
+    #
+    #             missionData['Achievements'][mission['defined_type']][mission['defined_subtype']].append({
+    #                 "id": mission['id'],
+    #                 "name": mission['name'],
+    #                 "description": mission['description']
+    #
+    #             })
+    #
+    #
+    #     if mission['isMission'] == 1:
+    #
+    #         try:
+    #             missionData['Missions'][mission['defined_type']][mission['defined_subtype']].append({
+    #                 "id": mission['id'],
+    #                 "name": mission['name'],
+    #                 "description": mission['description']
+    #
+    #             })
+    #         except:
+    #             missionData['Missions'][mission['defined_type']][mission['defined_subtype']] = []
+    #             missionData['Missions'][mission['defined_type']][mission['defined_subtype']].append({
+    #                 "id": mission['id'],
+    #                 "name": mission['name'],
+    #                 "description": mission['description']
+    #
+    #             })
     for mission in missionFile:
         if mission['isMission'] == 0:
-            # if mission['defined_subtype'] is not None:
-            #     print(mission['description'])
-            #     missionData['Achievements'][mission['defined_type']][mission['defined_subtype']].append({
-            #         "id": mission['id'],
-            #         "name": mission['name'],
-            #         "description": mission['description']
-            #
-            #     })
-            # else:
-            #     missionData['Achievements'][mission['defined_type']].append({
-            #         "id": mission['id'],
-            #         "name": mission['name'],
-            #         "description": mission['description']
-            #
-            #     })
-            #print(mission)
+            if mission['defined_subtype'] is None:
+                mission['defined_subtype'] = mission['defined_type']
+
+            #print(mission['defined_type'], mission['defined_subtype'])
             try:
                 missionData['Achievements'][mission['defined_type']][mission['defined_subtype']].append({
                     "id": mission['id'],
@@ -163,9 +200,8 @@ def getMissionLocation():
                     "description": mission['description']
 
                 })
-            except:
+            except KeyError:
                 missionData['Achievements'][mission['defined_type']][mission['defined_subtype']] = []
-
                 missionData['Achievements'][mission['defined_type']][mission['defined_subtype']].append({
                     "id": mission['id'],
                     "name": mission['name'],
@@ -174,21 +210,12 @@ def getMissionLocation():
                 })
 
 
+
         if mission['isMission'] == 1:
-            # if mission['defined_subtype'] is not None:
-            #     missionData['Missions'][mission['defined_type']][mission['defined_subtype']].append({
-            #         "id": mission['id'],
-            #         "name": mission['name'],
-            #         "description": mission['description']
-            #
-            #     })
-            # else:
-            #     missionData['Missions'][mission['defined_type']].append({
-            #         "id": mission['id'],
-            #         "name": mission['name'],
-            #         "description": mission['description']
-            #
-            #     })
+
+            if mission['defined_subtype'] is None:
+                mission['defined_subtype'] = mission['defined_type']
+
             try:
                 missionData['Missions'][mission['defined_type']][mission['defined_subtype']].append({
                     "id": mission['id'],
@@ -196,7 +223,7 @@ def getMissionLocation():
                     "description": mission['description']
 
                 })
-            except:
+            except KeyError:
                 missionData['Missions'][mission['defined_type']][mission['defined_subtype']] = []
                 missionData['Missions'][mission['defined_type']][mission['defined_subtype']].append({
                     "id": mission['id'],
@@ -205,4 +232,31 @@ def getMissionLocation():
 
                 })
 
+
+
+
+
     return missionData
+
+
+def getEnemies(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT id, name, type, displayName FROM Objects")
+    rows = cur.fetchall()
+    array = []
+    for row in rows:
+        if row[0] not in array and (row[2] == 'Enemies'):
+            if row[3] is None:
+                displayName = row[1]
+            else:
+                displayName = row[3]
+            array.append({
+                "id": row[0],
+                "name": row[1],
+                "type": row[2],
+                "displayName": displayName
+            })
+        else:
+            pass
+            #print(row[0])
+    return array

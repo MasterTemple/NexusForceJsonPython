@@ -111,7 +111,12 @@ def runLTIs(lootTableIndex):
 
 
 def runPackages(packageID):
-    packageData = packageFile.getInfo(db, packageID)
+    packageData = objectInfo.getInfo(db, packageID)
+    packageData = packageFile.getInfo(db, packageID, packageData)
+    getComps.getInfo(db, packageData, packageID)
+
+    render.getInfo(db, packageData, packageData['components'][2])
+
     writeAnyFile(packageID, packageData, False, 'packages')
 
 
@@ -143,7 +148,8 @@ def runNPC(npcID):
 
 
 def runEnemy(enemyID):
-    enemyData = {"enemyID": enemyID}
+    enemyData = objectInfo.getInfo(db, enemyID)
+    enemyData["enemyID"] = enemyID
     getComps.getInfo(db, enemyData, enemyID)
     enemyDrops.getInfo(db, enemyData, enemyID)
     enemySkills.getInfo(db, enemyData, enemyID)
@@ -214,6 +220,8 @@ def runReferences():
     writeAnyFile("Missions", MissionsData, False, 'references')
     MissionsLocationData = references.getMissionLocation()
     writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
+    EnemyData = references.getEnemies(db)
+    writeAnyFile("Enemies", EnemyData, False, 'references')
 
 
 
@@ -359,7 +367,10 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+
     #enemyList = allLists['enemyList']
+
+#enemyList = allLists['enemyList']
 
     # objectIDsList = allLists['objectIDsList']
     #
@@ -398,6 +409,13 @@ else:
 """
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
 """
+
+# MissionsData = references.getMissions(db)
+# writeAnyFile("Missions", MissionsData, False, 'references')
+# MissionsLocationData = references.getMissionLocation()
+# writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
+
+
 #print(behaviorsList)
 now = time.now()
 previous = now.strftime("%H:%M:%S")
