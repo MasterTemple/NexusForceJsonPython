@@ -11,7 +11,9 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
             data['overview']['spawnsQuickbuild'] = True
         elif obj[parameter]['name']['templateID'] == 1:
             data['overview']['meleeAttack'] = True
-        elif obj[parameter]['name']['templateID'] == 4:
+        elif obj[parameter]['name']['templateID'] == 4 and branch == 'chargeup':
+            data['overview']['projectileAttackChargeUp'] = True
+        elif obj[parameter]['name']['templateID'] == 4 and branch != 'chargeup':
             data['overview']['projectileAttack'] = True
     except:
         pass
@@ -127,7 +129,9 @@ def sort(data, behaviorData, used, actions, projectile, cur, rows):
         pass
 
     if data['overview']['projectileAttack']:
+        #pass
         data['overview']['damageComboArray'] = [1, 1, 1]
+
     usedProjectileBehaviors = []
     for behaviorID in data['projectileBehaviorIDs']:
         try:
@@ -167,6 +171,7 @@ def run(db, behaviorID):
     data['overview']['spawnsQuickbuild'] = False
     data['overview']['meleeAttack'] = False
     data['overview']['projectileAttack'] = False
+    data['overview']['projectileAttackChargeUp'] = False
     data['overview']['damageComboArray'] = []
     data['overview']['chargeUpArmorRestore'] = []
     data['overview']['chargeUpImaginationRestore'] = []
