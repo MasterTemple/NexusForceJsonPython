@@ -40,7 +40,9 @@ import externalFunctions.parseXML as xml
 with open('work/config.json') as f:
     config = json.load(f)
 
+# with open(config['path']+'/search/allLists.json') as f:
 with open('output/search/allLists.json') as f:
+
     allLists = json.load(f)
 
 def create_connection(db_file):
@@ -107,6 +109,8 @@ def runLTIs(lootTableIndex):
     ltiData = ltiFile.getInfo(db, lootTableIndex)
     import externalFunctions.getLTIName as getLTIName
     ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
+    # if ltiData['nameInfo']['Type'] == "Powerup":
+    #     ltiData['rarityCount'][]
     writeAnyFile(lootTableIndex, ltiData, False, 'lootTableIndexes')
 
 
@@ -222,6 +226,8 @@ def runReferences():
     writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
     EnemyData = references.getEnemies(db)
     writeAnyFile("Enemies", EnemyData, False, 'references')
+    BricksAndItemsData = references.getBricksAndItems(db)
+    writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
 
 
 
@@ -287,7 +293,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
 
     lootTableIndexesList = glti.length(db)
     packagesList = getAllPackages.length(db)
-    objectIDsList = getAllObjects.length(db)
+    objectIDsList = getAllObjects.getObjects(db)
     missionIDsList = getAllMissions.length(db)
     npcsList = getAllNPCs.length(db)
     enemyList = getAllEnemies.length(db)
@@ -350,8 +356,11 @@ elif config['executeSpecific'] == True:
     activitiesList = []  # = allLists['activitiesList']
     behaviorsList = []  # = allLists['behaviorsList']
 
-    # behaviorsList = allLists['behaviorsList']
-    # behaviorsList = behaviorsList[behaviorsList.index(11175):]
+    # lootTableIndexesList = allLists['lootTableIndexesList']
+    # lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(83):]
+
+    #behaviorsList = allLists['behaviorsList']
+    #behaviorsList = behaviorsList[behaviorsList.index(11175):]
 
 
 elif config['justUpdateGivenInfo'] == True:
@@ -444,3 +453,4 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+

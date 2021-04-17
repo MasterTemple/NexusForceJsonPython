@@ -15,12 +15,22 @@ def getInfo(conn, lti):
     lootTableIndex = countRarity(lootTableIndex)
 
     import externalFunctions.nameAndDisplayName as name
-    for objectID in lootTableIndex['items']:
+    for objectID in lootTableIndex['itemsList']:
+        lootTableIndex['items'][objectID] = {}
+        #print(objectID)
         nameObj = name.info(conn, objectID)
         #print(nameObj)
-        if len(nameObj) != 0:
+
+
+        if len(nameObj) != 0 and nameObj['displayName'] is not None:
             lootTableIndex['items'][objectID]['name'] = nameObj['name']
             lootTableIndex['items'][objectID]['displayName'] = nameObj['displayName']
+        elif len(nameObj) != 0:
+            lootTableIndex['items'][objectID]['name'] = nameObj['name']
+            lootTableIndex['items'][objectID]['displayName'] = nameObj['name']
+        # if len(nameObj) != 0 and nameObj['type'] == "Powerup":
+        #     lootTableIndex['items'][objectID]['name'] = nameObj['name']
+        #     lootTableIndex['items'][objectID]['displayName'] = nameObj['name']
 
     return lootTableIndex
 

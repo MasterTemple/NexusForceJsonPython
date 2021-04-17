@@ -303,7 +303,7 @@ def removeExtra(data):
 def addSkillNamesAndDescriptions(data):
     import externalFunctions.parseXML as xml
     for skills in data['objectSkills']:
-        if data['objectSkills'][skills]['castOnType'] == 0:
+        if data['objectSkills'][skills]['castOnType'] != 1:
             skillInfo = xml.getSkillInfo(skills)
             data['objectSkills'][skills]['info'] = skillInfo
     return data

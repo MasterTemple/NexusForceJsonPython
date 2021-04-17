@@ -10,8 +10,11 @@ def getInfo(conn, objectID):
 
     for row in rows:
         if row[0] == objectID:
+            displayName = row[4]
+            if displayName is None:
+                displayName = row[1]
             data['itemInfo']['name'] = row[1]
-            data['itemInfo']['displayName'] = row[4]
+            data['itemInfo']['displayName'] = displayName
             data['itemInfo']['type'] = row[2]
             data['itemInfo']['description'] = row[3]
             data['itemInfo']['internalNotes'] = row[5]
