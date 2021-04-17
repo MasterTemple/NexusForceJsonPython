@@ -33,7 +33,7 @@ def makePretty(conn, data):
     try:
         data = bigCalculate(data)
     except:
-        data = bigCalculate(data)
+        #data = bigCalculate(data)
         pass
     try:
         data = lootTableIndexRange(data)

@@ -355,7 +355,9 @@ elif config['executeSpecific'] == True:
     kitIDList = []  # = allLists['kitIDList']
     activitiesList = []  # = allLists['activitiesList']
     behaviorsList = []  # = allLists['behaviorsList']
-
+    # objectIDsList = allLists['objectIDsList']
+    # percent = 4.4
+    # objectIDsList = objectIDsList[objectIDsList.index(objectIDsList[round(len(objectIDsList) * (percent/100))]):]
     # lootTableIndexesList = allLists['lootTableIndexesList']
     # lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(83):]
 
@@ -437,7 +439,9 @@ print("\r" +'[' + str(now.strftime("%H:%M:%S")) + "] Setup: 100%")
 for func in config['functionsInfo']:
     if func[3] == False:
         for id in eval(func[2]):
-            sys.stdout.write("\r" + func[0] + ": " + str(round(eval(func[2]).index(id)*100/len(eval(func[2])), 3)) + '%')
+            #sys.stdout.write("\r" + func[0] + ": " + str(round(eval(func[2]).index(id)*100/len(eval(func[2])), 3)) + '%')
+            sys.stdout.write("\r" + func[0] + ": " + id)
+
             sys.stdout.flush()
             eval(func[1])(id)
     else:
@@ -453,4 +457,5 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+
 
