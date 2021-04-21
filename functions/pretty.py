@@ -30,11 +30,12 @@ def makePretty(conn, data):
         data = rarityTableInfoPercents(conn, data)
     except:
         pass
-    try:
-        data = bigCalculate(data)
-    except:
-        #data = bigCalculate(data)
-        pass
+    # try:
+    data = bigCalculate(data)
+    # except :
+    #     print('error')
+    #     #data = bigCalculate(data)
+    #     pass
     try:
         data = lootTableIndexRange(data)
     except:
@@ -259,7 +260,10 @@ def bigCalculate(data):
 
             percent =round((percentVal/100.0) * (data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(data['itemComponent']['rarity'])]['chance']/100.0) * (1.0/data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(data['itemComponent']['rarity'])]), 6)
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'], percentVal, chanceVal, totalItems)
-            howManyToKill = round(1.0/percent)
+            try:
+                howManyToKill = round(1.0/percent)
+            except ZeroDivisionError:
+                howManyToKill = 0
             #print(percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
                 "percent": percent*100,

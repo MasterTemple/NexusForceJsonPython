@@ -275,3 +275,28 @@ def getEnemies(conn):
             pass
             #print(row[0])
     return array
+
+
+def getPackages(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT id, component_type, component_id FROM ComponentsRegistry")
+    rows = cur.fetchall()
+    packageIDs = []
+    array = []
+
+    for row in rows:
+        if row[0] not in array and row[1] == 53:
+            packageIDs.append(row[0])
+
+
+    cur.execute("SELECT id, name, type, displayName FROM Objects")
+    rows = cur.fetchall()
+    for row in rows:
+        if row[0] not in array and row[0] in packageIDs:
+            array.append({
+                "id": row[0],
+                "name": row[1],
+                "type": row[2],
+                "displayName": row[3]
+            })
+    return array

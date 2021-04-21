@@ -5,9 +5,13 @@ def info(conn, objectID):
     obj = {}
     for row in rows:
         if row[0] == objectID:
+            if row[2] == None:
+                dN = row[1]
+            else:
+                dN = row[2]
             obj = {
                 "name": row[1],
-                "displayName": row[2]
+                "displayName": dN
             }
             break
 

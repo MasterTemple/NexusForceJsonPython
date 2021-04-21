@@ -130,24 +130,32 @@ def runMissions(missionID):
 
 
 def runNPC(npcID):
-    npcData = {"npcID": npcID}
+    npcData = objectInfo.getInfo(db, npcID)
+    npcData["npcID"] = npcID
     getComps.getInfo(db, npcData, npcID)
-    render.getInfo(db, npcData, npcData['components'][2])
-    if npcData['components'][16] is not None:
+    try:
+        render.getInfo(db, npcData, npcData['components'][2])
+    except KeyError:
+        npcData['components'][2] = None
+        npcData['iconURL'] = None
+    try:
         npcData['isVendor'] = 1
         vendor.getInfo(db, npcData, npcData['components'][16])
-    else:
+    except KeyError:
         npcData['isVendor'] = 0
+        npcData['components'][16] = None
 
-    if npcData['components'][73] is not None:
+    try:
         npcData['isMissionGiver'] = 1
         npcData['missions'] = {}
         npcMissions.getInfo(db, npcData, npcData['components'][73])
         for missionID in npcData['missionsList']:
             npcData['missions'][missionID] = missionFile.getMissionInfo(db, missionID)
-    else:
+    except KeyError:
         npcData['isMissionGiver'] = 0
+        npcData['components'][73] = None
     vendorPretty.fixPfp(npcData)
+    #print(npcData)
     writeAnyFile(npcID, npcData, True, 'npcs')
 
 
@@ -228,6 +236,8 @@ def runReferences():
     writeAnyFile("Enemies", EnemyData, False, 'references')
     BricksAndItemsData = references.getBricksAndItems(db)
     writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
+    PackagesData = references.getPackages(db)
+    writeAnyFile("Packages", PackagesData, False, 'references')
 
 
 
@@ -378,8 +388,13 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+    #cooldownGroupList = allLists['cooldownGroupList']
 
-    #enemyList = allLists['enemyList']
+    # npcsList = allLists['npcsList']
+    # npcsList = npcsList[npcsList.index(6014):]
+
+
+#enemyList = allLists['enemyList']
 
 #enemyList = allLists['enemyList']
 
@@ -440,8 +455,8 @@ for func in config['functionsInfo']:
     if func[3] == False:
         for id in eval(func[2]):
             #sys.stdout.write("\r" + func[0] + ": " + str(round(eval(func[2]).index(id)*100/len(eval(func[2])), 3)) + '%')
-            sys.stdout.write("\r" + func[0] + ": " + id)
-
+            #sys.stdout.write("\r" + func[0] + ": " + str(id))
+            sys.stdout.write("\r" + func[0] + ": " + str(round(eval(func[2]).index(id)*100/len(eval(func[2])), 3)) + '% ' + str(id))
             sys.stdout.flush()
             eval(func[1])(id)
     else:

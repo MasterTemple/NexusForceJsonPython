@@ -156,21 +156,24 @@ def getMissionInfo(conn, missionID):
     import externalFunctions.nameAndDisplayName as name
     missionData = {}
     missionData['MissionStats'] = getMissionStats(cur, missionID, name, conn)
-    if missionData['MissionStats']['isMission'] == 1:
-        missionData['NPCComponent'] = getMissionNPCComponent(cur, missionID)
-        missionData = missionNPCIDsFromComponent(cur, missionData)
+    try:
+        if missionData['MissionStats']['isMission'] == 1:
+            missionData['NPCComponent'] = getMissionNPCComponent(cur, missionID)
+            missionData = missionNPCIDsFromComponent(cur, missionData)
 
-        try:
-            missionData['NPCAcceptName'] = name.info(conn, missionData['NPCAcceptID'])
-        except:
-            missionData['NPCAcceptName'] = None
-        try:
-            missionData['NPCOfferName'] = name.info(conn, missionData['NPCOfferID'])
-        except:
-            missionData['NPCOfferName'] = None
+            try:
+                missionData['NPCAcceptName'] = name.info(conn, missionData['NPCAcceptID'])
+            except:
+                missionData['NPCAcceptName'] = None
+            try:
+                missionData['NPCOfferName'] = name.info(conn, missionData['NPCOfferID'])
+            except:
+                missionData['NPCOfferName'] = None
 
-    missionData['MissionTasks'] = missionTasksInfo(cur, missionID, name, conn, missionData)
-    missionData = fixReward(missionData)
+        missionData['MissionTasks'] = missionTasksInfo(cur, missionID, name, conn, missionData)
+        missionData = fixReward(missionData)
+    except TypeError:
+        pass
 
     return missionData
 
