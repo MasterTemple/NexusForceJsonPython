@@ -120,6 +120,7 @@ def getItemStats(itemIDsArray, data):
             with open(config['path']+'/objects/'+str(math.floor(int(itemID)/256))+'/'+str(itemID)+'.json') as f:
                 item = json.load(f)
             data['items'][itemID] = item['stats']
+            data['items'][itemID]['equipLocation'] = item['itemComponent']['equipLocation'][0]
         except:
             pass
 
@@ -202,6 +203,8 @@ def sumSkillStats(data):
                 if data['skills'][skill][eachSkill]['castOnType'] == 0:
                     data['bonus'][skill]['cooldown'] = data['skills'][skill][eachSkill]['cooldown']
                     data['bonus'][skill]['cooldowngroup'] = data['skills'][skill][eachSkill]['cooldowngroup']
+                    
+            
             except:
                 pass
             #print(skill)
@@ -233,6 +236,13 @@ def sumItemStats(data):
                 data['bonus'][item]['cooldowngroup'] = data['items'][item]['cooldowngroup']
         except:
             pass
+            
+        try:
+            if data['items'][item]['equipLocation'] is not None:
+                data['bonus'][item]['equipLocation'] = data['items'][item]['equipLocation']
+        except:
+            pass
+            
 
     return data
 
@@ -294,10 +304,21 @@ def sumBonuses(data):
         data['totalWithValiant']['imBonusUI'] = 0
         data['totalWithValiant']['lifeBonusUI'] = 0
         data['totalWithValiant']['armorBonusUI'] = 0
+        
         valiantList = [0, 1, 2, 3, 4, 5, 6, 7, 10,  17, 18]
+        
+        
+        
         valNum = 0
+        ventureException = False
         for item in data['bonus']:
-            if valNum in valiantList:
+            #print(data['bonus'][item])
+            if valNum == 9 and data['bonus'][item]['equipLocation'] == 'clavicle':
+                ventureException = True
+
+            if valNum in valiantList or ventureException:
+                ventureException = False
+
                 try:
                     if data['bonus'][item]['imBonusUI'] is not None:
                         data['totalWithValiant']['imBonusUI'] += data['bonus'][item]['imBonusUI']

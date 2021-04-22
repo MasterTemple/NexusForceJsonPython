@@ -315,6 +315,7 @@ if config['startFromSqlite'] == True or config['startFromFdb'] == True:
     activitiesList = getAllActivities.length(db)
     behaviorsList = getAllBehaviors.length(db)
     createAllLists(lootTableIndexesList, packagesList, objectIDsList, missionIDsList, npcsList, enemyList, cooldownGroupList, levelsList, kitIDList, activitiesList, behaviorsList)
+    runReferences()
     """
     #creates a file of all these lists
     listObject['lootTableIndexesList'] = lootTableIndexesList
@@ -390,7 +391,7 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
-    kitIDList = allLists['kitIDList']
+    #kitIDList = allLists['kitIDList']
 
 
     # objectIDsList = allLists['objectIDsList']
