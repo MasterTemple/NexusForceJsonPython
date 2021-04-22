@@ -62,11 +62,16 @@ def getItemIDsInfo(cur, itemIDs, data):
 
 def getSkillDescriptions(data):
     import externalFunctions.parseXML as xml
-
+    data['skillSetDescriptions'] = {}
     for skillSet in data['skills']:
         for skill in data['skills'][skillSet]:
             #print(skill)
             data['skills'][skillSet][skill]['description'] = xml.getKitAbility(skill)
+            if data['skills'][skillSet][skill]['imBonusUI'] == None and data['skills'][skillSet][skill]['lifeBonusUI'] == None and data['skills'][skillSet][skill]['armorBonusUI'] == None and data['skills'][skillSet][skill]['description'] != None:
+                data['skillSetDescriptions'][skillSet] = data['skills'][skillSet][skill]['description']
+
+
+
 
 def getKitBonuses(cur, data):
     cur.execute("SELECT * FROM ItemSetSkills")

@@ -286,8 +286,7 @@ if config['startFromFdb'] == True:
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 # listObject = {}
-KitData = references.getKits(db)
-writeAnyFile("Kits", KitData, False, 'references')
+
 #runReferences()
 
 
@@ -391,7 +390,9 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
-    
+    kitIDList = allLists['kitIDList']
+
+
     # objectIDsList = allLists['objectIDsList']
     # objectIDsList = objectIDsList[objectIDsList.index(5347):]
     #cooldownGroupList = allLists['cooldownGroupList']
