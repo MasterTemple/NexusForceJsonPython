@@ -300,3 +300,14 @@ def getPackages(conn):
                 "displayName": row[3]
             })
     return array
+
+def getKits(idList):
+    data = []
+    import externalFunctions.parseXML as xml
+    for id in idList:
+        info = xml.getKitName(id)
+        data.append({
+            "id": id,
+            "name": info
+        })
+    return data

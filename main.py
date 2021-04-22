@@ -238,6 +238,8 @@ def runReferences():
     writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
     PackagesData = references.getPackages(db)
     writeAnyFile("Packages", PackagesData, False, 'references')
+    KitData = references.getKits(allLists['kitIDList'])
+    writeAnyFile("Kits", KitData, False, 'references')
 
 
 
@@ -388,6 +390,9 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+    
+    # objectIDsList = allLists['objectIDsList']
+    # objectIDsList = objectIDsList[objectIDsList.index(5347):]
     #cooldownGroupList = allLists['cooldownGroupList']
 
     # npcsList = allLists['npcsList']
@@ -472,5 +477,6 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+
 
 

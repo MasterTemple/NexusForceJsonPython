@@ -186,8 +186,12 @@ def rarityTableInfoPercents(curr, data):
 
 def overallChance(data):
     #import math
-    rarityVal = (data['itemComponent']['rarity'])
-
+    
+    try:
+        rarityVal = (data['itemComponent']['rarity'])
+    except KeyError:
+        return data
+    
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         #(lmi)
         # try:
@@ -228,7 +232,10 @@ def lootTableIndexRange(data):
 
 def bigCalculate(data):
     #import math
-    rarityVal = (data['itemComponent']['rarity'])
+    try:
+        rarityVal = (data['itemComponent']['rarity'])
+    except KeyError:
+        return data
 
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         # try:
