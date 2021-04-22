@@ -301,13 +301,23 @@ def getPackages(conn):
             })
     return array
 
-def getKits(idList):
+def getKits(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT setID, kitRank FROM ItemSets")
+    rows = cur.fetchall()
     data = []
     import externalFunctions.parseXML as xml
-    for id in idList:
-        info = xml.getKitName(id)
-        data.append({
-            "id": id,
-            "name": info
-        })
+    ranks = [1, 2, 3]
+    for row in rows:
+        if row[0] not in data:
+            info = xml.getKitName(row[0])
+            obj = {
+                "id": row[0],
+                "name": info,
+                "kitRank": row[1]
+            }
+            if obj['kitRank'] in ranks:
+                obj['name'] = "Rank "+str(obj['kitRank'])+" "+obj['name']
+            data.append(obj)
+
     return data

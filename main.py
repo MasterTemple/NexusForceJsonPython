@@ -238,7 +238,7 @@ def runReferences():
     writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
     PackagesData = references.getPackages(db)
     writeAnyFile("Packages", PackagesData, False, 'references')
-    KitData = references.getKits(allLists['kitIDList'])
+    KitData = references.getKits(db)
     writeAnyFile("Kits", KitData, False, 'references')
 
 
@@ -286,7 +286,8 @@ if config['startFromFdb'] == True:
 file = "work/cdclient.sqlite"
 db = create_connection(file)
 # listObject = {}
-
+KitData = references.getKits(db)
+writeAnyFile("Kits", KitData, False, 'references')
 #runReferences()
 
 
@@ -447,6 +448,7 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 # writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
 
 
+
 #print(behaviorsList)
 now = time.now()
 previous = now.strftime("%H:%M:%S")
@@ -477,6 +479,7 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+
 
 
 
