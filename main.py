@@ -41,7 +41,7 @@ with open('work/config.json') as f:
     config = json.load(f)
 
 # with open(config['path']+'/search/allLists.json') as f:
-with open('output/search/allLists.json') as f:
+with open(config['path']+'/search/allLists.json') as f:
 
     allLists = json.load(f)
 
@@ -240,6 +240,11 @@ def runReferences():
     writeAnyFile("Packages", PackagesData, False, 'references')
     KitData = references.getKits(db)
     writeAnyFile("Kits", KitData, False, 'references')
+    SkillData = references.getSkills(db)
+    writeAnyFile("Skills", SkillData, False, 'references')
+    ActivityData = references.getActivities(db)
+    writeAnyFile("Activities", ActivityData, False, 'references')
+
 
 
 
@@ -391,7 +396,8 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
-    #kitIDList = allLists['kitIDList']
+
+#kitIDList = allLists['kitIDList']
 
 
     # objectIDsList = allLists['objectIDsList']
@@ -448,9 +454,6 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 # writeAnyFile("Missions", MissionsData, False, 'references')
 # MissionsLocationData = references.getMissionLocation()
 # writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
-
-
-
 #print(behaviorsList)
 now = time.now()
 previous = now.strftime("%H:%M:%S")
@@ -481,7 +484,3 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
-
-
-
-

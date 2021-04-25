@@ -321,3 +321,25 @@ def getKits(conn):
             data.append(obj)
 
     return data
+
+
+def getSkills(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT skillID, cooldowngroup FROM SkillBehavior")
+    rows = cur.fetchall()
+    data = {}
+    for row in rows:
+        if row[0] not in data:
+            data[row[0]] = row[1]
+    return data
+
+
+def getActivities(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT description, objectTemplate FROM ActivityRewards")
+    rows = cur.fetchall()
+    data = {}
+    for row in rows:
+        if row[0] not in data:
+            data[row[0]] = row[1]
+    return data

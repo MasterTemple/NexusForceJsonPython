@@ -3,14 +3,17 @@ def getInfo(conn, cdgID):
     data['cooldowngroupID'] = cdgID
     data['skillIDs'] = {}
     cur = conn.cursor()
-    cur.execute("SELECT skillID, imaginationcost, cooldowngroup, cooldown FROM SkillBehavior")
+    cur.execute("SELECT skillID, imaginationcost, cooldowngroup, cooldown, imBonusUI, lifeBonusUI, armorBonusUI FROM SkillBehavior")
     rows = cur.fetchall()
 
     for row in rows:
         if row[2] == cdgID:
             data['skillIDs'][row[0]] = {
                 "imaginationCost": row[1],
-                "cooldownTime": row[3]
+                "cooldownTime": row[3],
+                "imBonusUI": row[4],
+                "lifeBonusUI": row[5],
+                "armorBonusUI": row[6]
             }
 
 
