@@ -1,70 +1,80 @@
 def getMissionInfo(id, root):
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
+
     name = 'Missions_'+str(id)+'_name'
     inProgress = 'MissionText_'+str(id)+'_in_progress'
     mission = {}
-    mission['name'] = "Unavailable"
-    mission['description'] = "Unavailable"
-    for child in root[1]:
-        if child.attrib['id'] == name:
-            #print(child[0].text)
-            mission['name'] = child[0].text
-        if child.attrib['id'] == inProgress:
-            #print(child[0].text)
-            mission['description'] = child[0].text
+    try:
+        mission['name'] = locale[name]
+    except KeyError:
+        mission['name'] = "Unavailable"
+    try:
+        mission['description'] = locale[inProgress]
+    except KeyError:
+        mission['description'] = "Unavailable"
+
     return mission
 
 def getAchievementInfo(id, root):
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
     name = 'Missions_'+str(id)+'_name'
     inProgress = 'MissionText_'+str(id)+'_description'
     mission = {}
-    mission['name'] = "Unavailable"
-    mission['description'] = "Unavailable"
-    for child in root[1]:
-        if child.attrib['id'] == name:
-            #print(child[0].text)
-            mission['name'] = child[0].text
-        if child.attrib['id'] == inProgress:
-            #print(child[0].text)
-            mission['description'] = child[0].text
+    try:
+        mission['name'] = locale[name]
+    except KeyError:
+        mission['name'] = "Unavailable"
+    try:
+        mission['description'] = locale[inProgress]
+    except KeyError:
+        mission['description'] = "Unavailable"
+
     return mission
 
 
 def preconditions(preconditionIDs):
-    import xml.etree.ElementTree as ET
-    tree = ET.parse('./work/locale.xml')
-    root = tree.getroot()
-    ##Preconditions_224_FailureReason
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
+
     preconditions = {}
 
     for i in preconditionIDs:
-        name = 'Preconditions_'+str(i)+'_FailureReason'
-        for child in root[1]:
-            if child.attrib['id'] == name:
-                #print(child[0].text)
-                preconditions[i] = child[0].text
+        preconditions[i] = locale['Preconditions_'+str(i)+'_FailureReason']
+
     return preconditions
 
 
 def getSkillInfo(skillID):
-    #from externalFunctions import parseLocale as missionInfo
-    import xml.etree.ElementTree as ET
-    #tree = ET.parse('./../work/locale.xml')
-    tree = ET.parse('./work/locale.xml')
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
 
-    root = tree.getroot()
-    #data['earn'] = {}
-    #SkillBehavior_655_name
     name = 'SkillBehavior_'+str(skillID)+'_name'
     description = 'SkillBehavior_'+str(skillID)+'_descriptionUI'
 
     skill = {}
-    for child in root[1]:
-        if child.attrib['id'] == name:
-            #print(child[0].text)
-            skill['name'] = child[0].text
-        if child.attrib['id'] == description:
-            #print(child[0].text)
-            skill['rawDescription'] = child[0].text
+    try:
+        skill['name'] = locale[name]
+    except:
+        pass
+    try:
+        skill['rawDescription'] = locale[description]
+    except:
+        pass
+
     try:
         if '%(DamageCombo)' in skill['rawDescription']:
 
@@ -94,35 +104,26 @@ def getSkillInfo(skillID):
         pass
     return skill
 
-#
-# skill = getSkillName(655)
-# #print(skill)
-# import json
-# print(json.dumps(skill, indent=4, sort_keys=True))
-
 
 def getKitName(kitID):
-    import xml.etree.ElementTree as ET
-    #tree = ET.parse('./../work/locale.xml')
-    tree = ET.parse('./work/locale.xml')
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
 
-    root = tree.getroot()
     name = 'ItemSets_'+str(kitID)+'_kitName'
-    for child in root[1]:
-        if child.attrib['id'] == name:
-            #print(child[0].text)
-            return child[0].text
+    return locale[name]
 
 
 def getKitAbility(skillID):
-    import xml.etree.ElementTree as ET
-    #tree = ET.parse('./../work/locale.xml')
-    tree = ET.parse('./work/locale.xml')
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
+        locale = json.load(f)
 
-    root = tree.getroot()
     name = 'SkillBehavior_'+str(skillID)+'_descriptionUI'
-    for child in root[1]:
-        if child.attrib['id'] == name:
-            #print(child[0].text)
-            return child[0].text
+    return locale[name]
+
 

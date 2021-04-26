@@ -1,5 +1,5 @@
 def getInfo(conn, data, objectID):
-    from externalFunctions import parseXML as missionInfo
+    from externalFunctions import parseLocale as missionInfo
     import xml.etree.ElementTree as ET
     tree = ET.parse('work/locale.xml')
     root = tree.getroot()

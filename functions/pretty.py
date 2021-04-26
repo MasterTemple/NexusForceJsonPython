@@ -312,7 +312,7 @@ def removeExtra(data):
     return data
 
 def addSkillNamesAndDescriptions(data):
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
     for skills in data['objectSkills']:
         if data['objectSkills'][skills]['castOnType'] != 1:
             skillInfo = xml.getSkillInfo(skills)
@@ -320,7 +320,7 @@ def addSkillNamesAndDescriptions(data):
     return data
 
 def addProxySkillNamesAndDescriptions(data):
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
     for skills in data['proxySkills']:
         if data['proxySkills'][skills]['castOnType'] == 0:
             skillInfo = xml.getSkillInfo(skills)
@@ -328,7 +328,7 @@ def addProxySkillNamesAndDescriptions(data):
     return data
 
 def getPreconditions(data):
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
     data['itemComponent']['preconditionDescriptions'] = xml.preconditions(data['itemComponent']['preconditions'])
 
 

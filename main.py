@@ -32,7 +32,7 @@ import functions.activityFile as activityFile
 import functions.getDamageCombo as getDamageCombo
 import functions.references as references
 
-import externalFunctions.parseXML as xml
+import externalFunctions.parseLocale as xml
 
 
 # use `lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(752):]` to start at an a location and do the rest (useful if theres an error at file 752 and i dont want to redo the first 751 files)
@@ -220,6 +220,8 @@ def runReferences():
     # # ltiData = ltiFile.getInfo(db, lootTableIndex)
     # # ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
     # writeAnyFile("objects", objectsData, False, 'references')
+    Locale = references.xml2json()
+    writeAnyFile("Locale", Locale, False, 'references')
     ObjectsData = references.getObjects(db)
     writeAnyFile("Objects", ObjectsData, False, 'references')
     ItemsData = references.getItems(db)
@@ -244,9 +246,12 @@ def runReferences():
     writeAnyFile("Skills", SkillData, False, 'references')
     ActivityData = references.getActivities(db)
     writeAnyFile("Activities", ActivityData, False, 'references')
+    LootTableIndexData = references.getLTINames()
+    writeAnyFile("LootTableIndexNames", LootTableIndexData, False, 'references')
 
 
-
+LootTableIndexData = references.getLTINames()
+writeAnyFile("LootTableIndexNames", LootTableIndexData, False, 'references')
 
 def runModify():
 
@@ -396,6 +401,9 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+    #lootTableIndexesList = allLists['lootTableIndexesList']
+    #lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(54):]
+
 
 #kitIDList = allLists['kitIDList']
 
@@ -484,3 +492,6 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+
+SkillData = references.getSkills(db)
+writeAnyFile("Skills", SkillData, False, 'references')

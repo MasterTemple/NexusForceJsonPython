@@ -61,7 +61,7 @@ def getItemIDsInfo(cur, itemIDs, data):
 
 
 def getSkillDescriptions(data):
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
     data['skillSetDescriptions'] = {}
     for skillSet in data['skills']:
         for skill in data['skills'][skillSet]:

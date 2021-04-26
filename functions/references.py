@@ -94,7 +94,7 @@ def getMissions(conn):
     import xml.etree.ElementTree as ET
     #tree = ET.parse('./../work/locale.xml')
     tree = ET.parse('./work/locale.xml')
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
 
     root = tree.getroot()
     for row in rows:
@@ -306,7 +306,7 @@ def getKits(conn):
     cur.execute("SELECT setID, kitRank FROM ItemSets")
     rows = cur.fetchall()
     data = []
-    import externalFunctions.parseXML as xml
+    import externalFunctions.parseLocale as xml
     ranks = [1, 2, 3]
     for row in rows:
         if row[0] not in data:
@@ -325,12 +325,32 @@ def getKits(conn):
 
 def getSkills(conn):
     cur = conn.cursor()
-    cur.execute("SELECT skillID, cooldowngroup FROM SkillBehavior")
+    cur.execute("SELECT skillID, cooldowngroup, skillIcon FROM SkillBehavior")
     rows = cur.fetchall()
     data = {}
+    import externalFunctions.parseLocale as xml
+    import functions.getKitData as getKitData
+
     for row in rows:
         if row[0] not in data:
-            data[row[0]] = row[1]
+            skillName = xml.getSkillInfo(row[0])
+            try:
+                data[row[0]] = {
+                    "cdg": row[1],
+                    "skillIcon": row[2],
+                    "iconURL": getKitData.iconUrlFromID(cur, row[2])
+                }
+
+            except:
+                data[row[0]] = {
+                    "cdg": row[1],
+                }
+            try:
+                data[row[0]].update(skillName)
+            except:
+                pass
+
+
     return data
 
 
@@ -343,3 +363,54 @@ def getActivities(conn):
         if row[0] not in data:
             data[row[0]] = row[1]
     return data
+
+
+def getLTINames():
+    import json
+    with open('work/LootTableIndexNames.json') as f:
+        LootTableIndexNames = json.load(f)
+    arr = []
+    for lti in LootTableIndexNames['data']:
+        obj = {}
+        obj["lti"] = lti['LootTableIndex']
+        try:
+            name = lti['Name']
+        except KeyError:
+            try:
+                name = lti['AlternateName']
+            except:
+                name = "EMPTY"
+
+
+        obj["name"] = name
+
+        try:
+            altname = lti['AlternateName']
+        except KeyError:
+            try:
+                altname = lti['Name']
+            except:
+                altname = "EMPTY"
+
+
+        obj["altName"] = altname
+
+        arr.append(obj)
+
+    return arr
+
+def xml2json():
+    obj = {}
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('D:\LEGO Universe (unpacked)\locale\locale.xml')
+
+    root = tree.getroot()
+
+    for child in root[1]:
+        if child.attrib['id']:
+            obj[child.attrib['id']] = child[0].text
+
+
+    return obj
+
+

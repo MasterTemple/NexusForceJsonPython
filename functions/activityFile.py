@@ -3,6 +3,13 @@ def rarityTable(conn, data, lti, rti):
     cur.execute("SELECT * FROM RarityTable")
     rows = cur.fetchall()
     data['rarityTableInfo'] = {}
+    import json
+    with open('work/config.json') as f:
+        config = json.load(f)
+    with open(config['path']+'/lootTableIndexes/'+str(lti)+'.json') as f:
+        rarityCount = json.load(f)
+    #print("LTI:",lti,"RTI:",rti)
+
     for row in rows:
         if row[3] == rti:
             obj = {
@@ -16,11 +23,7 @@ def rarityTable(conn, data, lti, rti):
             #print(data['drop']['LootTableIndexes'])
             # data['rarityTableInfo'][row[2]] = obj
             #
-            import json
-            with open('work/config.json') as f:
-                config = json.load(f)
-            with open(config['path']+'/lootTableIndexes/'+str(lti)+'.json') as f:
-                rarityCount = json.load(f)
+
 
             data['rarityCount'] = rarityCount['rarityCount']
 

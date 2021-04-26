@@ -1,5 +1,5 @@
 def getMissionNPCComponent(cur, missionID):
-    from externalFunctions import parseXML as missionInfo
+    from externalFunctions import parseLocale as missionInfo
     #    cur.execute("SELECT id, defined_type, defined_subtype, isChoiceReward, reward_item1, reward_item1_count, reward_item2, reward_item2_count, reward_item3, reward_item3_count, reward_item4, reward_item4_count FROM ComponentsRegistry")
     cur.execute("SELECT id, missionID, offersMission, acceptsMission FROM MissionNPCComponent")
 
@@ -81,7 +81,7 @@ def iconUrlFromID(cur, iconID, missionData):
 def getMissionStats(cur, missionID, name, conn):
     cur.execute("SELECT id, defined_type, defined_subtype, reward_currency, LegoScore, reward_reputation, isChoiceReward, reward_item1, reward_item1_count, reward_item2, reward_item2_count, reward_item3, reward_item3_count, reward_item4, reward_item4_count, isMission, repeatable, reward_maximagination, reward_maxhealth, reward_maxinventory, reward_bankinventory, reward_emote FROM Missions")
     rows = cur.fetchall()
-    from externalFunctions import parseXML as missionInfo
+    from externalFunctions import parseLocale as missionInfo
 
     for row in rows:
         if row[0] == missionID:

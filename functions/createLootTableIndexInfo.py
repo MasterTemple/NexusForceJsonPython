@@ -13,22 +13,39 @@ def getInfo(conn, lti):
     lootTableIndex = getComps(conn, lootTableIndex)
     lootTableIndex = getRarity(conn, lootTableIndex)
     lootTableIndex = countRarity(lootTableIndex)
-
+    lootTableIndex['byRarity'] = {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    }
+    #print(lootTableIndex)
     import externalFunctions.nameAndDisplayName as name
     for objectID in lootTableIndex['itemsList']:
+        try:
+            rarity = lootTableIndex['items'][objectID]['rarity']
+        except:
+            continue
+            pass
         lootTableIndex['items'][objectID] = {}
         #print(objectID)
         nameObj = name.info(conn, objectID)
+        #nameObj['rarity'] = rarity
         #print(nameObj)
 
+        lootTableIndex['byRarity'][str(rarity)].append(objectID)
 
         if len(nameObj) != 0 and nameObj['displayName'] is not None:
             lootTableIndex['items'][objectID]['name'] = nameObj['name']
             lootTableIndex['items'][objectID]['displayName'] = nameObj['displayName']
+            lootTableIndex['items'][objectID]['rarity'] = rarity
         elif len(nameObj) != 0:
             lootTableIndex['items'][objectID]['name'] = nameObj['name']
             lootTableIndex['items'][objectID]['displayName'] = nameObj['name']
-        # if len(nameObj) != 0 and nameObj['type'] == "Powerup":
+            lootTableIndex['items'][objectID]['rarity'] = rarity
+
+    # if len(nameObj) != 0 and nameObj['type'] == "Powerup":
         #     lootTableIndex['items'][objectID]['name'] = nameObj['name']
         #     lootTableIndex['items'][objectID]['displayName'] = nameObj['name']
 
@@ -65,6 +82,7 @@ def getRarity(conn, lootTableIndex):
                     lootTableIndex['items'][stuff]['rarity'] = row[1]
                     #print(stuff, row[0], row[1])
 
+
     return lootTableIndex
 
 def getComps(conn, lootTableIndex):
@@ -84,4 +102,8 @@ def getComps(conn, lootTableIndex):
                 "itemComponent": row[2],
             }
 
+
     return lootTableIndex
+
+def singleItemRarity(conn, objectID):
+    return
