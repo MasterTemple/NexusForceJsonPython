@@ -373,6 +373,8 @@ def getSkillTreeOverview(data):
             with open(config['path']+'/behaviors/'+str(math.floor(data['objectSkills'][skill]['behaviorID']/256))+'/'+str(data['objectSkills'][skill]['behaviorID'])+'.json') as f:
                 behaviorFile = json.load(f)
             data['overview'][data['objectSkills'][skill]['behaviorID']] = behaviorFile['overview']
+
+
     try:
         for skill in data['proxySkills']:
 
@@ -387,4 +389,26 @@ def getSkillTreeOverview(data):
                 data['overview'][data['proxySkills'][skill]['behaviorID']] = behaviorFile['overview']
     except:
         pass
+    return data
+
+
+def getEnemySkills(data):
+    for skill in data['objectSkills']:
+
+        import json
+        import math
+        with open('work/config.json') as f:
+            config = json.load(f)
+        with open(config['path']+'/behaviors/'+str(math.floor(data['objectSkills'][skill]['behaviorID']/256))+'/'+str(data['objectSkills'][skill]['behaviorID'])+'.json') as f:
+            behaviorFile = json.load(f)
+        overviewInfo = behaviorFile['overview']
+
+        data['overview'][data['objectSkills'][skill]['behaviorID']] = {
+            "damage": overviewInfo['allDamage'],
+            "attackTypes": overviewInfo['attackTypes'],
+            "cooldown": data['objectSkills'][skill]['cooldown']
+
+        }
+
+
     return data

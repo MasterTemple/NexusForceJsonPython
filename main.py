@@ -163,8 +163,17 @@ def runEnemy(enemyID):
     enemyData = objectInfo.getInfo(db, enemyID)
     enemyData["enemyID"] = enemyID
     getComps.getInfo(db, enemyData, enemyID)
+    import functions.renderComponent as render
+    try:
+        enemyData = render.getInfo(db, enemyData, enemyData['components'][2])
+    except:
+        enemyData['iconURL'] = "unknown"
     enemyDrops.getInfo(db, enemyData, enemyID)
     enemySkills.getInfo(db, enemyData, enemyID)
+    behaviors.getInfo(db, enemyData, enemyData['skillIDs'])
+    enemyData['overview'] = {}
+    pretty.getEnemySkills(enemyData)
+
     if enemyData['doesntDropAnything'] == False:
         enemyRTI.getInfo(db, enemyData, enemyID)
     writeAnyFile(enemyID, enemyData, False, 'enemies')
@@ -401,6 +410,9 @@ elif config['justUpdateGivenInfo'] == True:
     kitIDList = config['kitIDList']
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
+
+    #behaviorsList = allLists['behaviorsList']
+
     #lootTableIndexesList = allLists['lootTableIndexesList']
     #lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(54):]
 
@@ -492,6 +504,3 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
-
-SkillData = references.getSkills(db)
-writeAnyFile("Skills", SkillData, False, 'references')

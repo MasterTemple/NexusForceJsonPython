@@ -8,6 +8,7 @@ def getInfo(conn, data, objectID):
         data['drop']['LootTableIndexes'] = []
 
         getLMIfromDC(conn, data)
+        getMoneyDrop(conn, data)
         getLTIFromLMI(conn, data)
         lootTableIndexRange(data)
         editLootTableIndexes(data)
@@ -79,11 +80,16 @@ def rarityTable(conn, data, lmi, rti):
 
 def getLMIfromDC(conn, data):
     cur = conn.cursor()
-    cur.execute("SELECT id, LootMatrixIndex FROM DestructibleComponent")
+    cur.execute("SELECT id, LootMatrixIndex, life, armor, CurrencyIndex, level FROM DestructibleComponent")
     rows = cur.fetchall()
     for row in rows:
         if row[0] == data['drop']['DestructibleComponent']:
             data['drop']['LootMatrixIndex'] = row[1]
+            data['drop']['CurrencyIndex'] = row[4]
+            data['itemInfo']['life'] = row[2]
+            data['itemInfo']['armor'] = row[3]
+            data['drop']['level'] = row[5]
+            break
     return data
 
 
@@ -270,4 +276,15 @@ def rarityTable(conn, data, lmi, rti):
 
             # data['drop']['LootMatrixIndexes'].append(obj)
 
+    return data
+
+
+def getMoneyDrop(conn, data):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM CurrencyTable")
+    rows = cur.fetchall()
+    for row in rows:
+        if row[0] == data['drop']['CurrencyIndex'] and row[1] == data['drop']['level']:
+            data['drop']['currencyMin'] = row[2]
+            data['drop']['currencyMax'] = row[3]
     return data

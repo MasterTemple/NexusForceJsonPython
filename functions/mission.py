@@ -72,9 +72,9 @@ def iconUrlFromID(cur, iconID, missionData):
         icon_path = icon_path.replace("\\", "/")
         icon_path = icon_path.replace(' ', "%20")
         icon_path = icon_path.lower()
-        iconURL = 'https://xiphoseer.github.io/lu-res/'+icon_path[6:len(icon_path)]
+        iconURL = icon_path[6:len(icon_path)]
     else:
-        iconURL = 'https://static.wikia.nocookie.net/legomessageboards/images/c/ce/LU2.png/revision/latest?cb=20121121213649'
+        iconURL = "uIcon"
     return iconURL
 
 

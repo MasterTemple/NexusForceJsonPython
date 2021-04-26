@@ -12,9 +12,17 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
         elif obj[parameter]['name']['templateID'] == 1:
             data['overview']['meleeAttack'] = True
         elif obj[parameter]['name']['templateID'] == 4 and branch == 'chargeup':
+            data['overview']['attackTypes'].append("Ranged")
             data['overview']['projectileAttackChargeUp'] = True
         elif obj[parameter]['name']['templateID'] == 4 and branch != 'chargeup':
+            data['overview']['attackTypes'].append("Ranged")
             data['overview']['projectileAttack'] = True
+        elif obj[parameter]['name']['templateID'] == 17:
+            data['overview']['attackTypes'].append("Knockback")
+        elif obj[parameter]['name']['templateID'] == 7:
+            data['overview']['attackTypes'].append("Area of Effect")
+        elif obj[parameter]['name']['templateID'] == 15 and obj[parameter]['name']['stun_caster'] == 0:
+            data['overview']['attackTypes'].append("Stun")
     except:
         pass
     obj[parameter]['hasKids'] = False
@@ -88,7 +96,10 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
             data['overview']['doubleJumpSmash'] = obj[parameter]['info'][param]
         if param == 'min damage' and movementSwitch == "ground_action" and branch != "chargeup":
             data['overview']['damageComboArray'].append(obj[parameter]['info'][param])
-            #data['overview']['projectileInfo'][parameter] = [obj[parameter]['info'][param]]
+        if param == 'min damage':
+            data['overview']['allDamage'].append(obj[parameter]['info'][param])
+
+        #data['overview']['projectileInfo'][parameter] = [obj[parameter]['info'][param]]
 
         if param == 'min damage' and movementSwitch == "projectile" and branch != "chargeup":
             data['overview']['projectileDamageComboArray'].append(obj[parameter]['info'][param])
@@ -179,6 +190,8 @@ def run(db, behaviorID):
     data['overview']['projectileInfo'] = {}
     data['overview']['projectileDamageComboArray'] = []
     data['overview']['chargeUpCombo'] = 0
+    data['overview']['allDamage'] = []
+    data['overview']['attackTypes'] = []
     data['projectileBehaviorIDs'] = []
     data['projectileChargeUpBehaviorIDs'] = []
 

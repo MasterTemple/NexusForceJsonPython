@@ -16,9 +16,9 @@ def getInfo(conn, data, comp_id):
         icon_path = icon_path.replace("\\", "/")
         icon_path = icon_path.replace(' ', "%20")
         icon_path = icon_path.lower()
-        data['iconURL'] = 'https://xiphoseer.github.io/lu-res/'+icon_path[6:len(icon_path)]
+        data['iconURL'] = icon_path[6:len(icon_path)]
     else:
-        data['iconURL'] = 'https://github.com/MasterTemple/lu_bot/blob/master/src/unknown.png?raw=true'
+        data['iconURL'] = 'unknown'
 
     return data
 
