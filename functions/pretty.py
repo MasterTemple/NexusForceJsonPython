@@ -267,10 +267,15 @@ def bigCalculate(data):
 
             percent =round((percentVal/100.0) * (data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(data['itemComponent']['rarity'])]['chance']/100.0) * (1.0/data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'][str(data['itemComponent']['rarity'])]), 6)
             #print(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'], percentVal, chanceVal, totalItems)
-            try:
-                howManyToKill = round(1.0/percent)
-            except ZeroDivisionError:
+            # try:
+            #     howManyToKill = round(1.0/percent)
+            # except ZeroDivisionError:
+            #     howManyToKill = 0
+
+            if(percent == 0):
                 howManyToKill = 0
+            else:
+                howManyToKill = round(100/data['buyAndDrop']['LootMatrixIndexes'][lmi]['percent']) * round(100/data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityTableInfo'][(data['itemComponent']['rarity'])]['chance']) * totalItems
             #print(percent)
             data['buyAndDrop']['LootMatrixIndexes'][lmi]['overallChance'] = {
                 "percent": percent*100,
@@ -298,6 +303,7 @@ def removeUnusedLootMatrixIndexes(data):
         if len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['DestructibleComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent']) == 0 and len(data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent']) == 0:
             #delattr(data, ['buyAndDrop']['LootMatrixIndexes'][lmi])
             lmisToDelete.append(lmi)
+
 
     for lmi in lmisToDelete:
         del data['buyAndDrop']['LootMatrixIndexes'][lmi]
@@ -347,7 +353,7 @@ def packageNamesForItemDrops(data, conn):
         activityData = json.load(f)
     for lmi in data['buyAndDrop']['LootMatrixIndexes']:
         data['buyAndDrop']['LootMatrixIndexes'][lmi]['PackageComponent'] = {}
-        data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent'] = {}
+        data['buyAndDrop']['LootMatrixIndexes'][lmi]['ActivityComponent'] = []
 
     packageLMIs = packageData['LootMatrixIndexes']
     activityLMIs = activityData['list']

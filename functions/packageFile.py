@@ -172,13 +172,14 @@ def weightedChance(data):
                             lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = round(((100/total)*(lti['rarityTableInfo'][rti]['chance']/100))/lti['rarityCount'][str(rti)], 6)
                             lti['rarityTableInfo'][rti]['weightedChanceForAnyItemIncludingDrop'] = round( (lti['percent']/100)*((100/total)*(lti['rarityTableInfo'][rti]['chance']/100)), 6)
                             lti['rarityTableInfo'][rti]['weightedChanceForSpecificItemIncludingDrop'] = round( (lti['percent']/100)*((100/total)*(lti['rarityTableInfo'][rti]['chance']/100))/lti['rarityCount'][str(rti)], 6)
+                            lti['rarityTableInfo'][rti]['howManyToKill'] = round(100/lti['percent']) * round(100/lti['rarityTableInfo'][rti]['chance']) * lti['rarityCount'][str(rti)]
 
-                if lti['rarityCount'][str(rti)] == 0:
+            if lti['rarityCount'][str(rti)] == 0:
                     #print('ran', lti['LootTableIndex'])
                     lti['rarityTableInfo'][rti]['weightedChance'] = 0
                     lti['rarityTableInfo'][rti]['weightedChanceForSpecificItem'] = 0
 
-                lti['total'] = total
+                    lti['total'] = total
                 #print(total)
 
         #print(lti['rarityTableInfo'])

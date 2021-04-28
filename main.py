@@ -257,6 +257,8 @@ def runReferences():
     writeAnyFile("Activities", ActivityData, False, 'references')
     LootTableIndexData = references.getLTINames()
     writeAnyFile("LootTableIndexNames", LootTableIndexData, False, 'references')
+    writeAnyFile("EnemyPFPUpdates", [], False, 'contributor')
+    writeAnyFile("NPCPFPUpdates", [], False, 'contributor')
 
 
 LootTableIndexData = references.getLTINames()
@@ -411,7 +413,7 @@ elif config['justUpdateGivenInfo'] == True:
     activitiesList = config['activitiesList']
     behaviorsList = config['behaviorsList']
 
-    #behaviorsList = allLists['behaviorsList']
+    # enemyList = allLists['enemyList']
 
     #lootTableIndexesList = allLists['lootTableIndexesList']
     #lootTableIndexesList = lootTableIndexesList[lootTableIndexesList.index(54):]
