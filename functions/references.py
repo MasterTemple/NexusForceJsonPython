@@ -414,3 +414,62 @@ def xml2json():
     return obj
 
 
+
+def getPreconditionsData(conn):
+    import json
+    with open("work/config.json", encoding='utf-8') as f:
+        config = json.load(f)
+    with open(config['path']+"/references/locale.json", encoding='utf-8') as f:
+        locale = json.load(f)
+
+    cur = conn.cursor()
+    cur.execute("SELECT id, reqPrecondition FROM ItemComponent")
+    rows = cur.fetchall()
+    arrayObj = {}
+    for row in rows:
+        if row[1] is None or row[1] == "" or row[1] == "62|26":
+            continue
+        pre = str(row[1]).split(";")
+        for req in pre:
+            try:
+                if arrayObj[req] is None:
+                    print('wow')
+            except KeyError:
+                arrayObj[req] = {}
+                arrayObj[req]['components'] = []
+                arrayObj[req]['itemIDs'] = []
+                arrayObj[req]['description'] = "temp"
+                arrayObj[req]['items'] = []
+
+
+
+            arrayObj[req]['components'].append(row[0])
+
+            try:
+                arrayObj[req]['description'] = locale["Preconditions_"+str(req)+"_FailureReason"]
+            except KeyError:
+                del arrayObj[req]
+
+
+    cur.execute("SELECT * FROM ComponentsRegistry")
+    rows = cur.fetchall()
+
+    for prereq in arrayObj.keys():
+        for row in rows:
+            if int(row[1]) == 11 and int(row[2]) in arrayObj[prereq]['components']:
+                arrayObj[prereq]['itemIDs'].append(row[0])
+                obj = {
+                    "comp": row[2],
+                    "itemID": row[0],
+                }
+                try:
+                    obj['name'] = locale["Objects_"+str(row[0])+"_name"]
+                except KeyError:
+                    obj['name'] = "Objects_"+str(row[0])+"_name"
+
+                arrayObj[prereq]['items'].append(obj)
+
+    for prereq in arrayObj.keys():
+        del arrayObj[prereq]['components']
+        del arrayObj[prereq]['itemIDs']
+    return arrayObj

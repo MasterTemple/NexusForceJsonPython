@@ -257,6 +257,8 @@ def runReferences():
     writeAnyFile("Activities", ActivityData, False, 'references')
     LootTableIndexData = references.getLTINames()
     writeAnyFile("LootTableIndexNames", LootTableIndexData, False, 'references')
+    PreconditionsData = references.getPreconditionsData(db)
+    writeAnyFile("Preconditions", PreconditionsData, False, 'references')
     writeAnyFile("EnemyPFPUpdates", [], False, 'contributor')
     writeAnyFile("NPCPFPUpdates", [], False, 'contributor')
 
@@ -474,7 +476,7 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 
 #packagesList = allLists['packagesList']
 # activitiesList = allLists['activitiesList']
-enemyList = allLists['enemyList']
+#enemyList = allLists['enemyList']
 
 
 # MissionsData = references.getMissions(db)
@@ -511,3 +513,6 @@ for func in config['functionsInfo']:
     previous = now.strftime("%H:%M:%S")
 
 # runModify()
+
+PreconditionsData = references.getPreconditionsData(db)
+writeAnyFile("Preconditions", PreconditionsData, False, 'references')
