@@ -482,7 +482,7 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 #packagesList = allLists['packagesList']
 # activitiesList = allLists['activitiesList']
 #enemyList = allLists['enemyList']
-#activitiesList = allLists['activitiesList']
+activitiesList = allLists['activitiesList']
 
 
 # MissionsData = references.getMissions(db)

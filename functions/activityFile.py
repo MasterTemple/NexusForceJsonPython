@@ -458,6 +458,7 @@ def totalWishingWellKey(data):
             "howManyToKillForSpecific": 0,
             "howManyToKillForAny": 0
         }
+        percent = 0
         for subkey in totalActivity['LootTables'][key].keys():
             #print(f"-{subkey}")
 
@@ -486,15 +487,28 @@ def totalWishingWellKey(data):
                     rarityTableInfo[str(rarity)]['howManyToKillForAny'] += (totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForAny"] * (activityChanceByID[subkey])/1000 )
                 except KeyError:
                     pass
-
+            try:
+                # print("---", totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForAny"])
+                percent += (totalActivity['LootTables'][key][subkey]['percent'] * (activityChanceByID[subkey])/1000 )
+            except KeyError:
+                pass
 
             LootTableIndex = totalActivity['LootTables'][key][subkey]['LootTableIndex']
             RarityTableIndex = totalActivity['LootTables'][key][subkey]['RarityTableIndex']
-            percent = totalActivity['LootTables'][key][subkey]['percent']
+            #percent = totalActivity['LootTables'][key][subkey]['percent']
             minToDrop = totalActivity['LootTables'][key][subkey]['minToDrop']
             maxToDrop = totalActivity['LootTables'][key][subkey]['maxToDrop']
             size = totalActivity['LootTables'][key][subkey]['size']
             names = totalActivity['LootTables'][key][subkey]['names']
+            rarityCount = totalActivity['LootTables'][key][subkey]['rarityCount']
+
+        raritiesToDelete = []
+        for rar in rarityTableInfo:
+            if rarityTableInfo[rar]["weightedChanceForAnyItemIncludingDrop"] == 0 and rarityTableInfo[rar]["weightedChanceForSpecificItemIncludingDrop"] == 0 and rarityTableInfo[rar]["howManyToKillForSpecific"] == 0 and rarityTableInfo[rar]["howManyToKillForAny"] == 0:
+                raritiesToDelete.append(rar)
+
+        for bye in raritiesToDelete:
+            del rarityTableInfo[bye]
 
         obj = {
             "LootTableIndex": LootTableIndex,
@@ -504,7 +518,8 @@ def totalWishingWellKey(data):
             "maxToDrop": maxToDrop,
             "size": size,
             "names": names,
-            "rarityTableInfo": rarityTableInfo
+            "rarityTableInfo": rarityTableInfo,
+            "rarityCount": rarityCount
         }
         totalActivity['LootTableIndexes'].append(obj)
 
