@@ -89,15 +89,21 @@ def getLMI(conn, comp_val):
 
 
 def getActivityRewards(conn, activityID, data):
+    data['activityRatings'] = {}
     data['activities'] = {}
+
     cur = conn.cursor()
     cur.execute("SELECT * FROM ActivityRewards")
     rows = cur.fetchall()
     for row in rows:
         if row[0] == activityID:
+            activity_id = str(row[6])[len(row[6])-1:]
+            data['activityRatings'][activity_id] = row[2]
+
             data['activities'][row[6]] = {
                 "LootMatrixIndex": row[3],
-                "CurrencyIndex": row[4]
+                "CurrencyIndex": row[4],
+                "activityRating": row[2]
             }
 
     return data
@@ -239,4 +245,269 @@ def bigCalculate(data):
         # except:
         #     continue
 
+    return data
+
+
+def totalWishingWell(data):
+    totalActivity = {}
+    totalActivity['LootTableIndexesList'] = []
+    totalActivity['LootTableIndexes'] = []
+
+    usedLTIS = []
+    for activity in data['activities']:
+        name = activity
+        activity_id = name[len(name)-1:]
+        print(activity_id)
+        #print(activity)
+        for LootTable in data['activities'][activity]['LootTableIndexes']:
+            if LootTable['LootTableIndex'] not in usedLTIS:
+                totalActivity['LootTableIndexesList'].append(LootTable['LootTableIndex'])
+                totalActivity['LootTableIndexes'].append(LootTable)
+                usedLTIS.append(LootTable['LootTableIndex'])
+
+                for rarityID in totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'].keys():
+                    # print(rarityID)
+                    # print(totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID])
+
+                    try:
+                        pa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop']
+                    except KeyError:
+                        pa = 0
+                    try:
+                        ps = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop']
+                    except KeyError:
+                        ps = 0
+                    try:
+                        fs = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific']
+                    except KeyError:
+                        fs = 0
+                    try:
+                        fa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny']
+                    except KeyError:
+                        fa = 0
+                    totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop'] = pa
+                    totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop'] = ps
+                    totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific'] = fs
+                    totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny'] = fa
+
+            else:
+                pass
+                # for
+                # for rarityID in totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'].keys():
+                #     # print(rarityID)
+                #     # print(totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID])
+                #
+                #     try:
+                #         pa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop']
+                #     except KeyError:
+                #         pa = 0
+                #     try:
+                #         ps = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop']
+                #     except KeyError:
+                #         ps = 0
+                #     try:
+                #         fs = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific']
+                #     except KeyError:
+                #         fs = 0
+                #     try:
+                #         fa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny']
+                #     except KeyError:
+                #         fa = 0
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop'].append(pa)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop'].append(ps)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific'].append(fs)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny'].append(fa)
+
+
+    # for activity in data['activities']:
+    #     print(activity)
+    #     for LootTable in data['activities'][activity]['LootTableIndexes']:
+    #         print(LootTable)
+
+    name = name[:len(name)-1] + "Total"
+    data['activities'][name] = totalActivity
+    return data
+
+
+def totalWishingWellKey(data):
+    totalActivity = {}
+    totalActivity['LootTableIndexesList'] = []
+    totalActivity['LootTableIndexes'] = []
+    totalActivity['LootTables'] = {}
+    activityChanceByID = {
+        "1": 500,
+        "2": 250,
+        "3": 150,
+        "4": 50,
+        "5": 25,
+        "6": 23,
+        "7": 2,
+        "8": 1,
+    }
+
+    usedLTIS = []
+    for activity in data['activities']:
+        name = activity
+        activity_id = name[len(name)-1:]
+        #print(activity_id)
+        #print(activity)
+        for LootTable in data['activities'][activity]['LootTableIndexes']:
+            if LootTable['LootTableIndex'] not in totalActivity['LootTables'].keys():
+                totalActivity['LootTables'][LootTable['LootTableIndex']] = {}
+                totalActivity['LootTables'][LootTable['LootTableIndex']][activity_id] = LootTable
+            elif LootTable['LootTableIndex'] in totalActivity['LootTables'].keys():
+                totalActivity['LootTables'][LootTable['LootTableIndex']][activity_id] = LootTable
+                pass
+
+
+        # if LootTable['LootTableIndex'] not in usedLTIS:
+            #     totalActivity['LootTableIndexesList'].append(LootTable['LootTableIndex'])
+            #     totalActivity['LootTableIndexes'].append(LootTable)
+            #     usedLTIS.append(LootTable['LootTableIndex'])
+            #
+            #     for rarityID in totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'].keys():
+            #         # print(rarityID)
+            #         # print(totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID])
+            #
+            #         try:
+            #             pa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop']
+            #         except KeyError:
+            #             pa = 0
+            #         try:
+            #             ps = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop']
+            #         except KeyError:
+            #             ps = 0
+            #         try:
+            #             fs = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific']
+            #         except KeyError:
+            #             fs = 0
+            #         try:
+            #             fa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny']
+            #         except KeyError:
+            #             fa = 0
+            #         totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop'] = pa
+            #         totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop'] = ps
+            #         totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific'] = fs
+            #         totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny'] = fa
+            #
+            # else:
+            #     pass
+                # for
+                # for rarityID in totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'].keys():
+                #     # print(rarityID)
+                #     # print(totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID])
+                #
+                #     try:
+                #         pa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop']
+                #     except KeyError:
+                #         pa = 0
+                #     try:
+                #         ps = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop']
+                #     except KeyError:
+                #         ps = 0
+                #     try:
+                #         fs = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific']
+                #     except KeyError:
+                #         fs = 0
+                #     try:
+                #         fa = totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny']
+                #     except KeyError:
+                #         fa = 0
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForAnyItemIncludingDrop'].append(pa)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['weightedChanceForSpecificItemIncludingDrop'].append(ps)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForSpecific'].append(fs)
+                #     totalActivity['LootTableIndexes'][len(totalActivity['LootTableIndexes'])-1]['rarityTableInfo'][rarityID]['howManyToKillForAny'].append(fa)
+
+
+
+    # for activity in data['activities']:
+    #     print(activity)
+    #     for LootTable in data['activities'][activity]['LootTableIndexes']:
+    #         print(LootTable)
+
+    for key in totalActivity['LootTables'].keys():
+        #print(key)
+        totalActivity['LootTables'][key]
+        # weightedChanceForAnyItemIncludingDrop = 0
+        # weightedChanceForSpecificItemIncludingDrop = 0
+        # howManyToKillForSpecific = 0
+        # howManyToKillForAny = 0
+        #data['activities'][name[:len(name)-1]+]
+        rarityTableInfo = {}
+        rarityTableInfo['1'] = {
+            "weightedChanceForAnyItemIncludingDrop": 0,
+            "weightedChanceForSpecificItemIncludingDrop": 0,
+            "howManyToKillForSpecific": 0,
+            "howManyToKillForAny": 0
+        }
+        rarityTableInfo['2'] = {
+            "weightedChanceForAnyItemIncludingDrop": 0,
+            "weightedChanceForSpecificItemIncludingDrop": 0,
+            "howManyToKillForSpecific": 0,
+            "howManyToKillForAny": 0
+        }
+        rarityTableInfo['3'] = {
+            "weightedChanceForAnyItemIncludingDrop": 0,
+            "weightedChanceForSpecificItemIncludingDrop": 0,
+            "howManyToKillForSpecific": 0,
+            "howManyToKillForAny": 0
+        }
+        rarityTableInfo['4'] = {
+            "weightedChanceForAnyItemIncludingDrop": 0,
+            "weightedChanceForSpecificItemIncludingDrop": 0,
+            "howManyToKillForSpecific": 0,
+            "howManyToKillForAny": 0
+        }
+        for subkey in totalActivity['LootTables'][key].keys():
+            #print(f"-{subkey}")
+
+
+
+            for rarity in totalActivity['LootTables'][key][subkey]['rarityTableInfo']:
+
+                #print(f"--{rarity}")
+                try:
+                    # print("---", totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["weightedChanceForAnyItemIncludingDrop"])
+                    rarityTableInfo[str(rarity)]['weightedChanceForAnyItemIncludingDrop'] += (totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["weightedChanceForAnyItemIncludingDrop"] * (activityChanceByID[subkey])/1000 )
+                except KeyError:
+                    pass
+                try:
+                    # print("---", totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["weightedChanceForSpecificItemIncludingDrop"])
+                    rarityTableInfo[str(rarity)]['weightedChanceForSpecificItemIncludingDrop'] += (totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["weightedChanceForSpecificItemIncludingDrop"] * (activityChanceByID[subkey])/1000 )
+                except KeyError:
+                    pass
+                try:
+                    # print("---", totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForSpecific"])
+                    rarityTableInfo[str(rarity)]['howManyToKillForSpecific'] += (totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForSpecific"] * (activityChanceByID[subkey])/1000 )
+                except KeyError:
+                    pass
+                try:
+                    # print("---", totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForAny"])
+                    rarityTableInfo[str(rarity)]['howManyToKillForAny'] += (totalActivity['LootTables'][key][subkey]['rarityTableInfo'][rarity]["howManyToKillForAny"] * (activityChanceByID[subkey])/1000 )
+                except KeyError:
+                    pass
+
+
+            LootTableIndex = totalActivity['LootTables'][key][subkey]['LootTableIndex']
+            RarityTableIndex = totalActivity['LootTables'][key][subkey]['RarityTableIndex']
+            percent = totalActivity['LootTables'][key][subkey]['percent']
+            minToDrop = totalActivity['LootTables'][key][subkey]['minToDrop']
+            maxToDrop = totalActivity['LootTables'][key][subkey]['maxToDrop']
+            size = totalActivity['LootTables'][key][subkey]['size']
+            names = totalActivity['LootTables'][key][subkey]['names']
+
+        obj = {
+            "LootTableIndex": LootTableIndex,
+            "RarityTableIndex": RarityTableIndex,
+            "percent": percent,
+            "minToDrop": minToDrop,
+            "maxToDrop": maxToDrop,
+            "size": size,
+            "names": names,
+            "rarityTableInfo": rarityTableInfo
+        }
+        totalActivity['LootTableIndexes'].append(obj)
+
+    name = name[:len(name)-1] + "Total"
+    data['activities'][name] = totalActivity
     return data

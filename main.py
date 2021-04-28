@@ -201,8 +201,13 @@ def runKits(kitID):
 
 
 def runActivity(activityID):
-    activityData = {"id": activityID}
+    #activityData = {"id": activityID}
     activityData = activityFile.getInfo(db, activityID)
+    for key in activityData['activities'].keys():
+        if "Wishing Well" in key:
+            activityFile.totalWishingWellKey(activityData)
+            break
+
     writeAnyFile(activityID, activityData, False, 'activities')
 
 
@@ -477,6 +482,7 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 #packagesList = allLists['packagesList']
 # activitiesList = allLists['activitiesList']
 #enemyList = allLists['enemyList']
+#activitiesList = allLists['activitiesList']
 
 
 # MissionsData = references.getMissions(db)
@@ -514,5 +520,7 @@ for func in config['functionsInfo']:
 
 # runModify()
 
-PreconditionsData = references.getPreconditionsData(db)
-writeAnyFile("Preconditions", PreconditionsData, False, 'references')
+# PreconditionsData = references.getPreconditionsData(db)
+# writeAnyFile("Preconditions", PreconditionsData, False, 'references')
+# ActivityData = references.getActivities(db)
+# writeAnyFile("Activities", ActivityData, False, 'references')

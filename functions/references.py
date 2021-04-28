@@ -362,6 +362,10 @@ def getActivities(conn):
     for row in rows:
         if row[0] not in data:
             data[row[0]] = row[1]
+            if "Wishing Well 1" in row[0]:
+                name = row[0][:len(row[0])-1] + "Total"
+                #print(name)
+                data[name] = row[1]
     return data
 
 
