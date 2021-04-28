@@ -472,6 +472,11 @@ else:
 config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfItemsToExecute, executeOnce]
 """
 
+#packagesList = allLists['packagesList']
+# activitiesList = allLists['activitiesList']
+enemyList = allLists['enemyList']
+
+
 # MissionsData = references.getMissions(db)
 # writeAnyFile("Missions", MissionsData, False, 'references')
 # MissionsLocationData = references.getMissionLocation()
