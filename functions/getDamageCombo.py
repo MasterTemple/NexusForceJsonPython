@@ -19,6 +19,8 @@ def getKidsKids(data, obj, parameter, branch, movementSwitch, behaviorData, used
             data['overview']['projectileAttack'] = True
         elif obj[parameter]['name']['templateID'] == 17:
             data['overview']['attackTypes'].append("Knockback")
+        elif obj[parameter]['name']['templateID'] == 41:
+            data['overview']['attackTypes'].append("Interruption")
         elif obj[parameter]['name']['templateID'] == 7:
             data['overview']['attackTypes'].append("Area of Effect")
         elif obj[parameter]['name']['templateID'] == 15 and obj[parameter]['name']['stun_caster'] == 0:
@@ -165,7 +167,9 @@ def sort(data, behaviorData, used, actions, projectile, cur, rows):
 def run(db, behaviorID):
     import json
     import functions.getProjectileStats as projectile
-    with open('output/search/behaviorData.json') as x:
+    with open('work/config.json') as x:
+        config = json.load(x)
+    with open(config['path']+'/search/behaviorData.json') as x:
         behaviorData = json.load(x)
 
 

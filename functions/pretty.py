@@ -408,10 +408,14 @@ def getEnemySkills(data):
         with open(config['path']+'/behaviors/'+str(math.floor(data['objectSkills'][skill]['behaviorID']/256))+'/'+str(data['objectSkills'][skill]['behaviorID'])+'.json') as f:
             behaviorFile = json.load(f)
         overviewInfo = behaviorFile['overview']
-
+        try:
+            projectileBehaviorID = behaviorFile['projectileBehaviorIDs'][0]
+        except IndexError:
+            projectileBehaviorID = "None"
         data['overview'][data['objectSkills'][skill]['behaviorID']] = {
             "damage": overviewInfo['allDamage'],
             "attackTypes": overviewInfo['attackTypes'],
+            "projectileBehaviorID": projectileBehaviorID,
             "cooldown": data['objectSkills'][skill]['cooldown']
 
         }
