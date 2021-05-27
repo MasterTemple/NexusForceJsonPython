@@ -32,12 +32,15 @@ def getItems(conn):
                 displayName = row[1]
             else:
                 displayName = row[3]
-            array.append({
+            obj = {
                 "id": row[0],
                 "name": row[1],
-                "type": row[2],
-                "displayName": displayName
-            })
+                "type": row[2]
+            }
+            if row[3] is not None:
+                obj["displayName"] = row[3]
+
+            array.append(obj)
     return array
 
 def getNPCs(conn):
@@ -47,12 +50,15 @@ def getNPCs(conn):
     array = []
     for row in rows:
         if row[0] not in array and (row[2] == 'UserGeneratedNPCs' or row[2] == 'NPC'):
-            array.append({
+            obj = {
                 "id": row[0],
                 "name": row[1],
-                "type": row[2],
-                "displayName": row[3]
-            })
+                "type": row[2]
+            }
+            if row[3] is not None:
+                obj["displayName"] = row[3]
+
+            array.append(obj)
     return array
 
 def getBricks(conn):
@@ -62,12 +68,15 @@ def getBricks(conn):
     array = []
     for row in rows:
         if row[0] not in array and (row[2] == 'LEGO brick'):
-            array.append({
+            obj = {
                 "id": row[0],
                 "name": row[1],
-                "type": row[2],
-                "displayName": row[3]
-            })
+                "type": row[2]
+            }
+            if row[3] is not None:
+                obj["displayName"] = row[3]
+
+            array.append(obj)
     return array
 
 
@@ -78,12 +87,15 @@ def getBricksAndItems(conn):
     array = []
     for row in rows:
         if row[0] not in array and (row[2] == 'LEGO brick' or row[2] == 'Loot'):
-            array.append({
+            obj = {
                 "id": row[0],
                 "name": row[1],
-                "type": row[2],
-                "displayName": row[3]
-            })
+                "type": row[2]
+            }
+            if row[3] is not None:
+                obj["displayName"] = row[3]
+
+            array.append(obj)
     return array
 
 def getMissions(conn):
@@ -293,11 +305,14 @@ def getPackages(conn):
     rows = cur.fetchall()
     for row in rows:
         if row[0] not in array and row[0] in packageIDs:
+            displayName = row[3]
+            if displayName == None:
+                displayName = "None"
             array.append({
                 "id": row[0],
                 "name": row[1],
                 "type": row[2],
-                "displayName": row[3]
+                "displayName": displayName
             })
     return array
 
@@ -404,15 +419,16 @@ def getLTINames():
     return arr
 
 def xml2json():
+    import re
     obj = {}
     import xml.etree.ElementTree as ET
-    tree = ET.parse('D:\LEGO Universe (unpacked)\locale\locale.xml')
+    tree = ET.parse('E:\LEGO Universe (unpacked)\locale\locale.xml')
 
     root = tree.getroot()
 
     for child in root[1]:
         if child.attrib['id']:
-            obj[child.attrib['id']] = child[0].text
+            obj[child.attrib['id']] = re.sub("<[^>]+>", "", child[0].text)
 
 
     return obj
