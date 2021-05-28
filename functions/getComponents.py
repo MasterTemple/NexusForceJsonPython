@@ -3,12 +3,11 @@ def getInfo(conn, data, objectID):
     data['components'] = {}
 
     cur = conn.cursor()
-    cur.execute("SELECT id, component_type, component_id FROM ComponentsRegistry")
+    cur.execute("SELECT id, component_type, component_id FROM ComponentsRegistry WHERE id=?", (objectID,))
 
     rows = cur.fetchall()
 
     for row in rows:
-        if row[0] == objectID:
-            data['components'][row[1]] = row[2]
+        data['components'][row[1]] = row[2]
 
     return data

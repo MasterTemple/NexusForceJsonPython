@@ -1,13 +1,10 @@
 def getInfo(conn, data, comp_id):
 
     cur = conn.cursor()
-    cur.execute("SELECT id, icon_asset FROM RenderComponent")
-    rows = cur.fetchall()
-    icon_path = None
-    for row in rows:
-        if row[0] == comp_id:
-            icon_path = row[1]
-            break
+    cur.execute("SELECT id, icon_asset FROM RenderComponent WHERE id=?", (comp_id,))
+    row = cur.fetchone()
+    #icon_path = None
+    icon_path = row[1]
 
     if icon_path is not None:
         icon_path = icon_path.replace('.DDS', '.png')

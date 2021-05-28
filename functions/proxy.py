@@ -10,7 +10,7 @@ def getProxy(conn, data, objectID):
     data['proxySkillIDs'] = []
     data['proxySkills'] = {}
     cur = conn.cursor()
-    cur.execute("SELECT * FROM ObjectSkills")
+    cur.execute("SELECT * FROM ObjectSkills WHERE id IN ("+ ",".join(["?" for _ in data['itemComponent']['subItems']]) + ")", data['itemComponent']['subItems'])
     rows = cur.fetchall()
 
     if data['itemComponent']['subItems'] is not None:
@@ -36,29 +36,28 @@ def getProxy(conn, data, objectID):
 
 def getProxySkillBehavior(conn, data, skillID):
     cur = conn.cursor()
-    cur.execute("SELECT skillID, behaviorID, imaginationcost, cooldowngroup, cooldown, inNpcEditor, skillIcon, imBonusUI, lifeBonusUI, armorBonusUI FROM SkillBehavior")
+    cur.execute("SELECT skillID, behaviorID, imaginationcost, cooldowngroup, cooldown, inNpcEditor, skillIcon, imBonusUI, lifeBonusUI, armorBonusUI FROM SkillBehavior WHERE skillID=?",(skillID,))
 
-    rows = cur.fetchall()
+    row = cur.fetchone()
 
-    for row in rows:
-        if row[0] == skillID:
-            data['behaviorIDs'].append(row[1])
-            data['proxySkills'][row[0]]['behaviorID'] = row[1]
-            data['proxySkills'][row[0]]['imaginationcost'] = row[2]
-            data['proxySkills'][row[0]]['cooldowngroup'] = row[3]
-            data['proxySkills'][row[0]]['cooldown'] = round(row[4], 2)
-            data['proxySkills'][row[0]]['inNpcEditor'] = row[5]
-            data['proxySkills'][row[0]]['skillIcon'] = row[6]
-            data['proxySkills'][row[0]]['imBonusUI'] = row[7]
-            data['proxySkills'][row[0]]['lifeBonusUI'] = row[8]
-            data['proxySkills'][row[0]]['armorBonusUI'] = row[9]
+
+    data['behaviorIDs'].append(row[1])
+    data['proxySkills'][row[0]]['behaviorID'] = row[1]
+    data['proxySkills'][row[0]]['imaginationcost'] = row[2]
+    data['proxySkills'][row[0]]['cooldowngroup'] = row[3]
+    data['proxySkills'][row[0]]['cooldown'] = round(row[4], 2)
+    data['proxySkills'][row[0]]['inNpcEditor'] = row[5]
+    data['proxySkills'][row[0]]['skillIcon'] = row[6]
+    data['proxySkills'][row[0]]['imBonusUI'] = row[7]
+    data['proxySkills'][row[0]]['lifeBonusUI'] = row[8]
+    data['proxySkills'][row[0]]['armorBonusUI'] = row[9]
 
     return data
 
 
 
 def addProxyEquipLocation(data, cur):
-    cur.execute("SELECT id, equipLocation FROM ItemComponent")
+    cur.execute("SELECT id, equipLocation FROM ItemComponent  WHERE id IN ("+ ",".join(["?" for _ in data['itemComponent']['subItems']]) + ")", data['itemComponent']['subItems'])
     rows = cur.fetchall()
     #print(data['itemComponent']['subItems'])
     for row in rows:

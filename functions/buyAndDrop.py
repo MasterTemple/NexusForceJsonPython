@@ -21,12 +21,11 @@ def getInfo(conn, data, objectID):
 
 def getLTI(conn, data, objectID):
     cur = conn.cursor()
-    cur.execute("SELECT * FROM LootTable")
+    cur.execute("SELECT * FROM LootTable WHERE itemid=?", (objectID,))
     rows = cur.fetchall()
 
     for row in rows:
-        if row[0] == objectID:
-            data['buyAndDrop']['LootTableIndexes'].append(row[1])
+        data['buyAndDrop']['LootTableIndexes'].append(row[1])
 
     return data
 
