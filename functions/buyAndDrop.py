@@ -149,7 +149,17 @@ def getEnemyIDs(conn, data):
     implementedEnemies = enemiesFile['used']
     cur = conn.cursor()
     data['buyAndDrop']['EnemyIDs'] = []
-    cur.execute("SELECT * FROM ComponentsRegistry WHERE component_type=7 AND component_id IN ("+ ",".join(["?" for _ in data['buyAndDrop']['DestructibleComponents']]) + ") AND id IN ("+ ",".join(["?" for _ in implementedEnemies]) + ")", (data['buyAndDrop']['DestructibleComponents'], implementedEnemies))
+
+    implementedEnemies = [str(x) for x in implementedEnemies]
+
+    implementedEnemiesString = ",".join(implementedEnemies)
+    dCompsArray = [str(x) for x in data['buyAndDrop']['DestructibleComponents']]
+    componentsString = ",".join(dCompsArray)
+
+    query = f"SELECT * FROM ComponentsRegistry WHERE component_type=7 and component_id IN ({componentsString}) AND id IN ({implementedEnemiesString})"
+    cur.execute(query)
+
+    # cur.execute("SELECT * FROM ComponentsRegistry WHERE component_type=7 AND component_id IN ("+ ",".join(["?" for _ in data['buyAndDrop']['DestructibleComponents']]) + ") AND id IN ("+ ",".join(["?" for _ in implementedEnemies]) + ")", (data['buyAndDrop']['DestructibleComponents'], implementedEnemies))
     rows = cur.fetchall()
     for row in rows:
         #if row[2] in data['buyAndDrop']['DestructibleComponents'] and row[1] == 7 and row[0] in implementedEnemies:
@@ -184,11 +194,23 @@ def getOneEnemyID(conn, data, dComp):
 
     cur = conn.cursor()
     data['buyAndDrop']['EnemyIDs'] = []
-    cur.execute("SELECT * FROM ComponentsRegistry WHERE component_type=7 AND component_id=? AND id IN ("+ ",".join(["?" for _ in implementedEnemies]) + ")", (dComp, implementedEnemies))
+    # cur.execute("SELECT * FROM ComponentsRegistry WHERE component_type=7 AND component_id=? AND id IN ("+ ",".join(["?" for _ in implementedEnemies]) + ")", (dComp, implementedEnemies))
+    implementedEnemies = [str(x) for x in implementedEnemies]
+
+    joinedString = ",".join(implementedEnemies)
+    query = f"SELECT * FROM ComponentsRegistry WHERE component_type=7 and component_id={dComp} AND id IN ({joinedString})"
+    cur.execute(query)
+
+    # query = f"SELECT * FROM ComponentsRegistry WHERE component_type=7 and component_id={dComp} AND id IN ({','.join(['?' for _ in implementedEnemies])})"
+    # cur.execute(query, (implementedEnemies,))
+
     row = cur.fetchone()
+    if row is not None:
+        return row[0]
+    # print(row)
     #if row[2] == dComp and row[1] == 7 and row[0] in implementedEnemies:
         #data['buyAndDrop']['EnemyIDs'].append(row[0])
-    return row[0]
+    # return row[0]
 
         #return data
 

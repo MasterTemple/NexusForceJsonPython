@@ -490,6 +490,10 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 # MissionsLocationData = references.getMissionLocation()
 # writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
 #print(behaviorsList)
+
+objectIDsList = allLists['objectIDsList']
+
+
 now = time.now()
 previous = now.strftime("%H:%M:%S")
 #print(len(behaviorsList))
