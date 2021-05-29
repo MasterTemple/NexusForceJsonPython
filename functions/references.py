@@ -1,6 +1,6 @@
 def getObjects(conn):
     cur = conn.cursor()
-    cur.execute("SELECT id, name, type, displayName FROM Objects")
+    cur.execute("SELECT id, name, type, displayName FROM Objects ORDER BY displayName ASC")
     rows = cur.fetchall()
     array = []
     for row in rows:
@@ -493,3 +493,117 @@ def getPreconditionsData(conn):
         del arrayObj[prereq]['components']
         del arrayObj[prereq]['itemIDs']
     return arrayObj
+
+def getObjectsLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array
+
+def getItemsLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects WHERE type='Loot' ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array
+
+def getNPCsLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects WHERE type='NPC' OR type='UserGeneratedNPCs' ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array
+
+def getBricksLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects WHERE type='LEGO Brick' ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array
+
+def getEnemiesLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects WHERE type='Enemies' ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array
+
+def getBricksAndItemsLocale(conn, locale):
+    array = []
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, type FROM Objects WHERE type='Loot' OR type='LEGO Brick' ORDER BY id ASC")
+    rows = cur.fetchall()
+    for row in rows:
+        try:
+            array.append({
+                "id": row[0],
+                "type": row[1],
+                "name": locale["Objects_"+str(row[0])+"_name"]
+            })
+        except:
+            pass
+
+    return array

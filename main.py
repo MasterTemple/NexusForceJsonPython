@@ -234,8 +234,20 @@ def runReferences():
     # # ltiData = ltiFile.getInfo(db, lootTableIndex)
     # # ltiData['nameInfo'] = getLTIName.getName(lootTableIndex)
     # writeAnyFile("objects", objectsData, False, 'references')
+
+
+    #temp commented for speed
+    """
     Locale = references.xml2json()
     writeAnyFile("Locale", Locale, False, 'references')
+    MissionsData = references.getMissions(db)
+    writeAnyFile("Missions", MissionsData, False, 'references')
+    MissionsLocationData = references.getMissionLocation()
+    writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
+    """
+
+    """
+    #these are the old search files from sql, below this will be ones from locale :)
     ObjectsData = references.getObjects(db)
     writeAnyFile("Objects", ObjectsData, False, 'references')
     ItemsData = references.getItems(db)
@@ -244,16 +256,35 @@ def runReferences():
     writeAnyFile("NPCs", NPCsData, False, 'references')
     BricksData = references.getBricks(db)
     writeAnyFile("Bricks", BricksData, False, 'references')
-    MissionsData = references.getMissions(db)
-    writeAnyFile("Missions", MissionsData, False, 'references')
-    MissionsLocationData = references.getMissionLocation()
-    writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
     EnemyData = references.getEnemies(db)
     writeAnyFile("Enemies", EnemyData, False, 'references')
     BricksAndItemsData = references.getBricksAndItems(db)
     writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
     PackagesData = references.getPackages(db)
     writeAnyFile("Packages", PackagesData, False, 'references')
+    """
+    import json
+    with open(config['path'] + "/references/locale.json", encoding='utf-8') as f:
+        locale = json.load(f)
+    ObjectsData = references.getObjectsLocale(db, locale)
+    writeAnyFile("Objects", ObjectsData, False, 'references')
+    ItemsData = references.getItemsLocale(db, locale)
+    writeAnyFile("Items", ItemsData, False, 'references')
+    NPCsData = references.getNPCsLocale(db, locale)
+    writeAnyFile("NPCs", NPCsData, False, 'references')
+    BricksData = references.getBricksLocale(db, locale)
+    writeAnyFile("Bricks", BricksData, False, 'references')
+    EnemyData = references.getEnemiesLocale(db, locale)
+    writeAnyFile("Enemies", EnemyData, False, 'references')
+    BricksAndItemsData = references.getBricksAndItemsLocale(db, locale)
+    writeAnyFile("BricksAndItems", BricksAndItemsData, False, 'references')
+
+"""
+    #im going to use normal package names rn
+    # PackagesData = references.getPackagesLocale(db, locale)
+    PackagesData = references.getPackages(db)
+    writeAnyFile("Packages", PackagesData, False, 'references')
+
     KitData = references.getKits(db)
     writeAnyFile("Kits", KitData, False, 'references')
     SkillData = references.getSkills(db)
@@ -266,7 +297,7 @@ def runReferences():
     writeAnyFile("Preconditions", PreconditionsData, False, 'references')
     writeAnyFile("EnemyPFPUpdates", [], False, 'contributor')
     writeAnyFile("NPCPFPUpdates", [], False, 'contributor')
-
+"""
 
 LootTableIndexData = references.getLTINames()
 writeAnyFile("LootTableIndexNames", LootTableIndexData, False, 'references')
@@ -491,8 +522,9 @@ config['functionsInfo'] formation is [printedOutName, functionToExecute, listOfI
 # writeAnyFile("MissionLocations", MissionsLocationData, False, 'references')
 #print(behaviorsList)
 
-objectIDsList = allLists['objectIDsList']
-
+#objectIDsList = allLists['objectIDsList']
+# ObjectsData = references.getObjects(db)
+# writeAnyFile("Objects", ObjectsData, False, 'references')
 
 now = time.now()
 previous = now.strftime("%H:%M:%S")
@@ -540,3 +572,5 @@ for func in config['functionsInfo']:
 # writeAnyFile("Packages", PackagesData, False, 'references')
 # Locale = references.xml2json()
 # writeAnyFile("Locale", Locale, False, 'references')
+
+runReferences()
