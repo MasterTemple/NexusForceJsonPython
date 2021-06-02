@@ -111,9 +111,13 @@ def getKitName(kitID):
         config = json.load(f)
     with open(config['path']+'/references/Locale.json', encoding="utf8") as f:
         locale = json.load(f)
-
     name = 'ItemSets_'+str(kitID)+'_kitName'
-    return locale[name]
+
+    try:
+        return locale[name]
+    except:
+        return name
+
 
 
 def getKitAbility(skillID):

@@ -247,7 +247,7 @@ def rarityTable(conn, data, lmi, rti):
         import json
         with open('work/config.json') as f:
             config = json.load(f)
-        with open(config['path']+'/lootTableIndexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
+        with open(config['path']+'/loot_table_indexes/'+str(data['buyAndDrop']['LootMatrixIndexes'][lmi]['LootTableIndex'])+'.json') as f:
             rarityCount = json.load(f)
 
         data['buyAndDrop']['LootMatrixIndexes'][lmi]['rarityCount'] = rarityCount['rarityCount']
